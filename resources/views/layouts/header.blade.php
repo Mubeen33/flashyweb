@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css')}}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+    @stack('styles')
 </head>
 
 <body>

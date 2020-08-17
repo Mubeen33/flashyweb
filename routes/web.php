@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+
+Route::group(['as'=>'frontend.', 'namespace'=>'Frontend'], function(){
+	//vendor controller
+	Route::get('vendor-registration', 'VendorController@vendor_registration')->name('vendor_registration.get');
+	Route::resource('vendor', 'VendorController');
+});
+
+
 // Route::get('vendor-request', function () {
 //     return view('vendor.vendor-request');
 // });
