@@ -19,10 +19,10 @@ class CreateVendorsTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('mobile');
             $table->longtext('business_info');
-            $table->tinyInteger('vat_register');
+            $table->string('vat_register');
             $table->string('company_name')->nullable();
             $table->string('website_url')->nullable();
             $table->string('director_first_name')->nullable();

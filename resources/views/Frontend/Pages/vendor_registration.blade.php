@@ -157,23 +157,19 @@
                                     <input name="website" class="form-control" type="text" placeholder="Website" value="{{ old('website') }}">
                                 </div>
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                                <div class="form-group">
-                                    <input name="business_director_details" class="form-control" type="text" placeholder="Business director details" value="{{ old('business_director_details') }}">
-                                </div>
-                            </div>
+
                             
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div>
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <input name="business_owner_first_name" class="form-control" type="text" placeholder="Business owner first name" value="{{ old('business_owner_first_name') }}">
+                                                <input name="business_director_first_name" class="form-control" type="text" placeholder="Business director first name" value="{{ old('business_director_first_name') }}">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <input name="business_owner_last_name" class="form-control" type="text" placeholder="Business owner last name" value="{{ old('business_owner_last_name') }}">
+                                                <input name="business_director_last_name" class="form-control" type="text" placeholder="Business director last name" value="{{ old('business_director_last_name') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -182,9 +178,15 @@
                             
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
-                                    <input name="business_owner_email" class="form-control" type="text" placeholder="Business owner email address" value="{{ old('business_owner_email') }}">
+                                    <input name="business_director_email" class="form-control" type="text" placeholder="Business director email address" value="{{ old('business_director_email') }}">
                                 </div>
                             </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                <div class="form-group">
+                                    <input name="business_director_details" class="form-control" type="text" placeholder="Business director details" value="{{ old('business_director_details') }}">
+                                </div>
+                            </div>
+
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
                                     <textarea name="business_additional_info" class="form-control" rows="5" placeholder="Additional information about your business">{{ old('business_additional_info') }}</textarea>
