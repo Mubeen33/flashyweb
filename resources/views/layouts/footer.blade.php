@@ -88,6 +88,8 @@
             </div>
         </div>
     </footer>
+
+    @if(!Request::is('vendor-registration'))
     <div class="ps-popup" id="subscribe" data-time="500">
         <div class="ps-popup__content bg--cover" data-background="img/bg/subscribe.jpg"><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
             <form class="ps-form--subscribe-popup" action="index.html" method="get">
@@ -106,6 +108,8 @@
             </form>
         </div>
     </div>
+    @endif
+
     <div id="back2top"><i class="pe-7s-angle-up"></i></div>
     <div class="ps-site-overlay"></div>
     <div id="loader-wrapper">
