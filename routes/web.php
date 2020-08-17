@@ -19,5 +19,5 @@ Route::get('/', function () {
 // Route::get('vendor-request', function () {
 //     return view('vendor.vendor-request');
 // });
-Route::get('vendor-request','vendor\VendorController@index');
-Route::post('send-vendor-request','vendor\VendorController@saveVendorRequest');
+// Route::get('vendor-request','vendor\VendorController@index');
+// Route::post('send-vendor-request','vendor\VendorController@saveVendorRequest');
