@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
+
     @stack('styles')
 </head>
 

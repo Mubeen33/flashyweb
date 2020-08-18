@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'RootController@index')->name('frontend.rootPage');
 
 
-Route::group(['as'=>'frontend.', 'namespace'=>'Frontend'], function(){
-	//vendor controller
-	Route::get('vendor-registration', 'VendorController@vendor_registration')->name('vendor_registration.get');
-	Route::resource('vendor', 'VendorController');
+Route::group(['as'=>'frontend.'], function(){
+	//vendors routes
+	Route::get('vendor-registration', 'Vendors\VendorController@vendor_registration')->name('vendor_registration.get');
+	Route::resource('vendor', 'Vendors\VendorController');
+
 });
 
 

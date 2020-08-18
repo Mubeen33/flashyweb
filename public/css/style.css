@@ -17028,3 +17028,28 @@ html .bg--parallax {
   padding: 0;
   list-style: none;
 }
+
+
+
+/*slider caption css custom*/
+#home-slider--mv{
+  display: none !important;
+}
+.ps-carousel--nav-inside .ps-banner .slider-caption{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+/*responsive sliders*/
+@media only screen and (max-width: 767px) {
+  /*show sm slider*/
+  #home-slider--dv{
+    display: none !important;
+  }
+  #home-slider--mv{
+    display: block !important;
+  }
+}
