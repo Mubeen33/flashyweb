@@ -7,7 +7,9 @@
                 <div class="ps-section__left">
                     @include('Partials.home-slider')
                 </div>
-                <div class="ps-section__right"><a class="ps-collection" href="#"><img src="img/slider/home-1/promotion-1.jpg" alt=""></a><a class="ps-collection" href="#"><img src="img/slider/home-1/promotion-2.jpg" alt=""></a></div>
+                <div class="ps-section__right">
+                    @include('Partials.right-banners')
+                </div>
             </div>
         </div>
         <div class="ps-site-features">
@@ -281,16 +283,7 @@
             </div>
         </div>
         <div class="ps-home-ads">
-            <div class="ps-container">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/1.jpg" alt=""></a>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/2.jpg" alt=""></a>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/3.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
+            @include('Partials.home-ads')
         </div>
         <div class="ps-top-categories">
             <div class="ps-container">
