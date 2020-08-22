@@ -21,11 +21,40 @@ class RootController extends Controller
     					->whereDate('end_time', '>=', $today)
     					->orderBy('order_no', 'ASC')
     					->get();
-    	$ads_banners = Banner::where('type', 'Ads-Banner')
+    	$ads_bannerGroups = Banner::where([
+    						'type'=>'Ads-Banner',
+    						'ads_banner_position'=>'Banner-Groups',
+    					])
     					->whereDate('start_time', '<=', $today)
     					->whereDate('end_time', '>=', $today)
     					->orderBy('order_no', 'ASC')
     					->get();
-    	return view('index', compact('sliders', 'banners', 'ads_banners'));
+    	$ads_bannerLong = Banner::where([
+    						'type'=>'Ads-Banner',
+    						'ads_banner_position'=>'Banner-Long',
+    					])
+    					->whereDate('start_time', '<=', $today)
+    					->whereDate('end_time', '>=', $today)
+    					->orderBy('order_no', 'ASC')
+    					->first();
+    	$ads_bannerShort = Banner::where([
+    						'type'=>'Ads-Banner',
+    						'ads_banner_position'=>'Banner-Short',
+    					])
+    					->whereDate('start_time', '<=', $today)
+    					->whereDate('end_time', '>=', $today)
+    					->orderBy('order_no', 'ASC')
+    					->first();
+    	$ads_bannerBox = Banner::where([
+    						'type'=>'Ads-Banner',
+    						'ads_banner_position'=>'Banner-Box',
+    					])
+    					->whereDate('start_time', '<=', $today)
+    					->whereDate('end_time', '>=', $today)
+    					->orderBy('order_no', 'ASC')
+    					->first();
+    	return view('index', compact('sliders', 'banners', 'ads_bannerGroups',
+    		'ads_bannerLong', 'ads_bannerShort', 'ads_bannerBox'
+    	));
     }
 }

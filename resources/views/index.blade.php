@@ -283,7 +283,7 @@
             </div>
         </div>
         <div class="ps-home-ads">
-            @include('Partials.home-ads')
+            @include('Partials.home-ads-groups')
         </div>
         <div class="ps-top-categories">
             <div class="ps-container">
@@ -1050,14 +1050,7 @@
             </div>
         </div>
         <div class="ps-home-ads">
-            <div class="ps-container">
-                <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/ad-1.jpg" alt=""></a>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/ad-2.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
+            @include('Partials.home-ads-long')
         </div>
         <div class="ps-download-app">
             <div class="ps-container">
@@ -1065,7 +1058,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                                <div class="ps-block__thumbnail"><img src="img/app.png" alt=""></div>
+                                @if($ads_bannerBox)
+                                <div class="ps-block__thumbnail">
+                                    <img src="{{ $ads_bannerBox->image_lg }}" alt="{{ $ads_bannerBox->title }}">
+                                </div>
+                                @endif
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                 <div class="ps-block__content">
