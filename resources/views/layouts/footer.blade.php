@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-<footer class="ps-footer">
+    <footer class="ps-footer">
         <div class="ps-container">
             <div class="ps-footer__widgets">
                 <aside class="widget widget_footer widget_contact-us">
@@ -89,7 +89,7 @@
         </div>
     </footer>
 
-    @if(!Request::is('vendor-registration'))
+    @if(!Request::is('vendor-registration') && !Request::is('login') && !Request::is('customer/*') && !Request::is('reset/*'))
     <div class="ps-popup" id="subscribe" data-time="500">
         <div class="ps-popup__content bg--cover" data-background="img/bg/subscribe.jpg"><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
             <form class="ps-form--subscribe-popup" action="index.html" method="get">
@@ -188,6 +188,7 @@
     <script src="{{ asset('plugins/gmap3.min.js')}}"></script>
     <!-- custom scripts-->
     <script src="{{ asset('js/main.js')}}"></script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -29,7 +29,7 @@
                                 	<input class="form-control" type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required="1">
 	                            </div>
 	                            <div class="form-group form-forgot">
-	                                <input class="form-control" type="password" name="password" placeholder="Password" required="1"><a href="">Forgot?</a>
+	                                <input class="form-control" type="password" name="password" placeholder="Password" required="1"><a href="{{ route('customer.resetPassForm.get') }}">Forgot?</a>
 	                            </div>
 	                            <div class="form-group">
 	                                <div class="ps-checkbox">
@@ -56,15 +56,28 @@
                     <div class="ps-tab" id="register">
                         <div class="ps-form__content">
                             <h5>Register An Account</h5>
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Username or email address">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Password">
-                            </div>
-                            <div class="form-group submtit">
-                                <button class="ps-btn ps-btn--fullwidth">Login</button>
-                            </div>
+                            @include('msg.msg')
+                            <form action="{{ route('customer.registration.post') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <input class="form-control" name="first_name" type="text" placeholder="First Name" value="{{ old('first_name') }}">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="last_name" placeholder="Last Name" value="{{ old('last_name') }}">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm Password">
+                                </div>
+                                <div class="form-group submtit">
+                                    <button type="submit" class="ps-btn ps-btn--fullwidth">Register</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="ps-form__footer">
                             <p>Connect with:</p>

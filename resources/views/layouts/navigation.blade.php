@@ -204,7 +204,11 @@
                         </div>
                         <div class="ps-block--user-header">
                             <div class="ps-block__left"><i class="icon-user"></i></div>
-                            <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                            @if(!Auth::check())
+                            <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('login') }}">Register</a></div>
+                            @else
+                                <div class="ps-block__right"><a href="{{ route('customer.dashboard.get') }}">Dashboard</a></div>
+                            @endif
                         </div>
                     </div>
                 </div>
