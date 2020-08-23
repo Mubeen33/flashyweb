@@ -20,10 +20,10 @@ $(document).ready(function(){
 				success: function(response){
 					$(".address-form button").attr('disabled', false)
 					if (response.success === true){
-						alert('SUCCESS\n\n'+response.msg)
+						alert('SUCCESS\n'+response.msg)
 						window.location.reload(true)
 					}else{
-						alert('SORRY\n\nSomething went wrong')
+						alert('SORRY\nSomething went wrong')
 						window.location.reload(true)
 					}
 										
