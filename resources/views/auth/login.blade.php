@@ -13,7 +13,7 @@
     </div>
     <div class="ps-my-account">
         <div class="container">
-            <form class="ps-form--account ps-tab-root" action="link.html" method="get">
+            <div class="ps-form--account ps-tab-root">
                 <ul class="ps-tab-list">
                     <li class="active"><a href="#sign-in">Login</a></li>
                     <li><a href="#register">Register</a></li>
@@ -22,23 +22,24 @@
                     <div class="ps-tab active" id="sign-in">
                         <div class="ps-form__content">
                             <h5>Log In Your Account</h5>
-
-                            <form>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Username or email address">
-                                </div>
-                                <div class="form-group form-forgot">
-                                    <input class="form-control" type="text" placeholder="Password"><a href="">Forgot?</a>
-                                </div>
-                                <div class="form-group">
-                                    <div class="ps-checkbox">
-                                        <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
-                                        <label for="remember-me">Rememeber me</label>
-                                    </div>
-                                </div>
-                                <div class="form-group submtit">
-                                    <button class="ps-btn ps-btn--fullwidth">Login</button>
-                                </div>
+                            @include('msg.msg')
+                            <form action="{{ route('customer.login.Post') }}" method="POST">
+                            	@csrf
+                            	<div class="form-group">
+                                	<input class="form-control" type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required="1">
+	                            </div>
+	                            <div class="form-group form-forgot">
+	                                <input class="form-control" type="password" name="password" placeholder="Password" required="1"><a href="">Forgot?</a>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="ps-checkbox">
+	                                    <input class="form-control" type="checkbox" id="remember-me" name="remember-me">
+	                                    <label for="remember-me">Rememeber me</label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group submtit">
+	                                <button type="submit" class="ps-btn ps-btn--fullwidth">Login</button>
+	                            </div>
                             </form>
 
                         </div>
@@ -76,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

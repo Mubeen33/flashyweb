@@ -18,8 +18,20 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+        
+        //custom
+        switch ($guard) {
+            case 'customer':
+                if (Auth::guard($guard)->check()) {
+                    return redirect()->route('customer.dashboard.get');
+                }
+                break;
+            
+            default:
+                //not authenticate
+                Auth::logout();
+                return redirect('/login');
+                break;
         }
 
         return $next($request);

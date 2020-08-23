@@ -20,12 +20,14 @@ Route::group(['as'=>'frontend.'], function(){
 	//vendors routes
 	Route::get('vendor-registration', 'Vendors\VendorController@vendor_registration')->name('vendor_registration.get');
 	Route::resource('vendor', 'Vendors\VendorController');
-
 });
 
 
-// Route::get('vendor-request', function () {
-//     return view('vendor.vendor-request');
-// });
-// Route::get('vendor-request','vendor\VendorController@index');
-// Route::post('send-vendor-request','vendor\VendorController@saveVendorRequest');
+//customer login routes
+Route::get('login', 'Customers\Auth\CustomerLogin@login_form')->name('login');
+Route::post('customer-login', 'Customers\Auth\CustomerLogin@login')->name('customer.login.Post');
+
+//customer protected routes
+Route::group(['as'=>'customer.', 'prefix'=>'customer', 'middleware' => ['customerMW']], function(){
+	Route::get('dashboard', 'Customers\CustomerController@dashboard')->name('dashboard.get');
+});
