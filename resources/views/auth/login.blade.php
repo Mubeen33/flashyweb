@@ -80,19 +80,27 @@
                         </div>
                     </div>
                     <div class="ps-section__right">
+                        @if($signupContent)
                         <figure class="ps-section__desc">
-                            <figcaption>Sign up today and you will be able to:</figcaption>
-                            <p>MartFury Buyer Protection has you covered from click to delivery. Sign up or sign in and you will be able to:</p>
+                            <figcaption>@if($signupContent->heading != NULL){{$signupContent->heading}}@endif</figcaption>
+                            <p>@if($signupContent->description != NULL){{$signupContent->description}}@endif</p>
+                            
+                            @if($signupContent->text_lines != NULL)
+                            @php
+                                $lines = explode('##', $signupContent->text_lines);
+                            @endphp
                             <ul class="ps-list">
-                                <li><i class="icon-credit-card"></i><span>SPEED YOUR WAY THROUGH CHECKOUT</span></li>
-                                <li><i class="icon-clipboard-check"></i><span>TRACK YOUR ORDERS EASILY</span></li>
-                                <li><i class="icon-bag2"></i><span>KEEP A RECORD OF ALL YOUR PURCHASES</span></li>
+                                <li><i class="icon-credit-card"></i><span>{{ $lines[0] }}</span></li>
+                                <li><i class="icon-clipboard-check"></i><span>{{ $lines[1] }}</span></li>
+                                <li><i class="icon-bag2"></i><span>{{ $lines[0] }}</span></li>
                             </ul>
+                            @endif
                         </figure>
-                        <div class="ps-section__coupon"><span>$25</span>
+                        @endif
+
+                        <div>
                             <aside>
-                                <h5>A small gift for your first purchase</h5>
-                                <p>Martfury give $25 as a small gift for your first purchase. Welcome to Martfury!</p>
+                                <img src="{{ $coupon->image }}" class="img-fluid">
                             </aside>
                         </div>
                     </div>

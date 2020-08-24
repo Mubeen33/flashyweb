@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Customer;
+use App\Models\SignupContent;
+use App\Models\Coupon;
 use Carbon\Carbon;
 
 class CustomerLogin extends Controller
@@ -16,7 +18,9 @@ class CustomerLogin extends Controller
 
     //login form
     public function login_form(){
-    	return view('auth.login');
+        $signupContent = SignupContent::where('id', 1)->first();
+        $coupon = Coupon::where('status', 1)->first();
+    	return view('auth.login', compact('signupContent', 'coupon'));
     }
 
     //attemt to login
