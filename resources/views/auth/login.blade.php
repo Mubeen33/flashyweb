@@ -82,19 +82,25 @@
                     <div class="ps-section__right">
                         @if($signupContent)
                         <figure class="ps-section__desc">
-                            <figcaption>@if($signupContent->heading != NULL){{$signupContent->heading}}@endif</figcaption>
-                            <p>@if($signupContent->description != NULL){{$signupContent->description}}@endif</p>
-                            
-                            @if($signupContent->text_lines != NULL)
-                            @php
-                                $lines = explode('##', $signupContent->text_lines);
-                            @endphp
-                            <ul class="ps-list">
-                                <li><i class="icon-credit-card"></i><span>{{ $lines[0] }}</span></li>
-                                <li><i class="icon-clipboard-check"></i><span>{{ $lines[1] }}</span></li>
-                                <li><i class="icon-bag2"></i><span>{{ $lines[0] }}</span></li>
-                            </ul>
+                            @if($signupContent->heading != NULL)
+                                <figcaption>{{$signupContent->heading}}</figcaption>
                             @endif
+
+                            @if($signupContent->description != NULL)
+                                <p>{{$signupContent->description}}</p>
+                            @endif
+
+                            <ul class="ps-list">
+                                @if($signupContent->text_line_one != NULL && $signupContent->text_line_one_icon)
+                                <li><img src="{{$signupContent->text_line_one_icon}}" width="40px" height="40px"><span>{{ $signupContent->text_line_one }}</span></li>
+                                @endif
+                                @if($signupContent->text_line_two != NULL && $signupContent->text_line_two_icon)
+                                <li><img src="{{$signupContent->text_line_two_icon}}" width="40px" height="40px"><span>{{ $signupContent->text_line_two }}</span></li>
+                                @endif
+                                @if($signupContent->text_line_three != NULL && $signupContent->text_line_three_icon)
+                                <li><img src="{{$signupContent->text_line_three_icon}}" width="40px" height="40px"><span>{{ $signupContent->text_line_three }}</span></li>
+                                @endif
+                            </ul>
                         </figure>
                         @endif
 

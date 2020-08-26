@@ -13871,6 +13871,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-my-account-2 .ps-section__desc .ps-list li span {
   font-size: 18px;
+  margin-left: 18px
 }
 
 .ps-my-account-2 .ps-section__desc .ps-list li i {
