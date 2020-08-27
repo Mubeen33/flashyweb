@@ -4,7 +4,7 @@
             <div class="ps-container">
                 <div class="header__left">
                     <div class="menu--product-categories">
-                        @include('Partials.menu.dv-categories', ['type'=>'top-categories'])
+                        @include('Partials.menu.dv-categories')
                     </div><a class="ps-logo" href="index.html"><img src="img/logo_light.png" alt=""></a>
                 </div>
                 <div class="header__center">
@@ -127,7 +127,7 @@
             <div class="ps-container">
                 <div class="navigation__left">
 
-                    @include('Partials.menu.dv-categories', ['type'=>'top-categories'])
+                    @include('Partials.menu.dv-categories')
 
                 </div>
                 <div class="navigation__right">
