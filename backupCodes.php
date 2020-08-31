@@ -69,6 +69,9 @@
             border-radius: 50%;
             background: white;
         }
+        .error-border-color{
+            border:1px solid red;
+        }
     </style>
   @endpush
 
@@ -78,7 +81,7 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ route('frontend.rootPage') }}">Home</a></li>
                     <li>Vendor Registration</li>
                 </ul>
             </div>
@@ -102,12 +105,14 @@
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <input id="first_name" name="first_name" class="form-control" type="text" placeholder="First name *" value="{{ old('first_name') }}">
+                                                <input onclick="checkValidity('first_name')" id="first_name" name="first_name" class="form-control" type="text" placeholder="First name *" value="{{ old('first_name') }}">
+                                                <small class="text-danger error-lablel" id="error-label-first_name"></small>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <input id="last_name" name="last_name" class="form-control" type="text" placeholder="Last name *" value="{{ old('last_name') }}">
+                                                <input onclick="checkValidity('last_name')" id="last_name" name="last_name" class="form-control" type="text" placeholder="Last name *" value="{{ old('last_name') }}">
+                                                <small class="text-danger error-lablel" id="error-label-last_name"></small>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +120,8 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
-                                    <input id="email" name="email" class="form-control" type="text" placeholder="Email *" value="{{ old('email') }}">
+                                    <input id="email" onclick="checkValidity('email')" name="email" class="form-control" type="text" placeholder="Email *" value="{{ old('email') }}">
+                                    <small class="text-danger error-lablel" id="error-label-email"></small>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
@@ -125,14 +131,16 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
-                                    <input id="mobile" name="mobile" class="form-control" type="text" placeholder="Mobile *" value="{{ old('mobile') }}">
+                                    <input onclick="checkValidity('mobile')" id="mobile" name="mobile" class="form-control" type="text" placeholder="Mobile *" value="{{ old('mobile') }}">
+                                    <small class="text-danger error-lablel" id="error-label-mobile"></small>
                                 </div>
                             </div>
                             
                             
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
-                                    <input id="company_name" name="company_name" class="form-control" type="text" placeholder="Company name *" value="{{ old('company_name') }}">
+                                    <input onclick="checkValidity('company_name')" id="company_name" name="company_name" class="form-control" type="text" placeholder="Company name *" value="{{ old('company_name') }}">
+                                    <small class="text-danger error-lablel" id="error-label-company_name"></small>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
@@ -142,11 +150,11 @@
                                     </div>
                                     <div class='radio--btns'>
                                         <label class="radio_container"><span class='label_tx'>Yes</span>
-                                          <input class="is_vat_registered" name="is_vat_registered" type="radio" checked="checked" value="Yes">
+                                          <input name="is_vat_registered" type="radio" checked="checked" value="Yes">
                                           <span class="checkmark"></span>
                                         </label>
                                         <label class="radio_container"><span class='label_tx'>No</span>
-                                          <input class="is_vat_registered" name="is_vat_registered" type="radio" value="No">
+                                          <input name="is_vat_registered" type="radio" value="No">
                                           <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -198,9 +206,6 @@
                         </div>
                     </form>
 
-                    <div id="alert--box">
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -291,41 +296,55 @@
     $(document).ready(function(){
         $("#vendor-registraton-form").on('submit', function(e){
             
-            $("#alert--box").html("")
+            $(".error-lablel").html("")
 
             if (!$("#vendor-registraton-form #first_name").val()) {
-                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> First Name is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
                 e.preventDefault()
+                $("#error-label-first_name").html("This field is required.")
+                $("#first_name").addClass('error-border-color')
+                $('html, body').animate({
+                    scrollTop: $("#first_name").offset().top
+                }, 1000);
                 return;
             }
 
             if (!$("#vendor-registraton-form #last_name").val()) {
-                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Last Name is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
                 e.preventDefault()
+                $("#error-label-last_name").html("This field is required.")
+                $("#last_name").addClass('error-border-color')
+                $('html, body').animate({
+                    scrollTop: $("#last_name").offset().top
+                }, 1000);
                 return;
             }
 
             if (!$("#vendor-registraton-form #email").val()) {
-                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Valid Email is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
                 e.preventDefault()
+                $("#error-label-email").html("This field is required.")
+                $("#email").addClass('error-border-color')
+                $('html, body').animate({
+                    scrollTop: $("#email").offset().top
+                }, 1000);
                 return;
             }
 
             if (!$("#vendor-registraton-form #mobile").val()) {
-                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Mobile Number is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
                 e.preventDefault()
+                $("#error-label-mobile").html("This field is required.")
+                $("#mobile").addClass('error-border-color')
+                $('html, body').animate({
+                    scrollTop: $("#mobile").offset().top
+                }, 1000);
                 return;
             }
 
             if (!$("#vendor-registraton-form #company_name").val()) {
-                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Company Name is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
                 e.preventDefault()
-                return;
-            }
-
-            if (!$("#vendor-registraton-form .is_vat_registered").val()) {
-                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> is Your Business Vat Registered. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
-                e.preventDefault()
+                $("#error-label-company_name").html("This field is required.")
+                $("#company_name").addClass('error-border-color')
+                $('html, body').animate({
+                    scrollTop: $("#company_name").offset().top
+                }, 1000);
                 return;
             }
 
@@ -333,5 +352,12 @@
         })
     })
     
+
+
+    function checkValidity($id){
+        alert($id)
+        $("#error-label-first_name").removeClass('error-border-color')
+        $("#error-label-first_name").html('')
+    }
 </script>
 @endpush   
