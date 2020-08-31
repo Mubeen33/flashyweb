@@ -337,7 +337,7 @@
                         </li>
                     </ul>
                     <ul class="navigation__extra">
-                        <li><a href="{{ url('vendor-request')}}">Sell on Flashybuy</a></li>
+                        <li><a href="{{ route('frontend.becomeAVendor.get') }}">Sell on Flashybuy</a></li>
                         <li><a href="#">Tract your order</a></li>
                         <li>
                             <div class="ps-dropdown"><a href="#">US Dollar</a>

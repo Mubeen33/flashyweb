@@ -94,7 +94,7 @@
                 </div>
                 <div class="ps-section__content">
                     @include('msg.msg')
-                    <form class="ps-form--contact-us" action="{{ route('frontend.vendor.store') }}" method="POST">
+                    <form id="vendor-registraton-form" class="ps-form--contact-us" action="{{ route('frontend.vendor.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
@@ -102,12 +102,12 @@
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <input name="first_name" class="form-control" type="text" placeholder="First name *" value="{{ old('first_name') }}">
+                                                <input id="first_name" name="first_name" class="form-control" type="text" placeholder="First name *" value="{{ old('first_name') }}">
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                             <div class="form-group">
-                                                <input name="last_name" class="form-control" type="text" placeholder="Last name *" value="{{ old('last_name') }}">
+                                                <input id="last_name" name="last_name" class="form-control" type="text" placeholder="Last name *" value="{{ old('last_name') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
-                                    <input name="email" class="form-control" type="text" placeholder="Email *" value="{{ old('email') }}">
+                                    <input id="email" name="email" class="form-control" type="text" placeholder="Email *" value="{{ old('email') }}">
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
@@ -125,14 +125,14 @@
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
-                                    <input name="mobile" class="form-control" type="text" placeholder="Mobile *" value="{{ old('mobile') }}">
+                                    <input id="mobile" name="mobile" class="form-control" type="text" placeholder="Mobile *" value="{{ old('mobile') }}">
                                 </div>
                             </div>
                             
                             
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                 <div class="form-group">
-                                    <input name="company_name" class="form-control" type="text" placeholder="Company name *" value="{{ old('company_name') }}">
+                                    <input id="company_name" name="company_name" class="form-control" type="text" placeholder="Company name *" value="{{ old('company_name') }}">
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
@@ -142,11 +142,11 @@
                                     </div>
                                     <div class='radio--btns'>
                                         <label class="radio_container"><span class='label_tx'>Yes</span>
-                                          <input name="is_vat_registered" type="radio" checked="checked" value="Yes">
+                                          <input id="is_vat_registered_yes" name="is_vat_registered" type="radio" checked="checked" value="Yes">
                                           <span class="checkmark"></span>
                                         </label>
                                         <label class="radio_container"><span class='label_tx'>No</span>
-                                          <input name="is_vat_registered" type="radio" value="No">
+                                          <input id="is_vat_registered_no" name="is_vat_registered" type="radio" value="No">
                                           <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -197,6 +197,10 @@
                             <button class="ps-btn text-uppercase" type='submit'>Apply to Sell</button>
                         </div>
                     </form>
+
+                    <div id="alert--box">
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -279,4 +283,55 @@
         </div>
     </div>
 
-@endsection    
+@endsection
+
+
+@push('scripts')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#vendor-registraton-form").on('submit', function(e){
+            
+            $("#alert--box").html("")
+
+            if (!$("#vendor-registraton-form #first_name").val()) {
+                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> First Name is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
+                e.preventDefault()
+                return;
+            }
+
+            if (!$("#vendor-registraton-form #last_name").val()) {
+                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Last Name is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
+                e.preventDefault()
+                return;
+            }
+
+            if (!$("#vendor-registraton-form #email").val()) {
+                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Valid Email is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
+                e.preventDefault()
+                return;
+            }
+
+            if (!$("#vendor-registraton-form #mobile").val()) {
+                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Mobile Number is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
+                e.preventDefault()
+                return;
+            }
+
+            if (!$("#vendor-registraton-form #company_name").val()) {
+                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> Company Name is Required. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
+                e.preventDefault()
+                return;
+            }
+
+            if (!$("#vendor-registraton-form #is_vat_registered_yes").val() && !$("#vendor-registraton-form #is_vat_registered_no").val()) {
+                $("#alert--box").html("<div class='alert alert-danger alert-dismissible fade show' role'alert'> <strong>SORRY ! </strong> is Your Business Vat Registered. <button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span> </button> </div>")
+                e.preventDefault()
+                return;
+            }
+
+            $("#vendor-registraton-form").submit()
+        })
+    })
+    
+</script>
+@endpush   

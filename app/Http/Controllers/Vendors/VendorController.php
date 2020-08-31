@@ -9,10 +9,16 @@ use Carbon\Carbon;
 
 class VendorController extends Controller
 {
+    public function become_a_vendor(){
+        return view('Vendor.become-a-vendor');
+    }
+
     //vendor registration
     public function vendor_registration(){
-        return view('Frontend.Pages.vendor_registration');
+        return view('Vendor.vendor_registration');
     }
+
+    
 
     /**
      * Display a listing of the resource.
@@ -106,7 +112,7 @@ class VendorController extends Controller
         ]);
         
         if($inserted == true){
-            return redirect()->back()->with('success', 'Application success, we will notify shortly.');
+            return redirect()->back()->with('success', 'Thank you for request we will back to you');
         }
         return redirect()->back()->with('error', 'SORRY - Something wrong, please try again later.');
     }
