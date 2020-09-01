@@ -20,6 +20,7 @@ class RootController extends Controller
     					->whereDate('start_time', '<=', $today)
     					->whereDate('end_time', '>=', $today)
     					->orderBy('order_no', 'ASC')
+                        ->take(2)
     					->get();
     	$ads_bannerGroups = Banner::where([
     						'type'=>'Ads-Banner',
@@ -28,7 +29,8 @@ class RootController extends Controller
     					->whereDate('start_time', '<=', $today)
     					->whereDate('end_time', '>=', $today)
     					->orderBy('order_no', 'ASC')
-    					->get();
+    					->take(3)
+                        ->get();
     	$ads_bannerLong = Banner::where([
     						'type'=>'Ads-Banner',
     						'ads_banner_position'=>'Banner-Long',
