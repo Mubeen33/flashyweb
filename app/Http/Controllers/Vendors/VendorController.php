@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Vendors;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
+use App\Models\EmailTemplate;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendDynamicEmail;
 
 class VendorController extends Controller
 {
@@ -112,6 +115,15 @@ class VendorController extends Controller
         ]);
         
         if($inserted == true){
+            //send email
+            $template = EmailTemplate::where('template', 'Vendor-Signup')->first();
+            if ($template) {
+                $firstName = $request->first_name;
+                $lastName = $request->last_name;
+                Mail::to([$request->email, 'testadmin@gmail.com'])->send(new SendDynamicEmail(
+                    $firstName, $lastName, $template
+                 ));
+            }
             return redirect()->back()->with('success', 'Thank you for request we will back to you');
         }
         return redirect()->back()->with('error', 'SORRY - Something wrong, please try again later.');
