@@ -20,7 +20,8 @@ Route::group(['as'=>'frontend.'], function(){
 	//vendors routes
 	Route::get('become-a-vendor', 'Vendors\VendorController@become_a_vendor')->name('becomeAVendor.get');
 	Route::get('vendor-registration', 'Vendors\VendorController@vendor_registration')->name('vendor_registration.get');
-	Route::resource('vendor', 'Vendors\VendorController');
+	// Route::resource('vendor', 'Vendors\VendorController');
+	Route::post('vendor-store','Vendors\VendorController@store')->name('vendor.store');
 });
 
 
