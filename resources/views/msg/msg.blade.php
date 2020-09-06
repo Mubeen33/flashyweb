@@ -30,3 +30,20 @@
 
 </div>
 @endif
+
+
+
+<div id="display--success--msg" class="d-none">
+  <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close"
+      onclick="window.location.reload(true)">&times;</a>
+    <span class="place-text"></span>
+  </div>
+</div>
+
+<div id="display--error--msg" class="d-none">
+  <div class="alert alert-danger">
+    <button href="#" onclick="document.getElementById('display--error--msg').classList.add('d-none');" class="close">&times;</button>
+    <span class="place-text"></span>
+  </div>
+</div>

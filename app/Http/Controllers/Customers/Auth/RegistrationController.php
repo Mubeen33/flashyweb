@@ -10,15 +10,31 @@ use App\Models\EmailTemplate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendDynamicEmail;
+use Illuminate\Support\Facades\Validator;
+
 class RegistrationController extends Controller
 {
     public function register(Request $request){
-    	$this->validate($request, [
+    	$validation = Validator::make($request->all(), [
     		'first_name'=>'required|string|max:50',
     		'last_name'=>'required|string|max:50',
     		'email'=>'required|string|max:100|email|unique:customers',
     		'password'=>'required|string|min:8|max:33|confirmed'
     	]);
+
+        if ($validation->fails()) {
+            foreach ($validation->messages()->get('*') as $key => $value) {
+                $value = json_encode($value);
+                $text = str_replace('["', "", $value);
+                $text = str_replace('"]', "", $text);
+                return response()->json([
+                    'field'=>$key,
+                    'targetHighlightIs'=>"",
+                    'msg'=>$text,
+                    'need_scroll'=>"no"
+                ], 422);
+            }
+        }
 
     	//if validity pass then
     	$inserted = Customer::insert([
@@ -40,9 +56,18 @@ class RegistrationController extends Controller
                  ));
             }
 
-    		return redirect()->back()->with('success', 'Account registered successfully, please login.');
+            return response()->json([
+                    'success'=>true,
+                    'msg'=>"Account registered successfully, please login.",
+            ], 200);
+
     	}else{
-    		return redirect()->back()->with('error', 'SORRY - something wrong, please try again.');
+            return response()->json([
+                'field'=>"no__field",
+                'targetHighlightIs'=>"",
+                'msg'=>"SORRY - something wrong, please try again.",
+                'need_scroll'=>"no"
+            ], 422);
     	}
     }
 }

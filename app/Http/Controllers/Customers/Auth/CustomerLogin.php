@@ -9,6 +9,7 @@ use App\Models\Customer;
 use App\Models\SignupContent;
 use App\Models\Coupon;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerLogin extends Controller
 {
@@ -26,20 +27,45 @@ class CustomerLogin extends Controller
     //attemt to login
     public function login(Request $request){
     	//validate form data
-    	$this->validate($request, [
+    	$validation = Validator::make($request->all(), [
     		'email' => 'required|string|email|max:100',
     		'password' => 'required|min:8',
     	]);
+
+        if ($validation->fails()) {
+            foreach ($validation->messages()->get('*') as $key => $value) {
+                $value = json_encode($value);
+                $text = str_replace('["', "", $value);
+                $text = str_replace('"]', "", $text);
+                return response()->json([
+                    'field'=>$key,
+                    'targetHighlightIs'=>"",
+                    'msg'=>$text,
+                    'need_scroll'=>"no"
+                ], 422);
+            }
+        }
 
     	//attempt to log user in
     	if (Auth::guard('customer')->attempt(['email'=>$request->email, 'password'=>$request->password], $request->remember)) {
             //record activity
             //$this->loggedInActivity();
-            return redirect()->intended(route('customer.dashboard.get'));
+            return response()->json([
+                    'success'=>true,
+                    'msg'=>"Login Success",
+                    'should_redirect'=>true,
+                    'redirect_path'=>"/customer/dashboard",
+            ], 200);
+            //return redirect()->intended(route('customer.dashboard.get'));
     	}
 
     	//if unsuccess to login then redirect
-    	return redirect()->back()->withInput($request->only('email', 'remember'))->with('error', 'Invalid Email or Password');
+    	return response()->json([
+            'field'=>"no__field",
+            'targetHighlightIs'=>"",
+            'msg'=>"Invalid Email or Password",
+            'need_scroll'=>"no"
+        ], 422);
     	
     }
 

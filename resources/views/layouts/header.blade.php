@@ -27,6 +27,12 @@
 
 
     @stack('styles')
+    <!-- common -->
+    <style type="text/css">
+        .border-danger-alert{
+          border:1px solid red;
+       }
+    </style>
 </head>
 
 <body>
