@@ -4,18 +4,23 @@
 
     $get_popups_data = (\App\Models\Popup::whereDate('start_time', '<=', $today_)
                     ->whereDate('end_time', '>=', $today_)
-                    ->get();
+                    ->get()
                 );
     $url__list = NULL;
     foreach($get_popups_data as $content){
         $url__list .= "##,".$content->url_list;
     }
     $current_active_url = Request::url();
-
-    if(){
-
+    if($url__list != NULL){
+        $url_array = (array_map('trim',array_filter(explode("##,", $url__list))));
+        var_dump($url_array);
+        print_r($url_array);
+        echo $current_active_url;
+        if(in_array($current_active_url , $url_array)){
+            
+        }
     }
-    $url_array = explode("##,", $url_list)
+    
    
 @endphp
 
