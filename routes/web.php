@@ -33,6 +33,10 @@ Route::post('logout', 'Customers\Auth\CustomerLogout@logout')->name('logout');
 Route::get('registration', function(){return redirect()->route('login');});
 Route::post('registration', 'Customers\Auth\RegistrationController@register')->name('customer.registration.post');
 
+//popup control
+Route::get('popup-dont-show', function(){return abort(404);});
+Route::post('popup-dont-show', 'Popup\PopupControlller@dont_show')->name('popUpDontShow.post');
+
 //reset password
 Route::get('reset/passoword/{token?}/{email?}', 'Customers\Auth\ForgotPassword@pass_reset_form')->name('customer.resetPassForm.get');
 Route::post('reset/send-link', 'Customers\Auth\ForgotPassword@send_reset_link')->name('customer.sendPassResetLink.post');
