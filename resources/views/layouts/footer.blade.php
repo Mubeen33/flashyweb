@@ -83,7 +83,7 @@
 
                     <p><strong>{{$parent->name}}:</strong>
                         @if($parent->childs())
-                            <a href="#">{{ $childs()->name }}</a>
+                            <a href="#">{{ childs()->name }}</a>
                         @endif
                     </p>
 
