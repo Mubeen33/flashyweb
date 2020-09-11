@@ -71,14 +71,12 @@
             <div class="ps-footer__links">
                 @php
     //show_image_nav -for show on navigation
-    $categories = (\App\Models\Category::where([
-                        ['deleted', '=', 0],
-                        ['parent_id','=', 0]
-                        ])->orderBy('id','desc')
-                        ->get());
+    $categories = (\App\Models\Category::orderBy('id','desc')
+                            ->where('deleted', '=', 0)
+                            ->get());
 @endphp
             @foreach($categories as $Category)
-                <p><strong>{{$Category->getParentsNames()}}</strong>
+                <p><strong>{{ $Category->getParentsNames() }}</strong>
                 </p>
             @endforeach    
                 {{-- <p><strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a href="#">Projectors</a><a href="#">Scanners</a><a href="#">Store &amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED TVs</a><a href="#">OLED TVs</a>
