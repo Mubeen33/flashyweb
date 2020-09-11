@@ -18,4 +18,15 @@ class Category extends Model
                 ['deleted', '=', 0]
         	]);
     }
+
+    // All Parents of any Subcategory
+
+    public function getParentsNames() {
+        
+        if($this->parent) {
+            return $this->parent->getParentsNames(). " | " . $this->name;
+        } else {
+            return $this->name;
+        }
+    }
 }
