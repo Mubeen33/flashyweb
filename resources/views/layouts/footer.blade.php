@@ -82,7 +82,7 @@
                 @foreach($parent_categories as $parent)
 
                     <p><strong>{{$parent->name}}:</strong>
-                        @if(count($parent->childs) > 0)
+                        @if(count($parent->childs()) > 0)
                             <a href="#">{{ $child->name }}</a>
                         @endif
                     </p>
