@@ -55,6 +55,9 @@ class RootController extends Controller
     					->whereDate('end_time', '>=', $today)
     					->orderBy('order_no', 'ASC')
     					->first();
+
+        print_r($sliders);
+        return;
     	return view('index', compact('sliders', 'banners', 'ads_bannerGroups',
     		'ads_bannerLong', 'ads_bannerShort', 'ads_bannerBox'
     	));
