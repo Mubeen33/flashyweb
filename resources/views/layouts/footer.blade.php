@@ -69,26 +69,21 @@
                 </aside>
             </div>
             <div class="ps-footer__links">
-@php
+                @php
     //show_image_nav -for show on navigation
-    $parent_categories = (\App\Models\Category::where([
-                                ['parent_id', '=', 0],
-                                ['show_image_nav', '=', 1],
-                                ['deleted', '=', 0]
-                            ])
-                            ->orderBy("category_order", 'ASC')
-                            ->get());
+    $categories = (\App\Models\Category::where([
+                        ['deleted', '=', 0],
+                        ['parent_id','=', 0]
+                        ])->orderBy('id','desc')
+                        ->get());
 @endphp
-                @foreach($parent_categories as $parent)
-
-                    <p><strong>{{$parent->name}}:</strong>
-                        @if($parent->childs())
-                            <a href="#">{{ childs()->name }}</a>
-                        @endif
-                    </p>
-
-                @endforeach    
-                {{--<p><strong>Home, Garden &amp; Kitchen:</strong><a href="#">Cookware</a><a href="#">Decoration</a><a href="#">Furniture</a><a href="#">Garden Tools</a><a href="#">Garden Equipments</a><a href="#">Powers And Hand Tools</a><a href="#">Utensil &amp; Gadget</a>
+            @foreach($categories as $Category)
+                <p><strong>{{$Category->getParentsNames()}}</strong>
+                </p>
+            @endforeach    
+                {{-- <p><strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a href="#">Projectors</a><a href="#">Scanners</a><a href="#">Store &amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED TVs</a><a href="#">OLED TVs</a>
+                </p>
+                <p><strong>Home, Garden &amp; Kitchen:</strong><a href="#">Cookware</a><a href="#">Decoration</a><a href="#">Furniture</a><a href="#">Garden Tools</a><a href="#">Garden Equipments</a><a href="#">Powers And Hand Tools</a><a href="#">Utensil &amp; Gadget</a>
                 </p>
                 <p><strong>Health &amp; Beauty:</strong><a href="#">Hair Care</a><a href="#">Decoration</a><a href="#">Hair Care</a><a href="#">Makeup</a><a href="#">Body Shower</a><a href="#">Skin Care</a><a href="#">Cologine</a><a href="#">Perfume</a>
                 </p>
