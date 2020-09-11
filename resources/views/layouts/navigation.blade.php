@@ -339,7 +339,7 @@
                     <ul class="navigation__extra">
                         <li><a href="{{ route('frontend.becomeAVendor.get') }}">Sell on Flashybuy</a></li>
                         <li><a href="#">Tract your order</a></li>
-                        <li>
+                        {{-- <li>
                             <div class="ps-dropdown"><a href="#">US Dollar</a>
                                 <ul class="ps-dropdown-menu">
                                     <li><a href="#">Us Dollar</a></li>
@@ -354,7 +354,7 @@
                                     <li><a href="#"><img src="img/flag/fr.png" alt=""> France</a></li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
