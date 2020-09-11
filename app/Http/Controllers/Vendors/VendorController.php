@@ -120,7 +120,7 @@ class VendorController extends Controller
             if ($template) {
                 $firstName = $request->first_name;
                 $lastName = $request->last_name;
-                Mail::to([$request->email, 'testadmin@gmail.com'])->send(new SendDynamicEmail(
+                Mail::to($request->email)->send(new SendDynamicEmail(
                     $firstName, $lastName, $template
                  ));
             }
