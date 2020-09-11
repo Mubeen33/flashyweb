@@ -76,7 +76,7 @@
                             ->get());
 @endphp
             @foreach($categories as $Category)
-                <p><strong>{{ $Category->getParentsNames() }}</strong>
+                <p><a href="#">{{ $Category->getParentsNames() }}</a>
                 </p>
             @endforeach    
                 {{-- <p><strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a href="#">Projectors</a><a href="#">Scanners</a><a href="#">Store &amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED TVs</a><a href="#">OLED TVs</a>
