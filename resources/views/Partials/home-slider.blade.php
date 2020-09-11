@@ -3,6 +3,7 @@
         
         @if(!$sliders->isEmpty())
             @foreach($sliders as $key=>$slider)
+            {{$slider->image_lg}}
             <div class="ps-banner">
                 <a href="#">
                     <img src="{{ $slider->image_lg }}" alt="{{ $slider->title }}">
@@ -40,7 +41,7 @@
                     <a href="#">
                         <img src="{{ $slider->image_sm }}" alt="{{ $slider->title }}">
                     </a>
-                    <div class="slider-caption">
+                    {{-- <div class="slider-caption">
                         <h4 style="color:{{$slider->text_color}};">{{ $slider->title }}</h4>
                         <p style="color:{{$slider->text_color}};">{{ $slider->description }}</p>
                         
@@ -52,7 +53,7 @@
                         >
                             {{ $slider->button_text }}
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                     
             @endforeach
