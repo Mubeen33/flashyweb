@@ -5,7 +5,7 @@
                 <div class="header__left">
                     <div class="menu--product-categories">
                         @include('Partials.menu.dv-categories')
-                    </div><a class="ps-logo" href="index.html"><img src="img/logo_light.png" alt=""></a>
+                    </div><a class="ps-logo" href="{{url('/')}}"><img src="img/logo_light.png" alt=""></a>
                 </div>
                 <div class="header__center">
                     <form class="ps-form--quick-search" action="index.html" method="get">
@@ -339,7 +339,7 @@
                     <ul class="navigation__extra">
                         <li><a href="{{ route('frontend.becomeAVendor.get') }}">Sell on Flashybuy</a></li>
                         <li><a href="#">Tract your order</a></li>
-                        <li>
+                        {{-- <li>
                             <div class="ps-dropdown"><a href="#">US Dollar</a>
                                 <ul class="ps-dropdown-menu">
                                     <li><a href="#">Us Dollar</a></li>
@@ -354,7 +354,7 @@
                                     <li><a href="#"><img src="img/flag/fr.png" alt=""> France</a></li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -389,7 +389,7 @@
             </div>
         </div>
         <div class="navigation--mobile">
-            <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/logo_light.png" alt=""></a></div>
+            <div class="navigation__left"><a class="ps-logo" href="{{url('/')}}"><img src="img/logo_light.png" alt=""></a></div>
             <div class="navigation__right">
                 <div class="header__actions">
                     <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>

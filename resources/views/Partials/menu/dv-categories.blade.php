@@ -19,7 +19,7 @@
         <ul class="menu--dropdown">
             @foreach($parent_categories as $key=>$menu)
             <li class="current-menu-item @if(count($menu->childs) > 0) menu-item-has-children has-mega-menu @endif">
-                <a href="#"><img src="{{ $menu->image }}" style='margin-right:15px;width: 20px;height:20px'> {{ $menu->name }}</a>
+                <a href="#"><img src="{{ $menu->icon }}" style='margin-right:15px;width: 20px;height:20px'> {{ $menu->name }}</a>
                 
                 @if(count($menu->childs) > 0)
                 <div class="mega-menu">

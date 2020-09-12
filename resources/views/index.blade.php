@@ -1014,7 +1014,7 @@
         <div class="ps-home-ads">
             @include('Partials.home-ads-long')
         </div>
-        <div class="ps-download-app">
+      {{--   <div class="ps-download-app">
             <div class="ps-container">
                 <div class="ps-block--download-app">
                     <div class="container">
@@ -1043,7 +1043,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="ps-product-list ps-new-arrivals">
             <div class="ps-container">
                 <div class="ps-section__header">
