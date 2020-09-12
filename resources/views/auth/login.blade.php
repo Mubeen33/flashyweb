@@ -112,13 +112,17 @@
                                 @endif
                             </ul>
                         </figure>
-                        @endif
+                        
 
+                        @if($signupContent->banner != NULL)
                         <div>
                             <aside>
-                                <img src="{{ $coupon->image }}" class="img-fluid">
+                                <img src="{{ $signupContent->banner }}" class="img-fluid">
                             </aside>
                         </div>
+                        @endif
+
+                        @endif
                     </div>
                 </div>
             </div>

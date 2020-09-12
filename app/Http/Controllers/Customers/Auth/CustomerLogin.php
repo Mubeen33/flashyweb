@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Customer;
 use App\Models\SignupContent;
-use App\Models\Coupon;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,8 +19,7 @@ class CustomerLogin extends Controller
     //login form
     public function login_form(){
         $signupContent = SignupContent::where('id', 1)->first();
-        $coupon = Coupon::where('status', 1)->first();
-    	return view('auth.login', compact('signupContent', 'coupon'));
+    	return view('auth.login', compact('signupContent'));
     }
 
     //attemt to login
