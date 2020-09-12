@@ -15,7 +15,7 @@
     @foreach($homeCategories as $key=>$menu)
     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 ">
         <div class="ps-block--category">
-            <a class="ps-block__overlay" href="shop-default.html"></a>
+            <a class="ps-block__overlay" href=""></a>
             <img src="{{ $menu->image }}" alt="{{ $menu->title_meta_tag }}">
             <p>{{ $menu->name }}</p>
         </div>
