@@ -9,7 +9,13 @@
                 @endif
             @endforeach
         </a>
-        <div class="ps-product__badge">-16%</div>
+        <div class="ps-product__badge @if($product->get_inventory->active == 0) out-stock @endif">
+            @if($product->get_inventory->active == 0) 
+            <span>Out Stock</span> 
+            @else
+            <span>{{$product->get_inventory->quantity}}</span>
+            @endif
+        </div>
         <ul class="ps-product__actions">
             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
             <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
