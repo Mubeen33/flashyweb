@@ -22,6 +22,9 @@ Route::group(['as'=>'frontend.'], function(){
 	Route::get('vendor-registration', 'Vendors\VendorController@vendor_registration')->name('vendor_registration.get');
 	// Route::resource('vendor', 'Vendors\VendorController');
 	Route::post('vendor-store','Vendors\VendorController@store')->name('vendor.store');
+
+	//product details
+	Route::get('product/{slug}', 'Product\ProductController@get_single_product')->name('signgleProduct.get');
 });
 
 

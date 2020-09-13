@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Banner;
-use App\Models\Product;
+use App\Models\VendorProduct;
 use Carbon\Carbon;
 
 class RootController extends Controller
@@ -56,14 +56,16 @@ class RootController extends Controller
     					->whereDate('end_time', '>=', $today)
     					->orderBy('order_no', 'ASC')
     					->first();
-        $products = Product::where([
-                        'approved'=>1,
-                        'rejected'=>0,
-                        'disable'=>0
-                    ])
+
+                    
+        $products = VendorProduct::where("active", 1)
+                    ->select("*")
+                    ->selectRaw("MIN(price) AS min_price")
+                    ->groupBy("prod_id")
                     ->orderBy('created_at', 'DESC')
-                    ->with(['get_vendor', 'get_category', 'get_images', 'get_inventory'])
+                    ->with(['get_product', 'get_vendor'])
                     ->get();
+
 
     	return view('index', compact('sliders', 'banners', 'ads_bannerGroups',
     		'ads_bannerLong', 'ads_bannerShort', 'ads_bannerBox', 'products'

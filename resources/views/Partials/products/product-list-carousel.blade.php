@@ -1,50 +1,53 @@
-@foreach($products as $key=>$product)
-<div class="ps-product ps-product--inner">
+@if(isset($products))
+    @foreach($products as $key=>$product)
+        @php
+            $product_images = (\App\Models\ProductMedia::where('image_id', $product->get_product->image_id)->get());
+            $product_cat = (\App\Models\Category::where('id', $product->get_product->category_id)->first());
+        @endphp
 
-    <div class="ps-product__thumbnail">
-        <a href="product-default.html">
-            @foreach($product->get_images as $img_keys=>$image)
-                @if($img_keys == 0)
-                    <img src="{{$image->image}}" alt="">
+    <div class="ps-product ps-product--inner">
+
+        <div class="ps-product__thumbnail">
+            <a href="{{ route('frontend.signgleProduct.get',  $product->get_product->slug)}}">
+                @if(!$product_images->isEmpty())
+                    @foreach($product_images as $img_keys=>$image)
+                        @if($img_keys == 0)
+                            <img src="{{$image->image}}" alt="">
+                        @endif
+                    @endforeach
                 @endif
-            @endforeach
-        </a>
-        <div class="ps-product__badge @if($product->get_inventory->active == 0) out-stock @endif">
-            @if($product->get_inventory->active == 0) 
-            <span>Out Stock</span> 
-            @else
-            <span>{{$product->get_inventory->quantity}}</span>
-            @endif
+            </a>
+            <div class="ps-product__badge">{{$product->quantity}}</div>
+            <ul class="ps-product__actions">
+                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
+                <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+            </ul>
         </div>
-        <ul class="ps-product__actions">
-            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
-            <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-            <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-        </ul>
-    </div>
 
-    <div class="ps-product__container">
-        <p class="ps-product__price sale">${{$product->selling_price}} <del>$670.00 </del><small>18% off</small></p>
-        <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">{{$product->title}}</a>
-            <div class="ps-product__rating">
-                <select class="ps-rating" data-read-only="true">
-                    <option value="1">1</option>
-                    <option value="1">2</option>
-                    <option value="1">3</option>
-                    <option value="1">4</option>
-                    <option value="2">5</option>
-                </select><span>01</span>
-            </div>
-            <div class="ps-product__progress-bar ps-progress" data-value="46">
-                <div class="ps-progress__value"><span></span></div>
-                <p>Sold:58</p>
+        <div class="ps-product__container">
+            <p class="ps-product__price sale">{{env('PRICE_SYMBOL').$product->min_price}} <del>{{env('PRICE_SYMBOL')}}670.00 </del><small>18% off</small></p>
+            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">{{$product->get_product->title}}</a>
+                <div class="ps-product__rating">
+                    <select class="ps-rating" data-read-only="true">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                        <option value="1">4</option>
+                        <option value="2">5</option>
+                    </select><span>01</span>
+                </div>
+                <div class="ps-product__progress-bar ps-progress" data-value="46">
+                    <div class="ps-progress__value"><span></span></div>
+                    <p>Sold:58</p>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
-@endforeach
+    </div>
+    @endforeach
+@endif
 
 
 
