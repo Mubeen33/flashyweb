@@ -8,7 +8,7 @@
                     @include('Partials.home-slider')
                 </div>
                 <div class="ps-section__right">
-                    @include('Partials.right-banners')
+                    @include('Partials.banners-top-right')
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="ps-home-ads">
-            @include('Partials.home-ads-groups')
+            @include('Partials.banners-group')
         </div>
 
         <div class="ps-top-categories">
@@ -810,19 +810,17 @@
             </div>
         </div>
         <div class="ps-home-ads">
-            @include('Partials.home-ads-long')
+            @include('Partials.banner-long')
         </div>
-      {{--   <div class="ps-download-app">
+
+
+        <div class="ps-download-app">
             <div class="ps-container">
                 <div class="ps-block--download-app">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                                @if($ads_bannerBox)
-                                <div class="ps-block__thumbnail">
-                                    <img src="{{ $ads_bannerBox->image_lg }}" alt="{{ $ads_bannerBox->title }}">
-                                </div>
-                                @endif
+                                @include('Partials.banner-box')
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                 <div class="ps-block__content">
@@ -841,7 +839,9 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
+
+
         <div class="ps-product-list ps-new-arrivals">
             <div class="ps-container">
                 <div class="ps-section__header">
