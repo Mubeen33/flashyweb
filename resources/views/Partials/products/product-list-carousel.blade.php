@@ -28,7 +28,7 @@
 
         <div class="ps-product__container">
             <p class="ps-product__price sale">{{env('PRICE_SYMBOL').$product->min_price}} <del>{{env('PRICE_SYMBOL')}}670.00 </del><small>18% off</small></p>
-            <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">{{$product->get_product->title}}</a>
+            <div class="ps-product__content"><a class="ps-product__title" href="{{ route('frontend.signgleProduct.get',  $product->get_product->slug)}}">{{$product->get_product->title}}</a>
                 <div class="ps-product__rating">
                     <select class="ps-rating" data-read-only="true">
                         <option value="1">1</option>

@@ -11,16 +11,17 @@ use App\Models\VendorProduct;
 class ProductController extends Controller
 {
     public function get_single_product($slug){
-    	$data = Product::where('slug', $slug)->first();
+    	$data = Product::where('slug', $slug)
+                ->first();
     	if (!$data) {
     		return abort(404);
     	}
 
     	//then
     	$vendor_product = VendorProduct::where('prod_id', $data->id)
-    				->select("*")
-                    ->selectRaw("MAX(price) AS max_price, MIN(price) AS min_price")
-                    ->first();
+        				->select("*")
+                        ->selectRaw("MAX(price) AS max_price, MIN(price) AS min_price")
+                        ->first();
 
         if (!$vendor_product) {
     		return abort(404);
@@ -36,7 +37,8 @@ class ProductController extends Controller
     	}
 
     	//get cat's
-    	$category = Category::where('id', $product->get_product->category_id)->first();
+    	$category = Category::where('id', $product->get_product->category_id)
+                    ->first();
     	if (!$category) {
     		return abort(404);
     	}
@@ -52,7 +54,8 @@ class ProductController extends Controller
 			}
 			
     	} while (!empty($category) && $category->parent_id != 0);
-    	$currentCategory = Category::where('id', $product->get_product->category_id)->first();
+    	$currentCategory = Category::where('id', $product->get_product->category_id)
+                            ->first();
 
     	//get related products
     	$related_products_data = Product::where([
