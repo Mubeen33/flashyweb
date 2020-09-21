@@ -18,7 +18,7 @@ class ProductController extends Controller
     	}
 
     	//then
-    	$vendor_product = VendorProduct::where('prod_id', $data->id)
+    	$vendor_product = VendorProduct::where('prod_id', $data->id)->where('active',1)
         				->select("*")
                         ->selectRaw("MAX(price) AS max_price, MIN(price) AS min_price")
                         ->first();

@@ -34,7 +34,7 @@
                                 </div>
                                 <h4 class="ps-product__price">
                                     {{env('PRICE_SYMBOL').$product->price}} 
-                                    @if(count($product->get_variations) >= 2) – {{env('PRICE_SYMBOL').$vendor_product->max_price}} @endif
+                                    @if(count($product->get_variations) > 1) – {{env('PRICE_SYMBOL').$vendor_product->max_price}} @endif
                                 </h4>
                                 <div class="ps-product__desc">
                                     <p>Sold By:<a href="shop-default.html"><strong> {{ $product->get_vendor->company_name }}</strong></a></p>
@@ -46,13 +46,22 @@
                                         <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>
                                     </ul>
                                 </div>
-                                <div class="ps-product__variations">
-                                    <figure>
-                                        <figcaption>Color</figcaption>
-                                        <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>
-                                        <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>
-                                    </figure>
-                                </div>
+                               @if(count($product->get_variations)>0) 
+                                @foreach($product->get_variations as $variants)
+                                    <div class="ps-product__variations">
+                                        <figure>
+                                            <figcaption>{{$variants->first_variation_name}}</figcaption>
+                                            <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>
+                                            <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>
+                                        </figure>
+                                        <figure>
+                                            <figcaption>{{$variants->second_variation_name}}</figcaption>
+                                            <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>
+                                            <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>
+                                        </figure>
+                                    </div>
+                                @endforeach
+                               @endif    
                                 <div class="ps-product__shopping">
                                     <figure>
                                         <figcaption>Quantity</figcaption>
