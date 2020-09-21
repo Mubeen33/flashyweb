@@ -34,7 +34,7 @@
                                 </div>
                                 <h4 class="ps-product__price">
                                     {{env('PRICE_SYMBOL').$product->price}} 
-                                    @if($product->variation_id !== NULL) – {{env('PRICE_SYMBOL').$vendor_product->max_price}} @endif
+                                    @if(count($product->get_variations) >= 2) – {{env('PRICE_SYMBOL').$vendor_product->max_price}} @endif
                                 </h4>
                                 <div class="ps-product__desc">
                                     <p>Sold By:<a href="shop-default.html"><strong> {{ $product->get_vendor->company_name }}</strong></a></p>
