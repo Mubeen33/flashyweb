@@ -30,7 +30,7 @@ class ProductController extends Controller
     					'prod_id'=>$data->id,
     					'price'=>$vendor_product->min_price
     				])
-    				->with(['get_product', 'get_vendor'])
+    				->with(['get_product', 'get_vendor', 'get_variations'])
                     ->first();
         if (!$product) {
     		return abort(404);
