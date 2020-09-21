@@ -15,6 +15,6 @@ class VendorProduct extends Model
     }
 	
 	public function get_variations(){
-    	return $this->hasMany('App\Models\ProductVariation', 'variation_id', 'id')->where('active', 1);
+    	return $this->hasMany('App\Models\ProductVariation', 'id', 'variation_id')->where('active', 1);
     }
 }
