@@ -1,3 +1,3 @@
 <div class="ps-document">
-    {!! $product->get_product->description !!}
+    {!! $data->description !!}
 </div>

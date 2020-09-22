@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="ps-product__info">
-                                <h1>{{$product->get_product->title}}</h1>
+                                <h1>{{$data->title}}</h1>
                                 <div class="ps-product__meta">
                                     <p>Brand:<a href="shop-default.html">Sony</a></p>
                                     <div class="ps-product__rating">
@@ -79,11 +79,18 @@
                                     </div>
                                 </div>
                                 <h4 class="ps-product__price">
-                                    {{env('PRICE_SYMBOL').$product->price}} 
-                                    @if(count($product->get_variations) > 1) – {{env('PRICE_SYMBOL').$vendor_product->max_price}} @endif
+                                    @if(count($data->get_inventory($data->id))>1)
+                                        @foreach($data->get_inventory($data->id) as $vendorProduct)
+                                        @endforeach 
+                                    @else
+                                        @foreach($data->get_inventory($data->id) as $vendorProduct)
+                                            {{env('PRICE_SYMBOL').$vendorProduct->price}}
+                                        @endforeach    
+                                    @endif 
+                                    <!-- @if(count($data->get_variations) > 1) – {{env('PRICE_SYMBOL').$vendor_product->max_price}} @endif -->
                                 </h4>
                                 <div class="ps-product__desc">
-                                    <p>Sold By:<a href="shop-default.html"><strong> {{ $product->get_vendor->company_name }}</strong></a></p>
+                                    <p>Sold By:<a href="shop-default.html"><strong> {{ $data->get_vendor->company_name }}</strong></a></p>
                                     <ul class="ps-list--dot">
                                         <li> Unrestrained and portable active stereo speaker</li>
                                         <li> Free from the confines of wires and chords</li>
@@ -92,8 +99,8 @@
                                         <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>
                                     </ul>
                                 </div>
-                               @if(count($product->get_variations)>0) 
-                                @foreach($product->get_variations as $variants)
+                               @if(count($data->get_variations)>0) 
+                                @foreach($data->get_variations as $variants)
                                     <div class="ps-product__variations">
                                         <figure>
                                             <figcaption><strong>{{$variants->first_variation_name}}:</strong></figcaption>
@@ -119,7 +126,7 @@
                                     <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>
                                 </div>
                                 <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>
-                                    <p><strong>SKU:</strong> {{$product->get_product->sku}}</p>
+                                    <p><strong>SKU:</strong> {{$data->sku}}</p>
                                     @include('product.partials.category-flow', ['categoryFlow'=>$categoryFlow])
                                     <p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p>
                                 </div>
@@ -176,7 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="ps-tab" id="tab-3">
-                                    <h4>{{ $product->get_vendor->company_name }}</h4>
+                                    <h4>{{ $data->get_vendor->company_name }}</h4>
                                 </div>
                                 <div class="ps-tab" id="tab-4">
                                     <div class="row">
@@ -564,7 +571,7 @@
        $('.option1').click(function(){
         if($('.Active2').length){
            $('.Active2').not($(this)).removeClass('Active2').addClass('option1');
-         }      
+        }      
        $(this).removeClass('option1').addClass('Active2');
        // var product_id = $('input[name=id').val();
        // variation2     = $('.btn-warning.Active1').val();

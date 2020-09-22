@@ -11,8 +11,7 @@ use App\Models\VendorProduct;
 class ProductController extends Controller
 {
     public function get_single_product($slug){
-    	$data = Product::where('slug', $slug)
-                ->first();
+    	$data = Product::where('slug', $slug)->first();
     	if (!$data) {
     		return abort(404);
     	}
@@ -77,6 +76,6 @@ class ProductController extends Controller
                     ->with(['get_product', 'get_vendor'])
                     ->get();
 
-    	return view("product.show", compact('product', 'vendor_product', 'categoryFlow', 'currentCategory', 'related_products'));
+    	return view("product.show", compact('data', 'vendor_product', 'categoryFlow', 'currentCategory', 'related_products'));
     }				
 }

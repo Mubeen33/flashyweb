@@ -1,5 +1,5 @@
 @php
-    $get_product_images = (\App\Models\ProductMedia::where('image_id', $product->get_product->image_id)->get());
+    $get_product_images = (\App\Models\ProductMedia::where('image_id', $data->image_id)->get());
 @endphp
 
 @if(!$get_product_images->isEmpty())
@@ -9,7 +9,7 @@
             @foreach($get_product_images as $key=>$image)
             <div class="item">
                 <a href="{{$image->image}}">
-                    <img src="{{$image->image}}" alt="{{$product->get_product->title}}">
+                    <img src="{{$image->image}}" alt="{{$data->title}}">
                 </a>
             </div>
             @endforeach
@@ -20,7 +20,7 @@
 <div class="ps-product__variants" data-item="4" data-md="4" data-sm="4" data-arrow="false">
     @foreach($get_product_images as $key=>$image)
     <div class="item">
-        <img src="{{$image->image}}" alt="{{$product->get_product->title}}">
+        <img src="{{$image->image}}" alt="{{$data->title}}">
     </div>
     @endforeach
 </div>
