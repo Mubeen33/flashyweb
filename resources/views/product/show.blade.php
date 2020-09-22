@@ -1,7 +1,53 @@
 @extends('layouts.master')
 
 @section('content')
+<style type="text/css">
+    .product-variation{
+        cursor: pointer;
+        min-width: 5rem;
+        min-height: 2.125rem;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: .25rem .75rem;
+        margin: 0 8px 8px 0;
+        color: rgba(0,0,0,.8);
+        font-size: 12px;
+        text-align: left;
+        border-radius: 2px;
+        border: 1px solid rgba(0,0,0,.09);
+        position: relative;
+        background: #fff;
+        outline: 0;
+        word-break: break-word;
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: -moz-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;}
     
+    .Active1 {
+        color: #fff;
+        padding: 5px 5px;
+        border-color:white;
+        background: #ee4d2d;
+    }
+    .Active2 {
+        color: #fff;
+        padding: 5px 5px;
+        border-color:white;
+        background: #ee4d2d;
+    }
+</style>   
 <nav class="navigation--mobile-product"><a class="ps-btn ps-btn--black" href="shopping-cart.html">Add to cart</a><a class="ps-btn" href="checkout.html">Buy Now</a></nav>
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -50,14 +96,13 @@
                                 @foreach($product->get_variations as $variants)
                                     <div class="ps-product__variations">
                                         <figure>
-                                            <figcaption>{{$variants->first_variation_name}}</figcaption>
-                                            <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>
-                                            <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>
+                                            <figcaption><strong>{{$variants->first_variation_name}}:</strong></figcaption>
+                                            <button class="product-variation option">{{$variants->first_variation_value}}</button>
                                         </figure>
                                         <figure>
-                                            <figcaption>{{$variants->second_variation_name}}</figcaption>
-                                            <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>
-                                            <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>
+                                            <figcaption><strong>{{$variants->second_variation_name}}:</strong></figcaption>
+                                            <button class="product-variation option1">{{$variants->second_variation_value}}</button>
+                                            
                                         </figure>
                                     </div>
                                 @endforeach
@@ -493,4 +538,41 @@
         </div>
     </div>
 
-@endsection    
+@endsection 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var variation1;
+       var variation2;
+       $(document).delegate(".option","click",function(e){
+        e.preventDefault();
+        if($('.Active1').length){
+           $('.Active1').not($(this)).removeClass('Active1').addClass('option');
+        }      
+           $(this).removeClass('option').addClass('Active1');  
+           // variation1     = $('.btn-warning.Active').val();
+           // var token      = $('input[name=_token').val();
+           // var product_id = $('input[name=id').val();
+           // $('input[name="product_first_variation"]').val($(this).val()); 
+           // if($(".option1").length){
+           //  if($(".Active1").length){
+           //       // getsecondVariation(variation1,variation2,token,product_id); 
+           //   }
+           // }else{
+           //      // getfirstVariation(variation1,token,product_id);
+           // }
+     });
+       $('.option1').click(function(){
+        if($('.Active2').length){
+           $('.Active2').not($(this)).removeClass('Active2').addClass('option1');
+         }      
+       $(this).removeClass('option1').addClass('Active2');
+       // var product_id = $('input[name=id').val();
+       // variation2     = $('.btn-warning.Active1').val();
+       // var token      = $('input[name=_token').val();
+       // $('input[name="product_second_variation"]').val($(this).val()); 
+       // if($('.Active').length){
+       //      getsecondVariation(variation1,variation2,token,product_id);
+       //  }  
+     });
+</script>
+   
