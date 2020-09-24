@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'RootController@index')->name('frontend.rootPage');
+Route::get('application-maintainance', 'Application\SiteMaintenanceController@under_maintainace')->name('frontend.appUnderMaintainace');
 
 
 Route::group(['as'=>'frontend.'], function(){
