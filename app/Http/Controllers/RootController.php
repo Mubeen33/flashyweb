@@ -13,7 +13,7 @@ class RootController extends Controller
     public function index(){
     	$current = Carbon::now();
     	$today =$current->format('Y-m-d');
-        $current__time =$current->format('Y-m-d H:m');
+        $current__time =$current->format('Y-m-d H:i');
 
     	$sliders = Slider::whereDate('start_time', '<=', $today)
     					->whereDate('end_time', '>=', $today)

@@ -34,8 +34,17 @@
             </div>
             <div class="ps-page__content"><img src="img/coming-soon.jpg" alt="">
                 <figure>
+                    @php
+                        $live_at = date('F d, Y H:i:s', strtotime($data->live_at));
+                    @endphp
                     <figcaption>Website will be again live in:</figcaption>
-                    <ul class="ps-countdown" data-time="October 21, 2020 15:37:25">
+                    
+                    @if($live_at < date('F d, Y H:i:s'))
+                    <span><i class="feather icon-clock"></i> Will be live shortly, awaiting for authority permission.</span>
+                    <br><br>
+                    @else
+                    {{-- <ul class="ps-countdown" data-time="October 21, 2020 15:37:25"> --}}
+                    <ul class="ps-countdown" data-time="{{$live_at}}">
                         <li><span class="days"></span>
                             <p>Days</p>
                         </li>
@@ -49,6 +58,8 @@
                             <p>Second</p>
                         </li>
                     </ul>
+                    @endif
+
                 </figure>
             </div>
             <div class="ps-page__footer">

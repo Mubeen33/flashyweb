@@ -12,7 +12,7 @@ class SiteMaintenanceController extends Controller
     	$data = Application::where('type', 'site')->first();
         if ($data && intval($data->active_mood) === 0) {
             //under maintainance
-            return view('application.coming-soon');
+            return view('application.coming-soon', compact('data'));
         }
         return redirect()->route('frontend.rootPage');
         
