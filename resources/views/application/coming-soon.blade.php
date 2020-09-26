@@ -30,12 +30,12 @@
         <div class="container">
             <div class="ps-page__header"><a class="ps-logo" href="#"><img src="/img/logo_light_colorfull.png" alt="Flashybuy Logo"></a>
                 <h1> Coming Soon</h1>
-                <p>Condimentum ipsum a adipiscing hac dolor set consectetur urna commodo elit parturient</p><a>molestie ut nisl partu convallier ullamcorpe.</a>
+                <p>Website is in Maintenance.</a>
             </div>
             <div class="ps-page__content"><img src="img/coming-soon.jpg" alt="">
                 <figure>
-                    <figcaption>NEW STORE WE BE LAUNCHED IN:</figcaption>
-                    <ul class="ps-countdown" data-time="July 21, 2020 15:37:25">
+                    <figcaption>Website will be again live in:</figcaption>
+                    <ul class="ps-countdown" data-time="October 21, 2020 15:37:25">
                         <li><span class="days"></span>
                             <p>Days</p>
                         </li>
