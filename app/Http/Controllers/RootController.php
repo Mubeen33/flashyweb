@@ -6,20 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\VendorProduct;
-use App\Models\Application;
 use Carbon\Carbon;
 
 class RootController extends Controller
 {
     public function index(){
-        $data = Application::where('type', 'site')->first();
-        if ($data && intval($data->active_mood) === 0) {
-            //under maintainance
-            return redirect()->route('frontend.appUnderMaintainace');
-        }
-
-
-
     	$current = Carbon::now();
     	$today =$current->format('Y-m-d');
         $current__time =$current->format('Y-m-d H:m');
