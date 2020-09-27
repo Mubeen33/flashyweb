@@ -46,6 +46,9 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 	Route::post('reset/send-link', 'Customers\Auth\ForgotPassword@send_reset_link')->name('customer.sendPassResetLink.post');
 	Route::post('reset/passoword', 'Customers\Auth\ForgotPassword@password_reset_post')->name('customer.passwordReset.post');
 
+	
+
+
 	//customer protected routes
 	Route::group(['as'=>'customer.', 'prefix'=>'customer', 'middleware' => ['customerMW']], function(){
 		Route::get('dashboard', 'Customers\CustomerController@dashboard')->name('dashboard.get');
@@ -54,6 +57,11 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 		//address
 		Route::get('addresses', 'Customers\CustomerController@get_address')->name('address.get');
 		Route::post('addresses', 'Customers\CustomerController@update_address')->name('addressUpdate.post');
+
+		//orders
+		Route::resource('orders', 'order\OrderController');
+		Route::get('ajax-orders/fetch', 'order\OrderController@fetch_orders_list')->name('orders.ajaxPgination');
+
 	});
 
 

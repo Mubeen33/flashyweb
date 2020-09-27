@@ -39,6 +39,15 @@
                                             <div class="card-header d-flex justify-content-between">
                                                 <div><h4 class="card-title">My Orders ({{$data->total()}})</h4></div>
                                                 <div>
+                                                    <select id="hidden__id" title="Sort by Vendor">
+                                                        <option value="" selected>Vendor</option>
+                                                        <?php
+                                                            $vendors = (\App\Models\Vendor::orderBy('first_name', 'ASC')->get());
+                                                            foreach ($vendors as $key => $vendor) {
+                                                                echo "<option value='".$vendor->id."'>".$vendor->first_name." ".$vendor->last_name."</option>";
+                                                            }
+                                                        ?>
+                                                    </select>
                                                     <input type="text" id="searchKey__" placeholder="Search">
                                                     <select id="selected_row_per_page" title="Display row per page">
                                                         <option value="5" selected="1">Show 5</option>
@@ -81,7 +90,6 @@
                                                         <input type="hidden" id="hidden__sort_by" value="created_at">
                                                         <input type="hidden" id="hidden__sorting_order" value="DESC">
                                                         <input type="hidden" id="hidden__status" value="0">
-                                                        <input type="hidden" id="hidden__id" value="">
                                                     </div>
                                                 </div>
                                             </div>
