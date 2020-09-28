@@ -4,7 +4,7 @@
 <style type="text/css">
     #searchKey__,
     #selected_row_per_page,
-    #hidden__id{
+    #hidden__status{
         border: 1px solid #ddd;
         padding: 2px 10px;
         outline: none;
@@ -39,14 +39,11 @@
                                             <div class="card-header d-flex justify-content-between">
                                                 <div><h4 class="card-title">My Orders ({{$data->total()}})</h4></div>
                                                 <div>
-                                                    <select id="hidden__id" title="Sort by Vendor">
-                                                        <option value="" selected>Vendor</option>
-                                                        <?php
-                                                            $vendors = (\App\Models\Vendor::orderBy('first_name', 'ASC')->get());
-                                                            foreach ($vendors as $key => $vendor) {
-                                                                echo "<option value='".$vendor->id."'>".$vendor->first_name." ".$vendor->last_name."</option>";
-                                                            }
-                                                        ?>
+                                                    <select id="hidden__status" title="Sort By Status">
+                                                        <option value="" selected>Status</option>
+                                                        <option value="Pending">Pending</option>
+                                                        <option value="Canceled">Canceled</option>
+                                                        <option value="Completed">Completed</option>
                                                     </select>
                                                     <input type="text" id="searchKey__" placeholder="Search">
                                                     <select id="selected_row_per_page" title="Display row per page">
@@ -76,7 +73,6 @@
                                                                         Order Date
                                                                     </th>
                                                                     <th>Status</th>
-                                                                    <th>Actions</th>
                                                                 </tr>
                                                             </thead>
 
@@ -89,7 +85,7 @@
                                                         <input type="hidden" id="hidden__page_number" value="1">
                                                         <input type="hidden" id="hidden__sort_by" value="created_at">
                                                         <input type="hidden" id="hidden__sorting_order" value="DESC">
-                                                        <input type="hidden" id="hidden__status" value="0">
+                                                        <input type="hidden" id="hidden__id" value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,17 +108,16 @@
 @push('scripts')
 
 <script type="text/javascript">
-    $(document).on('change', '#hidden__id', function(e){
-        e.preventDefault()
+    //if change status
+    $("#hidden__status").on('change', function(){
         let action_url = $("#hidden__action_url").val()
-        let pageNumber = 1;
         let searchKey = $("#searchKey__").val()
-        $("#hidden__page_number").val(pageNumber)
+        let pageNumber = 1;
         let sort_by = $("#hidden__sort_by").val()
         let sorting_order = $("#hidden__sorting_order").val()
-        let hidden__status = $("#hidden__status").val()
+        let hidden__status = $(this).val()
         let row_per_page = $("#selected_row_per_page").val()
-        let hidden__id = $(this).val()
+        let hidden__id = $("#hidden__id").val()
         fetch_paginate_data(action_url, pageNumber, searchKey, sort_by, sorting_order, hidden__status, row_per_page, hidden__id);
     })
 </script>

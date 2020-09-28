@@ -15,6 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id')->nullable();//will fill after insert order data
+            $table->unsignedBigInteger('vendor_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('vendor_product_id');//vendor_products tbl id
+            $table->integer('qty');
+            $table->enum('status', ['Pending', 'Canceled', 'Completed'])->default('Pending');
             $table->timestamps();
         });
     }

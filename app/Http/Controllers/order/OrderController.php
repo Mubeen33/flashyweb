@@ -23,7 +23,6 @@ class OrderController extends Controller
     public function index()
     {
         $data = Order::where([
-                    'status'=>0,
                     'customer_id'=>Auth::guard('customer')->user()->id
                 ])
                 ->with(['get_vendor', 'get_vendor_product'])
@@ -112,36 +111,61 @@ class OrderController extends Controller
             $row_per_page = $request->row_per_page;
             $vendor_id = $request->id;
 
-            if ($sort_by == "") {
+            if (empty($sort_by)) {
                 $sort_by = "created_at";
             }
-            if ($sorting_order == "") {
+            if (empty($sorting_order)) {
                 $sorting_order = "DESC";
             }
 
-            if (!empty($request->search_key)) {
-                $products = Product::where('title', 'LIKE', "%$searchKey%")->get('id');
+            $authCustomerID = Auth::guard('customer')->user()->id;
+
+            if (!empty($searchKey)) {
+                $ven_product_id_list = [];
                 $productIDList = [];
+                //if search key only contain numeric
+                if (is_numeric($searchKey)) {
+                    //search order ID
+                    $order_id_list = Order::where('order_id', 'LIKE', "%$searchKey%")
+                                            ->where('customer_id', '=', $authCustomerID)
+                                            ->get('vendor_product_id');
+                    foreach ($order_id_list as $key => $value) {
+                        $ven_product_id_list[] = $value->vendor_product_id;
+                    }
+                    $product_id_list = Product::where('id', 'LIKE', "%$searchKey%")->get('id');
+                    foreach ($product_id_list as $key => $value) {
+                        $productIDList[] = $value->id;
+                    }
+                }
+
+                //products
+                $products = Product::where('title', 'LIKE', "%$searchKey%")->get('id');
                 foreach ($products as $key => $value) {
                     $productIDList[] = $value->id;
                 }
+
+                //vendor products
+                $productIDList = array_unique($productIDList);
                 $vendor_products = VendorProduct::whereIn('prod_id', $productIDList)
                                             ->where([
-                                                'active'=>1,
+                                                'active'=>1
                                             ])
                                             ->get('id');
-                $ven_product_id_list = [];
+                
                 foreach ($vendor_products as $key => $value) {
                     $ven_product_id_list[] = $value->id;
                 }
 
 
-                if (!empty($vendor_id) && is_numeric($vendor_id)) {
+                //unique the array - the id list of vendor_products tbl id
+                $ven_product_id_list = array_unique($ven_product_id_list);
+
+                //if have status
+                if (!empty($status)) {
                     $data = Order::whereIn('vendor_product_id', $ven_product_id_list)
                         ->where([
-                            'status'=>0,
-                            'vendor_id'=>$vendor_id,
-                            'customer_id'=>Auth::guard('customer')->user()->id
+                            'customer_id'=>$authCustomerID,
+                            'status'=>$status
                         ])
                         ->with(['get_vendor', 'get_vendor_product'])
                         ->orderBy($sort_by, $sorting_order)
@@ -150,10 +174,7 @@ class OrderController extends Controller
                 }
 
                 $data = Order::whereIn('vendor_product_id', $ven_product_id_list)
-                        ->where([
-                            'status'=>0,
-                            'customer_id'=>Auth::guard('customer')->user()->id
-                        ])
+                        ->where('customer_id', $authCustomerID,)
                         ->with(['get_vendor', 'get_vendor_product'])
                         ->orderBy($sort_by, $sorting_order)
                         ->paginate($row_per_page);
@@ -163,21 +184,19 @@ class OrderController extends Controller
 
             //without search key
 
-            if (!empty($vendor_id) && is_numeric($vendor_id)) {
+            //if only have status
+            if (!empty($status)) {
                 $data = Order::where([
-                        'status'=>0,
-                        'vendor_id'=>$vendor_id,
-                        'customer_id'=>Auth::guard('customer')->user()->id
+                        'customer_id'=>$authCustomerID,
+                        'status'=>$status
                     ])
                     ->with(['get_vendor', 'get_vendor_product'])
                     ->orderBy($sort_by, $sorting_order)
                     ->paginate($row_per_page);
                 return view('orders.partials.orders-list', compact('data'))->render();
             }
-            $data = Order::where([
-                            'status'=>0,
-                            'customer_id'=>Auth::guard('customer')->user()->id
-                        ])
+
+            $data = Order::where('customer_id', $authCustomerID)
                         ->with(['get_vendor', 'get_vendor_product'])
                         ->orderBy($sort_by, $sorting_order)
                         ->paginate($row_per_page);

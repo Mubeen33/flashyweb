@@ -43,23 +43,7 @@
         {{$content->created_at->format(env('GENERAL_DATE_FORMAT_WITH_HI'))}}
     </td>
     <td>
-        @if(intval($content->status) === 0)
-            <span class="badge badge-danger">Pending</span>
-        @endif
-    </td>
-    <td>
-        <div class="btn-group">
-            <div class="dropdown">
-                <button class="btn btn-dark btn-sm dropdown-toggle mr-1" type="button" id="dropdownMenuButton7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Actions
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
-                    <a class="dropdown-item" href="#">Show</a>
-                    <a class="dropdown-item" href="#">Cancel</a>
-                </div>
-            </div>
-        </div>
-        
+        <span class="badge badge-info">{{$content->status}}</span>
     </td>
 </tr>
 @endforeach
