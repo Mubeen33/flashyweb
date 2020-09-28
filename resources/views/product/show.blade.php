@@ -47,7 +47,14 @@
         border-color:white;
         background: #ee4d2d;
     }
-</style>   
+</style> 
+
+@foreach($getProductData as $productData)
+
+
+    
+
+@endforeach 
 <nav class="navigation--mobile-product"><a class="ps-btn ps-btn--black" href="shopping-cart.html">Add to cart</a><a class="ps-btn" href="checkout.html">Buy Now</a></nav>
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -79,50 +86,79 @@
                                     </div>
                                 </div>
                                 <h4 class="ps-product__price">
-                                    @if(count($data->get_inventory($data->id))>1)
-                                        @foreach($data->get_inventory($data->id) as $vendorProduct)
-                                        @endforeach 
+                                    @php
+                                        $get_product_variations = (\App\Models\ProductVariation::where('product_id', $productData->product_id)->get());
+                                    @endphp
+
+                                    @if(count($get_product_variations)>0)
+
+@php
+    $variantPrices = (\App\Models\VendorProduct::where('prod_id', $productData->product_id)->where('active',1)->selectRaw("MAX(price) AS max_price, MIN(price) AS min_price")->get());
+
+    $activeVariants = (\App\Models\VendorProduct::where('prod_id', $productData->product_id)->where('active',1)->groupby('variation_id')->get());
+
+@endphp
+                                                
+                                                @if(count($activeVariants)>1)
+                                                    @foreach($variantPrices as $variantPrice)
+
+                                                            {{env('PRICE_SYMBOL').$variantPrice->min_price}} - {{env('PRICE_SYMBOL').$variantPrice->max_price}}
+
+                                                    @endforeach        
+                                                @else
+                                                    @foreach($variantPrices as $variantPrice)
+
+                                                            
+                                                            {{env('PRICE_SYMBOL').$variantPrice->min_price}}
+                                                        
+                                                    @endforeach
+                                                @endif
                                     @else
-                                        @foreach($data->get_inventory($data->id) as $vendorProduct)
-                                            {{env('PRICE_SYMBOL').$vendorProduct->price}}
-                                        @endforeach    
-                                    @endif 
-                                    <!-- @if(count($data->get_variations) > 1) – {{env('PRICE_SYMBOL').$vendor_product->max_price}} @endif -->
+                                            {{env('PRICE_SYMBOL').$productData->price}}
+                                    @endif
+
+                                    
                                 </h4>
                                 <div class="ps-product__desc">
                                     <p>Sold By:<a href="shop-default.html"><strong> {{ $data->get_vendor->company_name }}</strong></a></p>
                                     <ul class="ps-list--dot">
-                                        <li> Unrestrained and portable active stereo speaker</li>
-                                        <li> Free from the confines of wires and chords</li>
-                                        <li> 20 hours of portable capabilities</li>
-                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>
-                                        <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>
+                                        <li> Unrestrained and portable active stereo speaker </li>
+                                        <li> Free from the confines of wires and chords </li>
+                                        <li> 20 hours of portable capabilities </li>
+                                        <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included </li>
+                                        <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X </li>
                                     </ul>
                                 </div>
-                               @if(count($data->get_variations)>0) 
-                                @foreach($data->get_variations as $variants)
                                     <div class="ps-product__variations">
+@php
+        $activeVariants = (\App\Models\VendorProduct::where('prod_id',$productData->product_id)->where('active',1)->groupby('variation_id')->get());
+@endphp                                        
+                                    @if(!empty($productData->first_variation_value))    
                                         <figure>
-                                            <figcaption><strong>{{$variants->first_variation_name}}:</strong></figcaption>
-                                            <button class="product-variation option">{{$variants->first_variation_value}}</button>
+                                            <figcaption><strong>{{$productData->first_variation_name}}:</strong></figcaption>
+                                            <button class="product-variation option">{{$productData->first_variation_value}}</button>
                                         </figure>
+
+                                    @endif 
+                                    @if(!empty($productData->second_variation_value))    
                                         <figure>
-                                            <figcaption><strong>{{$variants->second_variation_name}}:</strong></figcaption>
-                                            <button class="product-variation option1">{{$variants->second_variation_value}}</button>
+                                            <figcaption><strong>{{$productData->second_variation_name}}:</strong></figcaption>
+                                            <button class="product-variation option1">{{$productData->second_variation_value}}</button>
                                             
                                         </figure>
-                                    </div>
-                                @endforeach
-                               @endif    
+                                    @endif    
+                                    </div>    
                                 <div class="ps-product__shopping">
                                     <figure>
                                         <figcaption>Quantity</figcaption>
                                         <div class="form-group--number">
                                             <button class="up"><i class="fa fa-plus"></i></button>
                                             <button class="down"><i class="fa fa-minus"></i></button>
-                                            <input class="form-control" type="text" placeholder="1">
+                                            <input class="form-control" type="number" value="1" min="1"  id="quantity">
                                         </div>
-                                    </figure><a class="ps-btn ps-btn--black" href="#">Add to cart</a><a class="ps-btn" href="#">Buy Now</a>
+                                    </figure>
+                                    <button class="ps-btn ps-btn--black" id="cart">Add to cart</button>
+                                    <a class="ps-btn" href="#">Buy Now</a>
                                     <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>
                                 </div>
                                 <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>
@@ -544,7 +580,41 @@
             
         </div>
     </div>
+@php
+                                        $get_product_variations = (\App\Models\ProductVariation::where('product_id', $productData->product_id)->get());
+                                    @endphp
 
+                                    @if(count($get_product_variations)>0)
+
+@php
+    $variantPrices = (\App\Models\VendorProduct::where('prod_id', $productData->product_id)->where('active',1)->selectRaw("MAX(price) AS max_price, MIN(price) AS min_price")->get());
+
+    $activeVariants = (\App\Models\VendorProduct::where('prod_id', $productData->product_id)->where('active',1)->groupby('variation_id')->get());
+
+@endphp
+                                                
+                                                @if(count($activeVariants)>1)
+                                                    @foreach($variantPrices as $variantPrice)
+
+                                                            {{env('PRICE_SYMBOL').$variantPrice->min_price}} - {{env('PRICE_SYMBOL').$variantPrice->max_price}}
+
+                                                    @endforeach        
+                                                @else
+                                                    @foreach($variantPrices as $variantPrice)
+
+                                                            
+                                                            <input type="hidden" name="" value="{{$variantPrice->min_price}}" id="price">{{$variantPrice->min_price}}
+                                                        
+                                                    @endforeach
+                                                @endif
+                                    @else
+@csrf                                                
+<input type="hidden" name="" value="{{$productData->price}}" id="price">
+                                    @endif
+<input type="hidden" name="id" value="{{$productData->product_id}}" id="productid">
+<input type="hidden" name="ven_id" value="{{$productData->vendorid}}" id="vendorid">
+<input type="hidden" name=""  value="" id="maxQty">
+<input type="hidden" name=""  value="{{$productData->v_p_id}}" id="v_p_id">
 @endsection 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -568,7 +638,9 @@
            //      // getfirstVariation(variation1,token,product_id);
            // }
      });
-       $('.option1').click(function(){
+       $(document).delegate(".option1","click",function(e){
+
+       e.preventDefault();
         if($('.Active2').length){
            $('.Active2').not($(this)).removeClass('Active2').addClass('option1');
         }      
@@ -581,5 +653,103 @@
        //      getsecondVariation(variation1,variation2,token,product_id);
        //  }  
      });
+
+//====================================///
+//====== Quantity Box plus  ========= ///
+//====================================///
+
+    $(document).delegate(".up","click",function(){
+
+        var val = $('#quantity').val();
+        $('#quantity').val(parseInt(val)+1);
+        
+        
+    });
+
+//===================================//
+//======  Minus Functions  ========= //
+//==================================// 
+    
+    $(document).delegate(".down","click",function(){
+
+        var val = $('#quantity').val();
+
+        if(val>1){
+
+           $('#quantity').val(parseInt(val)-1); 
+        }
+        
+    });
+   //========================================//
+// ========= Start Cart Functionality =========//
+  //========================================// 
+
+    $(document).delegate("#cart","click",function(){
+
+        var product_id   = $("#productid").val();
+        var vendor_id    = $("#vendorid").val();
+        var variation_id = $("#variation_id").val();
+        var quantity     = $("#quantity").val();
+        var maxQty       = $("#maxQty").val();
+        var price        = $('#price').val();
+        var v_p_id       = $('#v_p_id').val();
+
+
+        // if (parseInt(maxQty) < quantity) {
+        //     if (!$("div").is("#notify")) {
+
+        //         $(".ps-product__variations").append("<div id='notify' class='btn btn-danger'>Sorry! We have Only "+maxQty+" items in Stock.For Further info Conatct Support.</div>");
+        //     }    
+        // }
+        // else if(parseInt(maxQty) >= quantity){
+
+        //     if ($("div").is("#notify")) {
+
+        //         $('#notify').remove();
+
+        //     }
+        //     addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id);
+        // }
+        addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id);
+        
+    });
+
+  //==================================================================//  
+ //  ========================   Cart Function ===================== ///
+//==================================================================//
+function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
+
+    $.ajax({
+           type:"POST",
+           url:'{{ route('cart.products.addtocart') }}',
+           data        :  {
+
+                                      action       : 'add',
+                                      product_id   :  product_id,
+                                      variation_id : variation_id,
+                                      vendor_id    :  vendor_id,
+                                      quantity     :  quantity,
+                                      price        :  price,
+                                      v_p_id       :  v_p_id,
+                                      _token       : $('input[name=_token').val() 
+                                    },
+           success: function(data){
+
+                    // showCartInbox(product_id);
+                    //     var data = data.split("`");
+                    //     $('#ps-cart__items').html(data[0]);
+                    //     $('#total_cart_items').html(data[1]);
+                    //     if (data[1] == 0) {
+
+                    //         $('#ps-cart__items').css('display','none');
+                    //     }else{
+
+                    //         $('#ps-cart__items').css('display','');
+                    //     }
+                    console.log(data);
+           }
+
+    });
+}    
 </script>
    
