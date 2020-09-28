@@ -608,7 +608,7 @@
                                                     @endforeach
                                                 @endif
                                     @else
-@csrf                                                
+                                               
 <input type="hidden" name="" value="{{$productData->price}}" id="price">
                                     @endif
 <input type="hidden" name="id" value="{{$productData->product_id}}" id="productid">
@@ -736,17 +736,17 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
            success: function(data){
 
                     // showCartInbox(product_id);
-                    //     var data = data.split("`");
-                    //     $('#ps-cart__items').html(data[0]);
-                    //     $('#total_cart_items').html(data[1]);
-                    //     if (data[1] == 0) {
+                        var data = data.split("`");
+                        $('#ps-cart__items').html(data[0]);
+                        $('#total_cart_items').html(data[1]);
+                        if (data[1] == 0) {
 
-                    //         $('#ps-cart__items').css('display','none');
-                    //     }else{
+                            $('#ps-cart__items').css('display','none');
+                        }else{
 
-                    //         $('#ps-cart__items').css('display','');
-                    //     }
-                    console.log(data);
+                            $('#ps-cart__items').css('display','');
+                        }
+                    // console.log(data);
            }
 
     });

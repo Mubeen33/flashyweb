@@ -159,6 +159,7 @@
             </div>
         </div>
     </div>
+    @csrf 
     <script src="{{ asset('plugins/jquery.min.js')}}"></script>
     <script src="{{ asset('plugins/nouislider/nouislider.min.js')}}"></script>
     <script src="{{ asset('plugins/popper.min.js')}}"></script>
@@ -177,6 +178,38 @@
     <script src="{{ asset('plugins/gmap3.min.js')}}"></script>
     <!-- custom scripts-->
     <script src="{{ asset('js/main.js')}}"></script>
+    <script type="text/javascript">
+        $( function() {
+
+        showCart();
+
+   } );
+        function showCart(){
+  
+          $.ajax({
+           type:"POST",
+           url:'{{ route('cart.products.addtocart') }}',
+            data:{ _token       : $('input[name=_token').val()},
+            success:function(data){
+              
+              var data = data.split("`");
+              $('#ps-cart__items').html(data[0]);
+              $('#total_cart_items').html(data[1]);
+
+               var val = $('#total_cart_items').html();
+               
+                if (val == 0) {
+
+                    $('#ps-cart__items').css('display','none');
+                }else{
+
+                    $('#ps-cart__items').css('display','');
+                }
+              
+            }
+          });
+        }
+    </script>
     @stack('scripts')
 </body>
 

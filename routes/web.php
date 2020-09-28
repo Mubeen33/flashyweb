@@ -44,7 +44,7 @@ Route::group(['as'=>'cart.'], function(){
 
 
 });
-
+Route::get('checkout','order\CartController@checkout');
 
 
 	//customer login/logout routes

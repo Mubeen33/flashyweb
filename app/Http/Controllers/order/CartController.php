@@ -10,6 +10,7 @@ use App\Models\VendorProduct;
 use App\Models\ProductVariation;
 use App\Models\Vendor;
 use App\Models\ProductMedia;
+use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
 use DB;
 
 
@@ -62,8 +63,48 @@ class CartController extends Controller
 				  $_SESSION['product_cart'][$v_p_id] = $product;
 				}
 
-				print_r($_SESSION);								
+				if(isset($_SESSION['product_cart'])){
+	 
+			  		  $tquantity = 0;
+					  $tPrice    = 0;
+					  foreach($_SESSION['product_cart'] as $data){
+					  		$priceProduct = $data['price']*$data['quantity'];
+							$tPrice		 += $priceProduct;
+							$tquantity 	 += $data['quantity'];
+							$id           = base64_encode($data['product_id']);
+
+					  
+							echo '
+									<div class="ps-product--cart-mobile">
+			                            <div class="ps-product__thumbnail"><a href=""><img src="'.$data['image'].'" alt=""></a></div>
+			                               <div class="ps-product__content"><a href="javascript:void(0)" type="button" class="ps-product__remove" onclick="remove_cart('.$data['v_p_id'].')"><i class="icon-cross"></i></a><a href="product.php?id='.$id.'&name='.str_replace(" ", "-",$data['name']).'">'.$data['name'].'</a>
+			                        <p><strong>Sold by:</strong> '.$data['vendor'].'</p><small>'.$data['quantity'].' x '.$data['price'].'</small>
+			                    </div>
+			                </div>';
+						}
+						if ($tPrice!=0) {
+
+							echo '<div class="ps-cart__footer">
+                                    <h3>Sub Total:<strong>R'.$tPrice.'</strong></h3>';
+                                    
+									    if(isset($_SESSION['name'])){
+
+									    	echo '<figure><a class="ps-btn" href="">View Cart</a><a class="ps-btn" href="'.url('checkout').'">Checkout</a></figure>';
+									        
+									    }else{
+									      echo '<figure><a class="ps-btn" href="'.url("checkout").'">View Cart</a><a class="ps-btn" href="'.url("checkout").'">Checkout</a></figure>';
+									    } 
+                                    
+                               echo '</div>';
+                        }
+                        echo '`'.$tquantity;       
+				}									
 
 		}		
+    }
+
+    public function checkout(){
+
+    	return view('orders.checkout');
     }
 }
