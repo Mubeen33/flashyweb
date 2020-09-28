@@ -44,7 +44,25 @@ class CartController extends Controller
 								'vendor'       => $vendor
 
 							);	
-				print_r($product);								
+				if(isset($_SESSION['product_cart']) && !empty($_SESSION['product_cart']))
+				{
+					if(!array_key_exists($v_p_id,$_SESSION['product_cart']))
+					{
+				   
+						$_SESSION['product_cart'][$v_p_id] = $product;
+				   
+					}
+					else{
+						
+						$_SESSION['product_cart'][$v_p_id]['price'] 	= $price;
+						$_SESSION['product_cart'][$v_p_id]['quantity'] 	= $quantity;
+					}		
+				}
+				else{
+				  $_SESSION['product_cart'][$v_p_id] = $product;
+				}
+
+				print_r($_SESSION);								
 
 		}		
     }
