@@ -85,10 +85,28 @@ class CartController extends Controller
 		            ];
 		             session()->put('cart', $cart);
 				}
-
-													
-
 		}
+		//================= Remove product from Cart ======================= //
+
+if(isset($_POST['action']) && $_POST['action'] == "delete"){
+
+	@$v_p_id   	= trim($_POST['p_id']);
+	$cart = session()->get('cart');
+ 
+    if(isset($cart[$v_p_id])) {
+
+        unset($cart[$v_p_id]);
+
+        session()->put('cart', $cart);
+    }
+}
+// ============================== Empty Whole Cart ====================== //
+
+if(isset($_POST['action']) && $_POST['action'] == "empty"){
+	$cart = session()->get('cart');
+	unset($cart);
+}
+// ====================================================================== //
 
 		$cart = session()->get('cart');
 		if(isset($cart)){
@@ -115,12 +133,12 @@ class CartController extends Controller
 							echo '<div class="ps-cart__footer">
                                     <h3>Sub Total:<strong>R'.$tPrice.'</strong></h3>';
                                     
-									    if(isset($_SESSION['name'])){
+									    if (!Auth::guard('customer')->check()) {
 
 									    	echo '<figure><a class="ps-btn" href="">View Cart</a><a class="ps-btn" href="'.url('checkout').'">Checkout</a></figure>';
 									        
 									    }else{
-									      echo '<figure><a class="ps-btn" href="'.url("login").'">View Cart</a><a class="ps-btn" href="'.url("login").'">Checkout</a></figure>';
+									      echo '<figure><a class="ps-btn" href="'.url("checkout").'">View Cart</a><a class="ps-btn" href="'.url("checkout").'">Checkout</a></figure>';
 									    } 
                                     
                                echo '</div>';

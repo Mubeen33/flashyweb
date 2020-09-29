@@ -189,7 +189,7 @@
           $.ajax({
            type:"POST",
            url:'{{ route('cart.products.addtocart') }}',
-            data:{ _token       : $('input[name=_token').val()},
+            data:{ _token : $('input[name=_token').val()},
             success:function(data){
               
               var data = data.split("`");
@@ -209,6 +209,28 @@
             }
           });
         }
+        
+function remove_cart(p_id){
+
+    $.ajax({
+        type:"POST",
+           url:'{{ route('cart.products.addtocart') }}',
+        data:{action:'delete',p_id:p_id,_token : $('input[name=_token').val()},
+        success:function(data){
+
+            var data = data.split("`");
+            $('#ps-cart__items').html(data[0]);
+            $('#total_cart_items').html(data[1]);
+            if (data[1] == 0) {
+
+            $('#ps-cart__items').css('display','none');
+            }else{
+
+                $('#ps-cart__items').css('display','');
+            }
+        }
+    });
+}
     </script>
     @stack('scripts')
 </body>
