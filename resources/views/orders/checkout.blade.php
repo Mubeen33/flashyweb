@@ -17,7 +17,7 @@
                     <h3>Checkout Information</h3>
                 </div>
                 <div class="ps-section__content">
-                    <form class="ps-form--checkout" action="index.html" method="get">
+                    <form class="ps-form--checkout" action="" method="get">
                         <div class="ps-form__content">
                             <div class="row">
                                 <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 ">
@@ -93,6 +93,13 @@
                                         <tr>
                                             <td colspan="7" class="text-right">Total:</td>
                                             <td colspan="1"><b class="grandTotal">R{{$tPrice}}</b></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td colspan="8" class="text-right">
+                                                <button id="submitCheckoutForm_" class="btn btn-warning" type="submit">Continue</button>
+                                            </td>
                                         </tr>
                                     </table>
 
@@ -178,4 +185,22 @@
                 </div>
             </div>
         </section>
-    @endsection 
+    @endsection
+
+
+
+
+
+    @push('scripts')
+    <script type="text/javascript">
+        $.ajax({
+            url:'/submit-checkout-form',
+            method:'POST',
+            DataType:'JSON',
+            cache:false,
+            success:function(response){
+                alert('Your Data Saved')
+            }
+        })
+    </script>
+    @endpush
