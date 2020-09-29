@@ -17,6 +17,7 @@ use DB;
 class CartController extends Controller
 {
     public function addToCart(Request $request){
+    	
 
     	if (isset($_POST['action']) && $_POST['action']=='add'){
 	
@@ -68,7 +69,7 @@ class CartController extends Controller
 						
 						$cart[$v_p_id]['price'] 	= $price;
 						$cart[$v_p_id]['quantity'] 	= $quantity;
-						 session()->put('cart', $cart);
+						session()->put('cart', $cart);
 					}		
 				}
 				else{
@@ -88,6 +89,7 @@ class CartController extends Controller
 													
 
 		}
+
 		$cart = session()->get('cart');
 		if(isset($cart)){
 	 
@@ -118,7 +120,7 @@ class CartController extends Controller
 									    	echo '<figure><a class="ps-btn" href="">View Cart</a><a class="ps-btn" href="'.url('checkout').'">Checkout</a></figure>';
 									        
 									    }else{
-									      echo '<figure><a class="ps-btn" href="'.url("checkout").'">View Cart</a><a class="ps-btn" href="'.url("checkout").'">Checkout</a></figure>';
+									      echo '<figure><a class="ps-btn" href="'.url("login").'">View Cart</a><a class="ps-btn" href="'.url("login").'">Checkout</a></figure>';
 									    } 
                                     
                                echo '</div>';
