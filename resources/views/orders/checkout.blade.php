@@ -111,6 +111,12 @@
                                             <figure class="ps-block__shipping">
                                                 <h3>Shipping</h3>
                                                 <p>Calculated at next step</p>
+                                                <p>
+                                                    <?php
+                                                        $get_address = (\App\Models\CustomerAddress::where('customer_id', Auth::guard('customer')->user()->id)->get());
+                                                        print_r($get_address);
+                                                    ?>
+                                                </p>
                                             </figure>
                                         </div>
                                     </div>
