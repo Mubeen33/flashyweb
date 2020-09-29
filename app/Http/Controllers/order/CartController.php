@@ -10,7 +10,6 @@ use App\Models\VendorProduct;
 use App\Models\ProductVariation;
 use App\Models\Vendor;
 use App\Models\ProductMedia;
-use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
 use DB;
 
 
@@ -33,41 +32,67 @@ class CartController extends Controller
 				$image_id   = Product::where('id',$product_id)->value('image_id');
 				$image      = ProductMedia::where('image_id',$image_id)->value('image');
 
-				$product = Array(
+				$cart = session()->get('cart');
+				// $product = Array(
 
-								'v_p_id'       => $v_p_id,
-								'product_id'   => $product_id,
-								'vendor_id'    => $vendor_id,
-								'name'         => $name,
-								'price'        => $price,
-								'quantity'     => $quantity,
-								'image'	       => $image,
-								'vendor'       => $vendor
+				// 				'v_p_id'       => $v_p_id,
+				// 				'product_id'   => $product_id,
+				// 				'vendor_id'    => $vendor_id,
+				// 				'name'         => $name,
+				// 				'price'        => $price,
+				// 				'quantity'     => $quantity,
+				// 				'image'	       => $image,
+				// 				'vendor'       => $vendor
 
-							);	
-				if(isset($_SESSION['product_cart']) && !empty($_SESSION['product_cart']))
+				// 			);	
+				if(isset($cart[$v_p_id]) && !empty($cart[$v_p_id]))
 				{
-					if(!array_key_exists($v_p_id,$_SESSION['product_cart']))
+					if(!array_key_exists($v_p_id,$cart))
 					{
 				   
-						$_SESSION['product_cart'][$v_p_id] = $product;
+						$cart[$v_p_id] = [
+			                        'v_p_id'       => $v_p_id,
+									'product_id'   => $product_id,
+									'vendor_id'    => $vendor_id,
+									'name'         => $name,
+									'price'        => $price,
+									'quantity'     => $quantity,
+									'image'	       => $image,
+									'vendor'       => $vendor
+			            ];
+			             session()->put('cart', $cart);
 				   
 					}
 					else{
 						
-						$_SESSION['product_cart'][$v_p_id]['price'] 	= $price;
-						$_SESSION['product_cart'][$v_p_id]['quantity'] 	= $quantity;
+						$cart[$v_p_id]['price'] 	= $price;
+						$cart[$v_p_id]['quantity'] 	= $quantity;
+						 session()->put('cart', $cart);
 					}		
 				}
 				else{
-				  $_SESSION['product_cart'][$v_p_id] = $product;
+				  $cart[$v_p_id] = [
+			                        'v_p_id'       => $v_p_id,
+									'product_id'   => $product_id,
+									'vendor_id'    => $vendor_id,
+									'name'         => $name,
+									'price'        => $price,
+									'quantity'     => $quantity,
+									'image'	       => $image,
+									'vendor'       => $vendor
+		            ];
+		             session()->put('cart', $cart);
 				}
 
-				if(isset($_SESSION['product_cart'])){
+													
+
+		}
+		$cart = session()->get('cart');
+		if(isset($cart)){
 	 
 			  		  $tquantity = 0;
 					  $tPrice    = 0;
-					  foreach($_SESSION['product_cart'] as $data){
+					  foreach(session('cart') as $id => $data){
 					  		$priceProduct = $data['price']*$data['quantity'];
 							$tPrice		 += $priceProduct;
 							$tquantity 	 += $data['quantity'];
@@ -98,9 +123,7 @@ class CartController extends Controller
                                echo '</div>';
                         }
                         echo '`'.$tquantity;       
-				}									
-
-		}		
+				}		
     }
 
     public function checkout(){
