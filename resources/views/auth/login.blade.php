@@ -31,6 +31,7 @@
                                         <h5>Log In Your Account</h5>
                                         <form id="login--form" action="{{ route('customer.login.Post') }}" method="POST">
                                             @csrf
+                                            <input type="hidden" name="intend" value="{{$intend}}">
                                             <div class="form-group">
                                                 <input onclick="removeErrorLevels($(this), 'input')" class="form-control" type="email" name="email" placeholder="Email address">
                                                 <small class="place-error--msg"></small>
@@ -59,6 +60,7 @@
                                         <h5>Register An Account</h5>
                                         <form id="register--form" action="{{ route('customer.registration.post') }}" method="POST">
                                             @csrf
+                                            <input type="hidden" name="intend" value="{{$intend}}">
                                             <div class="form-group">
                                                 <input onclick="removeErrorLevels($(this), 'input')" class="form-control" name="first_name" type="text" placeholder="First Name">
                                                 <small class="place-error--msg"></small>

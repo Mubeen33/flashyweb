@@ -10,6 +10,7 @@ use App\Models\VendorProduct;
 use App\Models\ProductVariation;
 use App\Models\Vendor;
 use App\Models\ProductMedia;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 
@@ -126,8 +127,18 @@ class CartController extends Controller
 				}		
     }
 
-    public function checkout(){
 
-    	return view('orders.checkout');
+    //checkout page
+    public function checkout(){
+    	if (!Auth::guard('customer')->check()) {
+    		return redirect()->route('login', ['checkout'])->with('Please login to view checkout!');
+    	}
+    	
+    	$cart = session()->get('cart');
+		if(isset($cart)){
+			return view('orders.checkout');
+		}
+		return redirect()->route('frontend.rootPage');
+    	
     }
 }

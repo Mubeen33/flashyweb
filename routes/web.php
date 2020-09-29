@@ -28,27 +28,27 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 		//product details
 		Route::get('product/{slug}', 'Product\ProductController@get_single_product')->name('signgleProduct.get');
 	});
-Route::group(['as'=>'frontend.'], function(){
-	//vendors routes
-	Route::get('become-a-vendor', 'Vendors\VendorController@become_a_vendor')->name('becomeAVendor.get');
-	Route::get('vendor-registration', 'Vendors\VendorController@vendor_registration')->name('vendor_registration.get');
-	// Route::resource('vendor', 'Vendors\VendorController');
-	Route::post('vendor-store','Vendors\VendorController@store')->name('vendor.store');
 
-	//product details
-	Route::get('product/{slug}', 'Product\ProductController@get_single_product')->name('signgleProduct.get');
-});
-Route::group(['as'=>'cart.'], function(){
+	Route::group(['as'=>'frontend.'], function(){
+		//vendors routes
+		Route::get('become-a-vendor', 'Vendors\VendorController@become_a_vendor')->name('becomeAVendor.get');
+		Route::get('vendor-registration', 'Vendors\VendorController@vendor_registration')->name('vendor_registration.get');
+		// Route::resource('vendor', 'Vendors\VendorController');
+		Route::post('vendor-store','Vendors\VendorController@store')->name('vendor.store');
 
-	Route::post('add-to-cart','order\CartController@addToCart')->name('products.addtocart');
+		//product details
+		Route::get('product/{slug}', 'Product\ProductController@get_single_product')->name('signgleProduct.get');
+	});
 
+	Route::group(['as'=>'cart.'], function(){
+		Route::post('add-to-cart','order\CartController@addToCart')->name('products.addtocart');
 
-});
-Route::get('checkout','order\CartController@checkout');
+	});
+	Route::get('checkout','order\CartController@checkout');
 
 
 	//customer login/logout routes
-	Route::get('login', 'Customers\Auth\CustomerLogin@login_form')->name('login');
+	Route::get('login/{intend?}', 'Customers\Auth\CustomerLogin@login_form')->name('login');
 	Route::post('customer-login', 'Customers\Auth\CustomerLogin@login')->name('customer.login.Post');
 	Route::get('logout', function(){return abort(404);});
 	Route::post('logout', 'Customers\Auth\CustomerLogout@logout')->name('logout');

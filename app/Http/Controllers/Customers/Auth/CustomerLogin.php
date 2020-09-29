@@ -17,9 +17,9 @@ class CustomerLogin extends Controller
 	}
 
     //login form
-    public function login_form(){
+    public function login_form($intend=NULL){
         $signupContent = SignupContent::where('id', 1)->first();
-    	return view('auth.login', compact('signupContent'));
+    	return view('auth.login', compact('signupContent', 'intend'));
     }
 
     //attemt to login
@@ -48,11 +48,15 @@ class CustomerLogin extends Controller
     	if (Auth::guard('customer')->attempt(['email'=>$request->email, 'password'=>$request->password], $request->remember)) {
             //record activity
             //$this->loggedInActivity();
+            $redirect_path = "/customer/dashboard";
+            if ($request->intend != '') {
+                $redirect_path = "/".$request->intend;
+            }
             return response()->json([
                     'success'=>true,
                     'msg'=>"Login Success",
                     'should_redirect'=>true,
-                    'redirect_path'=>"/customer/dashboard",
+                    'redirect_path'=>$redirect_path,
             ], 200);
             //return redirect()->intended(route('customer.dashboard.get'));
     	}
