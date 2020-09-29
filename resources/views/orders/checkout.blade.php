@@ -103,21 +103,72 @@
                                             <figure>
                                                 <figcaption><strong>Checkout</strong></figcaption>
                                             </figure>
-                                            <figure class="ps-block__items"><a href="#"><strong>Marshall Kilburn Portable Wireless Speaker</strong><span>x1</span><small>$ 42.99</small></a><a href="#"><strong>Herschel Leather Duffle Bag In Brown Color</strong><span>x1</span><small>$ 125.30</small></a>
-                                            </figure>
-                                            <figure>
-                                                <figcaption><strong>Subtotal</strong><strong>$1259.999</strong></figcaption>
-                                            </figure>
-                                            <figure class="ps-block__shipping">
-                                                <h3>Shipping</h3>
-                                                <p>Calculated at next step</p>
-                                                <p>
-                                                    <?php
-                                                        $get_address = (\App\Models\CustomerAddress::where('customer_id', Auth::guard('customer')->user()->id)->get());
-                                                        print_r($get_address);
-                                                    ?>
-                                                </p>
-                                            </figure>
+                                           <?php
+                                                $get_address = (\App\Models\CustomerAddress::where('customer_id', Auth::guard('customer')->user()->id)->get());
+                                            ?>
+                                            @if(count($get_address)>0)
+                                                @foreach($get_address as $address)
+                                                    <table class="usraddress">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="1"><input type="radio"  name="address" value="{{$address->id}}"></td>
+                                                                <td colspan="4" class="address">{{$address->address}} ,{{$address->city}} ,{{$address->state}} ,{{$address->subrub}} ,{{$address->zip_code}} </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                @endforeach
+                                            @else
+                                                    <div class="none-address">
+                                                        <p class="text-center">
+                                                            <img src="https://images.onedayonly.co.za/resources/images/checkout/new/buildings.svg" style="width: 10rem;height: 10rem">
+                                                        </p>
+                                                        <p class="text-center">Your saved addresses will appear here.</p>
+                                                        <p class="text-center">
+                                                            <button class="ps-btn btn-warning offset-2" data-toggle="modal" type="button" data-target="#addressModel" style="color: #fff"> + add new address</button>
+                                                        </p>
+                                                    </div><br>
+                                            @endif
+                                        </div>
+                                            <div class="ps-block--checkout-order">
+                                            <div class="ps-block__content">
+                                                <figure>
+                                                    <figcaption><strong>Payments</strong></figcaption>
+                                                </figure>
+                                                <div style="padding:10px">
+                                    <i class="fa fa-lock" style="font-size:20px; color:#999999"></i> Your data is secure and
+                                    encrypted.
+                                </div>
+                               <table  class="payment">
+                                   <tbody>
+                                       <tr>
+                                           <td class="eft"><input type="radio" name="payment_options" value="EFT"></td>
+                                           <!-- <td class="eft"><img src="img/banktransfer.png" width="60"></td> -->
+                                           <td>Visa</td>
+                                           <!-- <td>Our recommended: Send proof of payment within immediately to avoid cancellation</td> -->
+                                       </tr>
+                                       <tr>
+                                           <td class="debit_visa"><input type="radio" name="payment_options" value="Debit"></td>
+                                           <!-- <td class="debit_visa"><img src="img/visa_debit.jpg" width="60"></td> -->
+                                           <td>Visa</td>
+                                       </tr>
+                                       <tr>
+                                           <td class="visa"><input type="radio" name="payment_options" value="Visa"></td>
+                                           <!-- <td class="visa"><img src="img/visa.png" width="60"></td> -->
+                                           <td>Visa</td>
+                                       </tr>
+                                       <tr>
+                                           <td class="master"><input type="radio" name="payment_options" value="Master"></td>
+                                           <!-- <td class="master"><img src="img/mastercard.png" width="60"></td> -->
+                                           <td>Visa</td>
+                                       </tr>
+                                       <tr>
+                                           <td class="ozow"><input type="radio" name="payment_options" value="Ozow_ipay"></td>
+                                           <!-- <td class="ozow"><img src="img/ozow_ipay.png" width="60"></td> -->
+                                           <td>Visa</td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+                                            </div>    
                                         </div>
                                     </div>
                                 </div>
