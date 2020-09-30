@@ -69,6 +69,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <form action="shopping-cart.php"  method="post" id="order-form"> 
                                     <h3><b>My Cart</b></h3>
                                     <table class="table">
                                         @foreach(session('cart') as $data)
@@ -167,43 +168,44 @@
                                                     <figcaption><strong>Payments</strong></figcaption>
                                                 </figure>
                                                 <div style="padding:10px">
-                                    <i class="fa fa-lock" style="font-size:20px; color:#999999"></i> Your data is secure and
-                                    encrypted.
-                                </div>
-                               <table  class="payment">
-                                   <tbody>
-                                       <tr>
-                                           <td class="eft"><input type="radio" name="payment_options" value="EFT"></td>
-                                           <!-- <td class="eft"><img src="img/banktransfer.png" width="60"></td> -->
-                                           <td>Visa</td>
-                                           <!-- <td>Our recommended: Send proof of payment within immediately to avoid cancellation</td> -->
-                                       </tr>
-                                       <tr>
-                                           <td class="debit_visa"><input type="radio" name="payment_options" value="Debit"></td>
-                                           <!-- <td class="debit_visa"><img src="img/visa_debit.jpg" width="60"></td> -->
-                                           <td>Visa</td>
-                                       </tr>
-                                       <tr>
-                                           <td class="visa"><input type="radio" name="payment_options" value="Visa"></td>
-                                           <!-- <td class="visa"><img src="img/visa.png" width="60"></td> -->
-                                           <td>Visa</td>
-                                       </tr>
-                                       <tr>
-                                           <td class="master"><input type="radio" name="payment_options" value="Master"></td>
-                                           <!-- <td class="master"><img src="img/mastercard.png" width="60"></td> -->
-                                           <td>Visa</td>
-                                       </tr>
-                                       <tr>
-                                           <td class="ozow"><input type="radio" name="payment_options" value="Ozow_ipay"></td>
-                                           <!-- <td class="ozow"><img src="img/ozow_ipay.png" width="60"></td> -->
-                                           <td>Visa</td>
-                                       </tr>
-                                   </tbody>
-                               </table>
+                                                    <i class="fa fa-lock" style="font-size:20px; color:#999999"></i> Your data is secure and
+                                                    encrypted.
+                                                </div>
+                                           <table  class="payment">
+                                               <tbody>
+                                                   <tr>
+                                                       <td class="eft"><input type="radio" name="payment_options" value="EFT"></td>
+                                                       <!-- <td class="eft"><img src="img/banktransfer.png" width="60"></td> -->
+                                                       <td>Visa</td>
+                                                       <!-- <td>Our recommended: Send proof of payment within immediately to avoid cancellation</td> -->
+                                                   </tr>
+                                                   <tr>
+                                                       <td class="debit_visa"><input type="radio" name="payment_options" value="Debit"></td>
+                                                       <!-- <td class="debit_visa"><img src="img/visa_debit.jpg" width="60"></td> -->
+                                                       <td>Visa</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td class="visa"><input type="radio" name="payment_options" value="Visa"></td>
+                                                       <!-- <td class="visa"><img src="img/visa.png" width="60"></td> -->
+                                                       <td>Visa</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td class="master"><input type="radio" name="payment_options" value="Master"></td>
+                                                       <!-- <td class="master"><img src="img/mastercard.png" width="60"></td> -->
+                                                       <td>Visa</td>
+                                                   </tr>
+                                                   <tr>
+                                                       <td class="ozow"><input type="radio" name="payment_options" value="Ozow_ipay"></td>
+                                                       <!-- <td class="ozow"><img src="img/ozow_ipay.png" width="60"></td> -->
+                                                       <td>Visa</td>
+                                                   </tr>
+                                               </tbody>
+                                           </table>
                                             </div>    
                                         </div>
                                     </div>
                                 </div>
+                            </form>
                             </div>
                         </div>
                     </form>

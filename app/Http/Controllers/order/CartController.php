@@ -37,18 +37,7 @@ class CartController extends Controller
 				$image      = ProductMedia::where('image_id',$image_id)->value('image');
 
 				$cart = session()->get('cart');
-				// $product = Array(
-
-				// 				'v_p_id'       => $v_p_id,
-				// 				'product_id'   => $product_id,
-				// 				'vendor_id'    => $vendor_id,
-				// 				'name'         => $name,
-				// 				'price'        => $price,
-				// 				'quantity'     => $quantity,
-				// 				'image'	       => $image,
-				// 				'vendor'       => $vendor
-
-				// 			);	
+				
 				if(isset($cart[$v_p_id]) && !empty($cart[$v_p_id]))
 				{
 					if(!array_key_exists($v_p_id,$cart))
