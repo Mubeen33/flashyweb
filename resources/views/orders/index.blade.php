@@ -24,6 +24,7 @@
         </div>
         <section class="ps-section--account">
             <div class="container">
+                @include('msg.msg')
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="ps-section__left">

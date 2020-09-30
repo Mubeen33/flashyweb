@@ -20,6 +20,9 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('vendor_product_id');//vendor_products tbl id
             $table->integer('qty');
+            $table->unsignedBigInteger('address_id');
+            $table->integer('grand_total');
+            $table->enum('payment_option', ['EFT', 'Debit', 'Visa', 'Master', 'Ozow_ipay']);
             $table->enum('status', ['Pending', 'Canceled', 'Completed'])->default('Pending');
             $table->timestamps();
         });

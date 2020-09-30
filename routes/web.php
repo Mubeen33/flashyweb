@@ -45,6 +45,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 
 	});
 	Route::get('checkout','order\CartController@checkout');
+	Route::post('checkout','order\CartController@checkout_post')->name('saveCheckoutData.post');
 
 
 	//customer login/logout routes
