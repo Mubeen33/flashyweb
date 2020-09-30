@@ -10,6 +10,9 @@ use Carbon\Carbon;
 
 class AddressController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:customer');
+    }
     
     public function add_address(Request $request){
         $this->validate($request, [
@@ -21,7 +24,7 @@ class AddressController extends Controller
         ]);
 
         $inserted = CustomerAddress::insert([
-            'customer_id'=>Auth::guard('vendor')->user()->id,
+            'customer_id'=>Auth::guard('customer')->user()->id,
             'type'=>'Shipping',
             'address'=>$request->address,
             'city'=>$request->city,
@@ -31,8 +34,9 @@ class AddressController extends Controller
             'created_at'=>Carbon::now(),
         ]);
 
-        if ($inserted) {
-            # code...
+        if ($inserted == true) {
+            return redirect()->back()->with('success', 'Address added successfully');
         }
+        return redirect()->back()->with('error', 'Something went wrong.');
     }
 }

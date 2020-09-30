@@ -76,6 +76,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 		//address
 		Route::get('addresses', 'Customers\CustomerController@get_address')->name('address.get');
 		Route::post('addresses', 'Customers\CustomerController@update_address')->name('addressUpdate.post');
+		Route::post('add-address', 'address\AddressController@add_address')->name('addressAdd.post');
 
 		//orders
 		Route::resource('orders', 'order\OrderController');

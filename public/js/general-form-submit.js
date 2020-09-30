@@ -194,6 +194,7 @@ function formSubmitWithoutFile(formID, url, type, form_data){
         });
 }
 
+
 //remove form validation error
 function removeErrorLevels(getThis, type){
 	if (type === "input") {
@@ -208,5 +209,51 @@ function removeErrorLevels(getThis, type){
 		return;
 	}
 	console.log('yes outside')
+}
+
+
+function formClientSideValidation(event, formID, needScrolling){
+	let formPass = true;
+	let scrollUpToFieldName = "";
+
+	if ($("#"+formID+" [is-required]").length) {
+			$("#"+formID+" [is-required]").each(function(){
+				if (!$(this).val()) {
+					event.preventDefault()
+					formPass = false;					
+					scrollUpToFieldName = $(this).attr('name')
+						          		
+	          		$(this).addClass('border-danger-alert');
+	          		$(this).siblings('.place-error--msg').html("This field is required.");
+				}
+			})
+
+		if (formPass === false) {
+			if (needScrolling === "yes") {
+				if ($("textarea[name="+scrollUpToFieldName+"]").length) {
+					$('html, body').animate({
+		                    scrollTop: $("textarea[name="+scrollUpToFieldName+"]").offset().top
+		             }, 1000);
+				}
+
+				if ($("input[name="+scrollUpToFieldName+"]").length) {
+					$('html, body').animate({
+		                    scrollTop: $("input[name="+scrollUpToFieldName+"]").offset().top
+		             }, 1000);
+				}
+
+				if ($("select[name="+scrollUpToFieldName+"]").length) {
+					$('html, body').animate({
+		                    scrollTop: $("select[name="+scrollUpToFieldName+"]").offset().top
+		             }, 1000);
+				}
+	  			
+	  		}
+	  		return;
+		}
+	}
 	
+
+	//finally submit the form
+	$("#"+formID).submit()
 }

@@ -65,6 +65,10 @@ class CustomerController extends Controller
         ])->first();
         return view('Customers.address', compact('billingAddress', 'shippingAddress'));
     }
+    
+
+
+    //update address
     public function update_address(Request $request){
         $validation = $this->validateAddress($request);
         if ($validation !== true) {

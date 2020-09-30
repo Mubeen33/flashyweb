@@ -69,7 +69,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <form action="shopping-cart.php"  method="post" id="order-form"> 
+                                    
                                     <h3><b>My Cart</b></h3>
                                     <table class="table">
                                         @foreach(session('cart') as $data)
@@ -157,7 +157,7 @@
                                                         </p>
                                                         <p class="text-center">Your saved addresses will appear here.</p>
                                                         <p class="text-center">
-                                                            <button class="ps-btn btn-warning offset-2" data-toggle="modal" type="button" data-target="#addressModel" style="color: #fff"> + add new address</button>
+                                                            <button class="ps-btn btn-warning offset-2" data-toggle="modal" type="button" data-target="#addressAddModel" style="color: #fff"> + add new address</button>
                                                         </p>
                                                     </div><br>
                                             @endif
@@ -205,13 +205,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </section>
+
+        {{-- new address adding form --}}
+        @include("orders.partials.add-new-address-modal")
+
     @endsection
 
 
