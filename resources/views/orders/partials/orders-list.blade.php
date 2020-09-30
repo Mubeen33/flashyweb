@@ -40,6 +40,12 @@
         {{$content->qty}}
     </td>
     <td>
+        {{env('PRICE_SYMBOL').$content->grand_total}}
+    </td>
+    <td>
+        {{$content->payment_option}}
+    </td>
+    <td>
         {{$content->created_at->format(env('GENERAL_DATE_FORMAT_WITH_HI'))}}
     </td>
     <td>

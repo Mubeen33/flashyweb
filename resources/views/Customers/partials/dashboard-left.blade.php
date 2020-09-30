@@ -13,7 +13,7 @@
             <li @if(Request::is('customer/addresses')) class="active" @endif><a href="{{ route('customer.address.get') }}"><i class="icon-map-marker"></i> Address</a></li>
             <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
             <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
-            <li><a @if(Request::is('customer/orders')) class="active" @endif href="{{ route('customer.orders.index') }}"><i class="icon-bag"></i> Orders</a></li>
+            <li @if(Request::is('customer/orders')) class="active" @endif><a href="{{ route('customer.orders.index') }}"><i class="icon-bag"></i> Orders</a></li>
             <li>
                 <a href="#" onclick="event.preventDefault();document.getElementById('logout--form').submit();">
                     <i class="icon-power-switch"></i>Logout
