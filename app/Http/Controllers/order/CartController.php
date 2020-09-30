@@ -158,7 +158,6 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
     //save cart data
     public function checkout_post(Request $request){
-    	return $request;
     	$this->validate($request, [
     		'grandTotal'=>'required|numeric',
     		'address'=>'required|numeric',
