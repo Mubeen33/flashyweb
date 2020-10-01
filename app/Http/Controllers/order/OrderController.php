@@ -27,7 +27,11 @@ class OrderController extends Controller
                 ])
                 ->with(['get_vendor', 'get_vendor_product'])
                 ->orderBy('created_at', 'DESC')
+                ->groupby('order_id')
                 ->paginate(5);
+                echo "<pre>";
+                print_r($data);
+                return;
         return view('orders.index', compact('data'));
     }
 

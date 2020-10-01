@@ -48,11 +48,11 @@
 
                                    <div class="ps-block--shopping-total">
                                         <h3><b>Order Summary</b></h3><br>
+                                        <?php $tquantity = 0;$tPrice    = 0; ?>
                                         @foreach(session('cart') as $data)
                                         <?php
-                                                $tquantity = 0;
-                                                $tPrice    = 0;
-                                                $priceProduct    = $data['price']*$data['quantity'];
+                                                
+                                                $priceProduct = $data['price']*$data['quantity'];
                                                 $tPrice      += $priceProduct;
                                         ?>        
                                         @endforeach
@@ -72,10 +72,10 @@
                                     
                                     <h3><b>My Cart</b></h3>
                                     <table class="table">
+                                        <?php $tquantity = 0;$tPrice    = 0; ?>
                                         @foreach(session('cart') as $data)
                                         <?php
-                                                $tquantity = 0;
-                                                $tPrice    = 0;
+                                               
                                                 $priceProduct    = $data['price']*$data['quantity'];
                                                 $tPrice      += $priceProduct;
                                         ?>        
@@ -176,13 +176,13 @@
                                                    <tr>
                                                        <td class="eft"><input type="radio" name="payment_options" value="EFT"></td>
                                                        <!-- <td class="eft"><img src="img/banktransfer.png" width="60"></td> -->
-                                                       <td>Visa</td>
+                                                       <td>EFT</td>
                                                        <!-- <td>Our recommended: Send proof of payment within immediately to avoid cancellation</td> -->
                                                    </tr>
                                                    <tr>
                                                        <td class="debit_visa"><input type="radio" name="payment_options" value="Debit"></td>
                                                        <!-- <td class="debit_visa"><img src="img/visa_debit.jpg" width="60"></td> -->
-                                                       <td>Visa</td>
+                                                       <td>Debit</td>
                                                    </tr>
                                                    <tr>
                                                        <td class="visa"><input type="radio" name="payment_options" value="Visa"></td>
@@ -192,12 +192,12 @@
                                                    <tr>
                                                        <td class="master"><input type="radio" name="payment_options" value="Master"></td>
                                                        <!-- <td class="master"><img src="img/mastercard.png" width="60"></td> -->
-                                                       <td>Visa</td>
+                                                       <td>Master</td>
                                                    </tr>
                                                    <tr>
                                                        <td class="ozow"><input type="radio" name="payment_options" value="Ozow_ipay"></td>
                                                        <!-- <td class="ozow"><img src="img/ozow_ipay.png" width="60"></td> -->
-                                                       <td>Visa</td>
+                                                       <td>Ozow_ipay</td>
                                                    </tr>
                                                </tbody>
                                            </table>

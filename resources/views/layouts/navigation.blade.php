@@ -5,7 +5,7 @@
                 <div class="header__left">
                     <div class="menu--product-categories">
                         @include('Partials.menu.dv-categories')
-                    </div><a class="ps-logo" href="{{url('/')}}"><img src="img/logo_light.png" alt=""></a>
+                    </div><a class="ps-logo" href="{{url('/')}}"><img src="{{ asset('img/logo_light.png')}}" alt=""></a>
                 </div>
                 <div class="header__center">
                     <form class="ps-form--quick-search" action="index.html" method="get">

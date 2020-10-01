@@ -171,39 +171,35 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	$vendor_id = NULL;
     	$vendor_product_id = NULL;
     	$qty = NULL;
+    	$orderID = mt_rand(101, 999150);
 
     	$cart = session()->get('cart');
 		if(isset($cart)){
+
+			 
 			foreach($cart as $key=>$data){
-		  		$vendor_id = $data['vendor_id'];
-		  		$vendor_product_id = $data['v_p_id'];
-				$qty = $data['quantity'];
+		  		$order = new Order();
+		  		$order->order_id  = "FON-".$orderID;
+		  		$order->order_token = $data['product_id'].'-'.$data['vendor_id'];
+		    	$order->vendor_id = $data['vendor_id'];
+		    	$order->customer_id = $customer_id;
+		    	$order->vendor_product_id = $data['v_p_id'];
+		    	$order->order_price = $data['price']*$data['quantity'];
+		    	$order->product_price = $data['price']; 
+		    	$order->qty = $data['quantity'];
+		    	$order->address_id = $addressID;
+		    	$order->grand_total = $grandTotal;
+		    	$order->payment_option = $payment_option;
+		    	$order->created_at = Carbon::now();
+		    	
+		    	$saved = $order->save();
 			}
+
+			session()->forget('cart');
+    		return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
 
 		}else{
 			return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
 		}
-
-    	$order = new Order();
-    	$order->vendor_id = $vendor_id;
-    	$order->customer_id = $customer_id;
-    	$order->vendor_product_id = $vendor_product_id;
-    	$order->qty = $qty;
-    	$order->address_id = $addressID;
-    	$order->grand_total = $grandTotal;
-    	$order->payment_option = $payment_option;
-    	$order->created_at = Carbon::now();
-    	$saved = $order->save();
-    	$lastID = $order->id;
-
-    	if ($saved == true && is_numeric($lastID)) {
-    		$orderID = mt_rand(10, 999).$lastID;
-    		Order::where('id', $lastID)->update([
-    			'order_id'=>$orderID
-    		]);
-    		session()->forget('cart');
-    		return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
-    	}
-    	return redirect()->back()->with('error', 'SORRY - Someting went wrong.');
     }
 }
