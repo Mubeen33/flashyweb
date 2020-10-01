@@ -29,8 +29,7 @@
     <div class="ps-page--comming-soon">
         <div class="container">
             <div class="ps-page__header"><a class="ps-logo" href="#"><img src="/img/logo_light_colorfull.png" alt="Flashybuy Logo"></a>
-                <h1> Coming Soon</h1>
-                <p>Website is in Maintenance.</a>
+                <h1>Website is in under Maintenance.</h1>
             </div>
             <div class="ps-page__content"><img src="img/coming-soon.jpg" alt="">
                 <figure>
