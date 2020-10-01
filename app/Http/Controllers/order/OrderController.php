@@ -29,9 +29,6 @@ class OrderController extends Controller
                 ->orderBy('created_at', 'DESC')
                 ->groupby('order_id')
                 ->paginate(5);
-                echo "<pre>";
-                print_r($data);
-                return;
         return view('orders.index', compact('data'));
     }
 
