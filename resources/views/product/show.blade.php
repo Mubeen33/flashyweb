@@ -132,7 +132,9 @@
                                     <div class="ps-product__variations">
 @php
         $activeVariants = (\App\Models\VendorProduct::where('prod_id',$productData->product_id)->where('active',1)->groupby('variation_id')->get());
+
 @endphp                                        
+                                @if(count($activeVariants)==1)    
                                     @if(!empty($productData->first_variation_value))    
                                         <figure>
                                             <figcaption><strong>{{$productData->first_variation_name}}:</strong></figcaption>
@@ -146,7 +148,31 @@
                                             <button class="product-variation option1">{{$productData->second_variation_value}}</button>
                                             
                                         </figure>
+                                    @endif
+                                @else
+                                    @if(!empty($productData->first_variation_value))
+                                        @php 
+                                            $productVariantions = (\App\Models\ProductVariation::where('product_id',$productData->product_id)->Distinct()->get(['first_variation_value']));
+                                        @endphp
+                                        <figure>
+                                            <figcaption><strong>{{$productData->first_variation_name}}:</strong></figcaption>
+                                            @foreach($productVariantions as $variants)
+                                                <button class="product-variation option">{{$variants->first_variation_value}}</button>
+                                            @endforeach    
+                                        </figure>
+                                    @endif
+                                    @if(!empty($productData->second_variation_value))
+                                        @php 
+                                            $productVariantions = (\App\Models\ProductVariation::where('product_id',$productData->product_id)->Distinct()->get(['second_variation_value']));
+                                        @endphp
+                                        <figure>
+                                            <figcaption><strong>{{$productData->second_variation_name}}:</strong></figcaption>
+                                            @foreach($productVariantions as $variants)
+                                                <button class="product-variation option1">{{$variants->second_variation_value}}</button>
+                                            @endforeach    
+                                        </figure>
                                     @endif    
+                                @endif        
                                     </div>    
                                 <div class="ps-product__shopping">
                                     <figure>
@@ -596,7 +622,7 @@
                                                 @if(count($activeVariants)>1)
                                                     @foreach($variantPrices as $variantPrice)
 
-                                                            {{env('PRICE_SYMBOL').$variantPrice->min_price}} - {{env('PRICE_SYMBOL').$variantPrice->max_price}}
+                                                            <input type="hidden" name="" value="" id="price">
 
                                                     @endforeach        
                                                 @else
@@ -618,25 +644,31 @@
 @endsection 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var variation1;
-       var variation2;
+
+        var variation1;
+        var variation2;
+
        $(document).delegate(".option","click",function(e){
         e.preventDefault();
         if($('.Active1').length){
            $('.Active1').not($(this)).removeClass('Active1').addClass('option');
         }      
            $(this).removeClass('option').addClass('Active1');  
-           // variation1     = $('.btn-warning.Active').val();
-           // var token      = $('input[name=_token').val();
-           // var product_id = $('input[name=id').val();
+           variation1     = $('.Active1').text();
+           var token      = $('input[name=_token').val();
+           var product_id = $('input[name=id').val();
+
            // $('input[name="product_first_variation"]').val($(this).val()); 
-           // if($(".option1").length){
-           //  if($(".Active1").length){
-           //       // getsecondVariation(variation1,variation2,token,product_id); 
-           //   }
-           // }else{
-           //      // getfirstVariation(variation1,token,product_id);
-           // }
+
+           if($(".option1").length){
+            if($(".Active2").length){
+
+                 getsecondVariation(variation1,variation2,token,product_id); 
+             }
+           }else{
+
+                getfirstVariation(variation1,token,product_id);
+           }
      });
        $(document).delegate(".option1","click",function(e){
 
@@ -645,15 +677,90 @@
            $('.Active2').not($(this)).removeClass('Active2').addClass('option1');
         }      
        $(this).removeClass('option1').addClass('Active2');
-       // var product_id = $('input[name=id').val();
-       // variation2     = $('.btn-warning.Active1').val();
-       // var token      = $('input[name=_token').val();
+       var product_id = $('input[name=id').val();
+       variation2     = $('.Active2').text();
+       var token      = $('input[name=_token').val();
+
        // $('input[name="product_second_variation"]').val($(this).val()); 
-       // if($('.Active').length){
-       //      getsecondVariation(variation1,variation2,token,product_id);
-       //  }  
+
+       if($('.Active1').length){
+
+            getsecondVariation(variation1,variation2,token,product_id);
+        }  
      });
 
+function getfirstVariation(variation1,token,product_id){
+
+        $.ajax({
+
+                type:'POST',
+                url : "{{ Route('cart.products.first_variation') }}",
+                data:{_token:token,variation1:variation1,product_id:product_id},
+                dataType:"json",
+                success:function(data){
+
+                    if (data[0] != undefined) {
+
+                        if(data[0].quantity>0){
+
+                          $('.ps-product__price').text('R'+data[0].price);
+                          $('#price').val(data[0].price);
+                          $("#v_p_id").val(data[0].id);
+                          $("#cart").prop('disabled', false);
+                          clearconsole();
+
+                        }else{
+
+                            $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
+                            $("#cart").prop('disabled', true);
+                            clearconsole();
+                        }
+                    }else{
+
+                        $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
+                        $("#cart").prop('disabled', true);
+                        clearconsole();
+                    }    
+                }
+        });
+
+}
+function getsecondVariation(variation1,variation2,token,product_id) {
+
+        $.ajax({
+
+                type:'POST',
+                url : "{{ Route('cart.products.second_variation') }}",
+                data:{_token:token,variation1:variation1,variation2:variation2,product_id:product_id},
+                dataType:"json",
+                success:function(data){
+
+                    if (data[0] != undefined) {
+
+                        if(data[0].quantity>0){
+
+                          $('.ps-product__price').text('R'+data[0].price);
+                          $('#price').val(data[0].price);
+                          $("#v_p_id").val(data[0].id);
+                          $("#cart").prop('disabled', false);
+                          clearconsole();
+
+                        }else{
+
+                            $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
+                            $("#cart").prop('disabled', true);
+                            clearconsole();
+                        }
+                    }else{
+
+                        $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
+                        $("#cart").prop('disabled', true);
+                        clearconsole();
+                    }    
+                }
+        });
+
+}
 //====================================///
 //====== Quantity Box plus  ========= ///
 //====================================///

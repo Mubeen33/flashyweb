@@ -41,6 +41,8 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 	});
 
 	Route::group(['as'=>'cart.'], function(){
+		Route::post('get-first-variation-data','Product\ProductController@firstVariationData')->name('products.first_variation');
+		Route::post('get-second-variation-data','Product\ProductController@secondVariationData')->name('products.second_variation');
 		Route::post('add-to-cart','order\CartController@addToCart')->name('products.addtocart');
 
 	});

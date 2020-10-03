@@ -89,5 +89,38 @@ class ProductController extends Controller
                     ->get();
 
     	return view("product.show", compact('data','getProductData', 'vendor_product', 'categoryFlow', 'currentCategory', 'related_products'));
+    }
+    //
+
+
+    //First Variation Data
+
+    public function firstVariationData(Request $request){
+
+        $first_variation_value  = $request->variation1;
+        $product_id             = $request->product_id;
+
+        $variationId = ProductVariation::where('product_id',$product_id)->where('first_variation_value',$first_variation_value)->value('id');
+
+        $data = VendorProduct::where('variation_id',$variationId)->where('price','!=',0)->where('quantity','!=',0)->get();
+
+        $data = json_encode($data,true);
+
+        return $data;
+    }
+
+    public function SecondVariationData(Request $request){
+
+        $first_variation_value  = $request->variation1;
+        $second_variation_value = $request->variation2;
+        $product_id             = $request->product_id;
+
+        $variationId = ProductVariation::where('product_id',$product_id)->where('first_variation_value',$first_variation_value)->where('second_variation_value',$second_variation_value)->value('id');
+
+        $data = VendorProduct::where('variation_id',$variationId)->where('price','!=',0)->where('quantity','!=',0)->get();
+
+        $data = json_encode($data,true);
+
+        return $data;
     }				
 }
