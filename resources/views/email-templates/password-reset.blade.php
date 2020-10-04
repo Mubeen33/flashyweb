@@ -151,7 +151,7 @@ table[id=colaps-inhiret09]{
                     </tr>
                     <tr>
                     <td width="28">&nbsp;</td>
-                      <td align="center" valign="middle"><a href="#"><img src="{{ asset('email/images/logo.png')}}" width="140" height="35" alt="Wohoo"></a></td>
+                      <td align="center" valign="middle"><a href="#"><img src="{{ asset('img/logo_light_colorfull.png')}}" width="140" height="35" alt="FlashyBuy"></a></td>
                     </tr>
                     <tr>
                     </tr>
