@@ -217,7 +217,7 @@ table[id=colaps-inhiret09]{
                       <td align="center">
                       	<table width="250" align="center" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; text-align:center;">
   <tr>
-  <td align="center" bgcolor="#af5372" style="border-radius:28px;" height="61"><a href="'{{ $siteURL."/reset/passoword/".$token."/".$email }}'" style="font:700 16px/61px 'Montserrat', Helvetica, Arial, sans-serif; color:#ffffff; text-decoration:none; display:block; overflow:hidden; outline:none;">RESET PASSWORD</a></td>
+  <td align="center" bgcolor="#af5372" style="border-radius:28px;" height="61"><a href="{{ $siteURL."/reset/passoword/".$token."/".$email }}" style="font:700 16px/61px 'Montserrat', Helvetica, Arial, sans-serif; color:#ffffff; text-decoration:none; display:block; overflow:hidden; outline:none;">RESET PASSWORD</a></td>
   </tr>
 </table>
 
