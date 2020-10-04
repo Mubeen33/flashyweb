@@ -5,7 +5,7 @@
 <head>
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-<title>Wohoo</title>
+<title>FlashyBuy</title>
 <style type="text/css">
 div, p, a, li, td {
   -webkit-text-size-adjust:none;
