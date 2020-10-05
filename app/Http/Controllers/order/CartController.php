@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\Models\ProductMedia;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
 
 
