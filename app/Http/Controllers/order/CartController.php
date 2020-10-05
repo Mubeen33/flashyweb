@@ -200,8 +200,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 			// session()->forget('cart');
 			
 			$newOrder   = Order::where('order_id',$orderID)->get();
-			print_r($newOrder);
-			return;
+			
             if ($order) {
 
                 $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
