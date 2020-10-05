@@ -116,12 +116,13 @@ class VendorController extends Controller
         
         if($inserted == true){
             //send email
-            $template = EmailTemplate::where('template', 'Vendor-Signup')->first();
-            if ($template) {
+            // $template = EmailTemplate::where('template', 'Vendor-Signup')->first();
+            $subject = 'Vendor-Signup';
+            if ($subject) {
                 $firstName = $request->first_name;
                 $lastName = $request->last_name;
                 Mail::to($request->email)->send(new SendDynamicEmail(
-                    $firstName, $lastName, $template
+                    $firstName, $lastName, $subject
                  ));
             }
             return redirect()->back()->with('success', 'Thank you for request we will back to you');

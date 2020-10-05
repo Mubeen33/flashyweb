@@ -47,12 +47,13 @@ class RegistrationController extends Controller
 
     	if ($inserted == true) {
             //send email
-            $template = EmailTemplate::where('template', 'Customer-Signup')->first();
-            if ($template) {
+            // $template = EmailTemplate::where('template', 'Customer-Signup')->first();
+            $subject = 'Customer-Signup';
+            if ($subject) {
                 $firstName = $request->first_name;
                 $lastName = $request->last_name;
                 Mail::to($request->email)->send(new SendDynamicEmail(
-                    $firstName, $lastName, $template
+                    $firstName, $lastName, $subject
                  ));
             }
 

@@ -13,18 +13,18 @@ class SendDynamicEmail extends Mailable
 
     public $firstName;
     public $lastName;
-    public $data;
+    public $subject;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($firstName, $lastName, $template)
+    public function __construct($firstName, $lastName, $subject)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->data = $template;
+        $this->subject = $subject;
     }
 
     /**
@@ -34,11 +34,11 @@ class SendDynamicEmail extends Mailable
      */
     public function build()
     {
-        $emailSendNow = $this->subject($this->data->subject_line)->view('email-templates.dynamic-template')
+        $emailSendNow = $this->subject($subject)->view('email-templates.dynamic-template')
         ->with([
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
-            'data' => $this->data,
+            'subject' => $this->subject,
         ]);
         return $emailSendNow;
     }

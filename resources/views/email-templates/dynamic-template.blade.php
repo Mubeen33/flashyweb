@@ -1,479 +1,334 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="x-apple-disable-message-reformatting">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <style type="text/css">
-    @media screen {
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 400;
-        src: local('Fira Sans Regular'), local('FiraSans-Regular'), url(https://fonts.gstatic.com/s/firasans/v8/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2) format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 400;
-        src: local('Fira Sans Regular'), local('FiraSans-Regular'), url(https://fonts.gstatic.com/s/firasans/v8/va9E4kDNxMZdWfMOD5Vvk4jLazX3dGTP.woff2) format('woff2');
-        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-      }
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 500;
-        src: local('Fira Sans Medium'), local('FiraSans-Medium'), url(https://fonts.gstatic.com/s/firasans/v8/va9B4kDNxMZdWfMOD5VnZKveRhf6Xl7Glw.woff2) format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 500;
-        src: local('Fira Sans Medium'), local('FiraSans-Medium'), url(https://fonts.gstatic.com/s/firasans/v8/va9B4kDNxMZdWfMOD5VnZKveQhf6Xl7Gl3LX.woff2) format('woff2');
-        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-      }
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 700;
-        src: local('Fira Sans Bold'), local('FiraSans-Bold'), url(https://fonts.gstatic.com/s/firasans/v8/va9B4kDNxMZdWfMOD5VnLK3eRhf6Xl7Glw.woff2) format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 700;
-        src: local('Fira Sans Bold'), local('FiraSans-Bold'), url(https://fonts.gstatic.com/s/firasans/v8/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2) format('woff2');
-        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-      }
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 800;
-        src: local('Fira Sans ExtraBold'), local('FiraSans-ExtraBold'), url(https://fonts.gstatic.com/s/firasans/v8/va9B4kDNxMZdWfMOD5VnMK7eRhf6Xl7Glw.woff2) format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-      @font-face {
-        font-family: 'Fira Sans';
-        font-style: normal;
-        font-weight: 800;
-        src: local('Fira Sans ExtraBold'), local('FiraSans-ExtraBold'), url(https://fonts.gstatic.com/s/firasans/v8/va9B4kDNxMZdWfMOD5VnMK7eQhf6Xl7Gl3LX.woff2) format('woff2');
-        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-      }
-    }
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
-    #outlook a {
-      padding: 0;
-    }
-
-    .ExternalClass,
-    .ReadMsgBody {
-      width: 100%;
-    }
-
-    .ExternalClass,
-    .ExternalClass p,
-    .ExternalClass td,
-    .ExternalClass div,
-    .ExternalClass span,
-    .ExternalClass font {
-      line-height: 100%;
-    }
-
-    div[style*="margin: 14px 0;"],
-    div[style*="margin: 16px 0;"] {
-      margin: 0 !important;
-    }
-
-    @media only screen and (min-width:621px) {
-      .pc-container {
-        width: 620px !important;
-      }
-    }
-
-    @media only screen and (max-width:620px) {
-      .pc-menu-logo-s2,
-      .pc-menu-nav-s1 {
-        padding-right: 30px !important;
-        padding-left: 30px !important;
-      }
-      .pc-cta-box-s4 .pc-cta-box-in {
-        padding: 35px 30px 30px !important;
-      }
-      .pc-products-box-s4 {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-      }
-      .pc-heading-s2 .pc-heading-col {
-        width: 100% !important;
-      }
-      .pc-products-row-s1 .pc-products-row-col {
-        max-width: 50% !important;
-      }
-      .pc-footer-box-s1 {
-        padding-right: 10px !important;
-        padding-left: 10px !important;
-      }
-      .pc-footer-row-s1 .pc-footer-row-col {
-        max-width: 100% !important;
-      }
-      .pc-spacing.pc-m-footer-h-57 td,
-      .pc-spacing.pc-m-footer-h-46 td {
-        height: 20px !important;
-        line-height: 20px !important;
-        font-size: 20px !important;
-      }
-    }
-
-    @media only screen and (max-width:525px) {
-      .pc-menu-logo-s2,
-      .pc-menu-nav-s1 {
-        padding-right: 20px !important;
-        padding-left: 20px !important;
-      }
-      .pc-menu-logo-s2 {
-        padding-top: 25px !important;
-        padding-bottom: 25px !important;
-      }
-      .pc-menu-nav-s1 .pc-menu-nav-divider {
-        padding: 0 !important;
-      }
-      .pc-cta-box-s4 .pc-cta-box-in {
-        padding: 25px 20px 20px !important;
-      }
-      .pc-cta-s1 .pc-cta-title {
-        font-size: 24px !important;
-        line-height: 1.42 !important;
-      }
-      .pc-cta-title br,
-      .pc-cta-text br {
-        display: none !important;
-      }
-      .pc-products-box-s4 {
-        padding: 15px 0 25px !important;
-      }
-      .pc-products-row-s1 .pc-products-row-col {
-        max-width: 100% !important;
-      }
-      .pc-footer-box-s1 {
-        padding: 5px 0 !important;
-      }
-      .pc-footer-text-s1 br {
-        display: none !important;
-      }
-    }
-    .fa-facebook, .fa-facebook-square {
-    color: #3b5998
+<title>FlashyBuy</title>
+<style type="text/css">
+div, p, a, li, td {
+  -webkit-text-size-adjust:none;
 }
-.fa-twitter, .fa-twitter-square {
-    color: #00aced
+.ReadMsgBody {
+  width: 100%;
+  background-color: #cecece;
 }
-.fa-google-plus, .fa-google-plus-square {
-    color: #dd4b39
+.ExternalClass {
+  width: 100%;
+  background-color: #cecece;
 }
-.fa-youtube, .fa-youtube-play, .fa-youtube-square {
-    color: #bb0000
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #cecece;
+  margin:0;
+  padding:0;
+  -webkit-font-smoothing: antialiased;
 }
-.fa-tumblr, .fa-tumblr-square {
-    color: #32506d
+html {
+  width: 100%;
 }
-.fa-vine {
-    color: #00bf8f
+img{
+  border:none;
+  }
+table td[class=show]{
+  display:none !important;
+  }
+@media only screen and (max-width: 640px) {
+body {
+  width:auto!important;
 }
-.fa-flickr {
-    color: #ff0084
+table[class=full] {
+ width:100%!important;
 }
-.fa-vimeo-square {
-    color: #aad450
+table[class=devicewidth] {
+ width:100% !important;
+ padding-left:20px !important;
+ padding-right: 20px!important;
 }
-.fa-pinterest, .fa-pinterest-square {
-    color: #cb2027
+table[class=inner] {
+ width:100%!important;
+ text-align: center!important;
+ clear: both;
 }
-.fa-linkedin, .fa-linkedin-square {
-    color: #007bb6
+table[class=inner-centerd] {
+ width:78%!important;
+ text-align: center!important;
+ clear: both;
+ float:none !important;
+ margin:0 auto !important;
 }
-.fa-instagram {
-    color: #517fa4;
+table td[class=hide], .hide {
+ display:none !important;
 }
-.fa-spotify {
-    color: #1ED760;
+table td[class=show], .show{
+  display:block !important;
+  }
+img[class=responsiveimg]{
+ width:100% !important;
+ height:atuo !important;
+ display:block !important;
 }
-.fa {
-  margin-left:10px !important;
+table[class=btnalign]{
+  float:left !important;
+  }
+table[class=btnaligncenter]{
+  float:none !important;
+  margin:0 auto !important;
+  }
+table td[class=textalignleft]{
+  text-align:left !important;
+  padding:0 !important;
+  }
+table td[class=textaligcenter]{
+  text-align:center !important;
+  }
+table td[class=heightsmalldevices]{
+  height:45px !important;
+  }
+table td[class=heightSDBottom]{
+  height:28px !important;
+  }
+table[class=adjustblock]{
+  width:87% !important;
+  }
+table[class=resizeblock]{
+  width:92% !important;
+  }
+table td[class=smallfont]{
+  font-size:8px !important;
+  }
+  }
+@media only screen and (max-width: 520px) {
+table td[class=heading]{
+  font-size:24px !important;
+  }
+table td[class=heading01]{
+  font-size:18px !important;
+  }
+table td[class=heading02]{
+  font-size:27px !important;
+  }
+table td[class=text01]{
+  font-size:22px !important;
+  }
+table[class="full mhide"], table tr[class=mhide]{
+  display:none !important;
+  }
+  }
+@media only screen and (max-width: 480px) {
+table {
+ border-collapse: collapse;
 }
-i.fa {
-  display: inline-block;
-  border-radius:60px;
-  box-shadow: 0px 0px 2px #888;
-  padding: 0.4em 0.6em;
-
+table[id=colaps-inhiret01],
+table[id=colaps-inhiret02],
+table[id=colaps-inhiret03],
+table[id=colaps-inhiret04],
+table[id=colaps-inhiret05],
+table[id=colaps-inhiret06],
+table[id=colaps-inhiret07],
+table[id=colaps-inhiret08],
+table[id=colaps-inhiret09]{
+  border-collapse:inherit !important;
+  }
 }
-  </style>
-
+@media only screen and (max-width: 320px) {
+  }
+</style>
 </head>
-<body class="pc-fb-font" bgcolor="#f4f4f4" style="background-color: #f4f4f4; font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 16px; width: 100% !important; Margin: 0 !important; padding: 0; line-height: 1.5; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%">
-  <table style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-      <tr>
-        <td style="padding: 0; vertical-align: top;" align="center" valign="top">
-          <table class="pc-container" align="center" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; Margin: 0 auto; max-width: 620px;" width="100%" border="0" cellpadding="0" cellspacing="0">
-            <tbody>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="full">
+  <tr>
+    <td align="center"><table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="devicewidth">
+        <tr>
+          <td><table width="100%" bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0" align="center" class="full" style="background-color:#ffffff; border-radius:5px 5px 0 0;">
               <tr>
-                <td align="left" style="vertical-align: top; padding: 0 10px;" valign="top"> <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">Email template generated by Postcards - https://designmodo.com/postcards/</span>
-                  <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; padding: 0; height: 20px; font-size: 20px; line-height: 20px;" valign="top">&nbsp;</td>
-                      </tr>
-                    </tbody>
+                <td><table width="265" align="left" border="0" cellspacing="0" cellpadding="0" class="inner" style="text-align:center;">
+                <tr>
+                      <td width="28" height="52">&nbsp;</td>
+                      <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                    <td width="28">&nbsp;</td>
+                      <td align="center" valign="middle"><a href="#"><img src="{{ asset('img/logo_light_colorfull.png')}}" width="140" height="35" alt="FlashyBuy"></a></td>
+                    </tr>
+                    <tr>
+                    </tr>
                   </table>
+                  <table width="255" align="right" border="0" cellspacing="0" cellpadding="0" class="inner" style="text-align:center;">
+                <tr>
+                      <td class="hide" height="22">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td height="10">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td align="center" valign="middle">
+                        <table width="191" align="center" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; text-align:center;">
+  <tr>
+  <td align="center" bgcolor="#f27b69" height="57" style="border-radius:28px;"><a href="#" style="font-family:'Montserrat', Helvetica, Arial, sans-serif; font-weight:700; font-size:16px; line-height:57px; color:#ffffff; text-decoration:none; text-transform:uppercase; display:block; overflow:hidden; ">GO TO FlashyBuy</a></td>
+  </tr>
+</table>
 
-                  @if($data->top_banner != NULL)
-                  <!-- START MODULE: Menu 9 -->
-                  <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; background-image:url({{$data->top_banner}});
-                                  background-size:cover; background-repeat:no-repeat;
-                                  background-repeat:no-repeat;
-                                  background-size:contain;
-                                  background-position:center;
-                                  border-radius: 8px; 
-                                  height:100px;">
-                        </td>
-                      </tr>
-                    </tbody>
+                      </td>
+                    </tr>
+                     <tr>
+                      <td height="40">&nbsp;</td>
+                    </tr>
                   </table>
-                  <!-- END MODULE: Menu 9 -->
-                  @endif
-
-                  <!-- START MODULE: Call to action 5 -->
-                  <table border="0" cellspacing="0" cellpadding="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; padding: 0; height: 8px; -webkit-text-size-adjust: 100%; font-size: 8px; line-height: 8px;" valign="top">&nbsp;</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td class="pc-cta-box-s4" style="vertical-align: top; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)" valign="top" bgcolor="#ffffff">
-                          <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                            <tbody>
-                              <tr>
-                                <td class="pc-cta-box-in" style=" padding: 42px 40px 35px;" valign="top">
-                                  <table class="pc-cta-s1" border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                                    <tbody>
-                                      @if($data->about_template !== NULL)
-                                      <tr>
-                                        <td class="pc-fb-font" style="vertical-align: top; font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; line-height: 1.43; color: #40BE65; text-align:left;" valign="top" align="center">
-                                        {{ $data->about_template }}
-                                        </td>
-                                      </tr>
-                                      @endif
-
-                                      <tr>
-                                        <td class="pc-cta-title pc-fb-font" style="vertical-align: top; font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size:20px;  line-height: 1.28; letter-spacing: -0.6px; color: #151515; text-align:left;" valign="top" align="center">
-                                          <b> Hi {{ $firstName." ".$lastName }} ? </b> <br />
-                                          {{$data->text_line_one}}
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="vertical-align: top; height:20px; line-height:20px; font-size: 70px;" valign="top">&nbsp;</td>
-                                      </tr>
-
-                                      @if($data->button_text != NULL)
-                                      <tr>
-                                        <td style=" padding: 5px 0; align-content:left;" valign="top" align="center">
-                                          <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-                                            <tbody>
-                                              <tr>
-                                                <td style="border-radius: 8px; background-color: #073D68;" valign="top" bgcolor="#073D68"> 
-                                                  <a href="@if($data->button_link != NULL){{$data->button_link}}@else # @endif" style="line-height: 1.5; text-decoration: none; margin: 0; padding: 13px 17px; white-space: nowrap; border-radius: 8px; font-weight: 500; display: inline-block; font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 16px; cursor: pointer; background-color: #073D68; color: #ffffff; border: 1px solid #073D68;">
-                                                    {{$data->button_text}}
-                                                  </a> 
-                                                </td>
-                                              </tr>
-                                             
-                                            </tbody>
-                                          </table>
-                                        </td>
-                                      </tr>
-                                      @endif
-
-                                      @if($data->text_line_two != NULL)
-                                      <tr>
-                                        <td style=" padding: 5px 0; align-content:left;" valign="top" align="center">
-                                          <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-                                            <tbody>
-                                              <tr>
-                                                <td> 
-                                                  {{$data->text_line_two}}
-                                                </td>
-                                              </tr>
-                                             
-                                            </tbody>
-                                          </table>
-                                        </td>
-                                      </tr>
-                                      @endif
-
-                                      <tr>
-                                        <td style=" padding: 5px 0; align-content:left;" valign="top" align="right">
-                                            @if($data->facebook_url != NULL)
-                                            <a href="{{$data->facebook_url}}" style="text-decoration: none;">
-                                              <img src="{{asset('app-assets/images/social-icons/fb-300-blude.png')}}" width="30px" height="30px">
-                                            </a>
-                                            @endif
-
-                                            @if($data->twitter_url != NULL)
-                                            <a href="{{$data->twitter_url}}" style="text-decoration: none;">
-                                              <img src="{{asset('app-assets/images/social-icons/twitter-300.png')}}" width="30px" height="30px">
-                                            </a>
-                                            @endif
-
-                                            @if($data->linkedin_url != NULL)
-                                            <a href="{{$data->linkedin_url}}" style="text-decoration: none;">
-                                              <img src="{{asset('app-assets/images/social-icons/linkedin-300.png')}}" width="30px" height="30px">
-                                            </a>
-                                            @endif
-
-                                            @if($data->youtube_url != NULL)
-                                            <a href="{{$data->youtube_url}}" style="text-decoration: none;">
-                                              <img src="{{asset('app-assets/images/social-icons/youtube-300.png')}}" width="30px" height="30px">
-                                            </a>
-                                            @endif
-
-                                            @if($data->instagram_url != NULL)
-                                            <a href="{{$data->instagram_url}}" style="text-decoration: none;">
-                                              <img src="{{asset('app-assets/images/social-icons/instagram-300.png')}}" width="30px" height="30px">
-                                            </a>
-                                            @endif
-
-                                            @if($data->pinterest_url != NULL)
-                                            <a href="{{$data->pinterest_url}}" style="text-decoration: none;">
-                                              <img src="{{asset('app-assets/images/social-icons/round-pinterest-300-300.png')}}" width="30px" height="30px">
-                                            </a>
-                                            @endif
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- END MODULE: Call to action 5 -->
-                  <!-- START MODULE: E-Commerce 5 -->
-                  <table border="0" cellspacing="0" cellpadding="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; padding: 0; height: 8px; -webkit-text-size-adjust: 100%; font-size: 8px; line-height: 8px;" valign="top">&nbsp;</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- END MODULE: E-Commerce 5 -->
-                  
-                  @if($data->footer_banner != NULL)
-                  <!-- START MODULE: Menu 9 -->
-                  <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; background-image:url({{$data->footer_banner}});
-                                  background-size:cover; background-repeat:no-repeat;
-                                  background-repeat:no-repeat;
-                                  background-size:contain;
-                                  background-position:center;
-                                  border-radius: 8px; 
-                                  height:100px;">
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- END MODULE: Menu 9 -->
-                  @endif
-
-                  <!-- START MODULE: Footer 8 -->
-                  <table border="0" cellspacing="0" cellpadding="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; padding: 0; height: 8px; -webkit-text-size-adjust: 100%; font-size: 8px; line-height: 8px;" valign="top">&nbsp;</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  @if($data->footer_text != NULL)
-                  <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td class="pc-footer-box-s1" style="vertical-align: top; padding: 21px 20px 14px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)" valign="top" bgcolor="#ffffff">
-                          <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                            <tbody>
-                              <tr>  
-                                <td width="280" style="width:280px;" valign="top">
-                                <![endif]-->
-                                  <div class="pc-footer-row-col" style="display: inline-block; width: 100%;  vertical-align: top;">
-                                    <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                                      <tbody>
-                                        <tr>
-                                          <td style="vertical-align: top;" valign="top">
-                                            <table class="pc-footer-text-s1" border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                                              <tbody>
-                                                <tr>
-                                                  <td class="pc-fb-font" style="vertical-align: top; padding: 11px 0 0; font-family: 'Fira Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.43; letter-spacing: -0.2px; color: #9B9B9B;" valign="top"> 
-                                                    {{$data->footer_text}}
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <table class="pc-spacing pc-m-footer-h-46" border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                                              <tbody>
-                                                <tr>
-                                                  <td style="vertical-align: top; height: 46px; line-height: 46px; font-size: 46px;" valign="top">&nbsp;</td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- END MODULE: Footer 8 -->
-                  @endif
-
-                  <table border="0" cellpadding="0" cellspacing="0" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top; padding: 0; height: 20px; font-size: 20px; line-height: 20px;" valign="top">&nbsp;</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
+                  </td>
               </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</body>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!-- ----------------- Header End Here ------------------------- -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="full">
+  <tr>
+  <td align="center">
+    <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="devicewidth">
+  <tr>
+    <td>
+      <table width="100%" bgcolor="#ffffff"  border="0" cellspacing="0" cellpadding="0" align="center" class="full" style="text-align:center; border-bottom:1px solid #e5e5e5;">
+   <tr>
+    <td class="heightsmalldevices" height="40">&nbsp;</td>
+  </tr>
+  @if($subject == 'Vendor-Signup')
+  <tr>
+    <td style="font:700 30px 'Montserrat', Helvetica, Arial, sans-serif; color:#f27b69; text-transform:uppercase;">Seller Request</td>
+  </tr>
+  @endif
+  @if()
+        <tr>
+          <td style="font:700 30px 'Montserrat', Helvetica, Arial, sans-serif; color:#f27b69; text-transform:uppercase;">Customer Sign Up</td>
+        </tr>
+  @endif
+   <tr>
+    <td class="heightSDBottom" height="49">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="font:bold 18px Arial, Helvetica, sans-serif; color:#404040; text-transform:uppercase;">Hi {{ $firstName }} {{ $lastName }}</td>
+  </tr>
+   <tr>
+    <td height="21">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="font:18px Arial, Helvetica, sans-serif; color:#404040;">We got a requrest of your Sign Up.</td>
+  </tr>
+   <tr>
+    <td height="32">&nbsp;</td>
+  </tr>
+  <tr>
+                      <td align="center">
+                        <table width="250" align="center" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; text-align:center;">
+  <tr>
+  {{-- <td align="center" bgcolor="#af5372" style="border-radius:28px;" height="61"><a href="{{ $siteURL."/reset/passoword/".$token."/".$email }}" style="font:700 16px/61px 'Montserrat', Helvetica, Arial, sans-serif; color:#ffffff; text-decoration:none; display:block; overflow:hidden; outline:none;">RESET PASSWORD</a></td> --}}
+  </tr>
+</table>
 
+                      </td>
+                    </tr>
+                    <tr>
+    <td class="heightsmalldevices" height="60">&nbsp;</td>
+  </tr>
+  </table>
+    </td></tr>
+    </table>
+  </td></tr></table>
+ {{--  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="full">
+  <tr>
+  <td align="center">
+    <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="devicewidth">
+  <tr>
+    <td>
+      <table width="100%" bgcolor="#ffffff"  border="0" cellspacing="0" cellpadding="0" align="center" class="full" style="text-align:center; border-bottom:1px solid #e5e5e5;">
+   <tr>
+    <td height="50">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="font:16px Arial, Helvetica, sans-serif; color:#404040; padding:0 10px;">If you ignore this message, your password won't be changed.</td>
+  </tr>
+   <tr>
+    <td height="28">&nbsp;</td>
+  </tr>
+ <tr>
+    <td style="font:16px Arial, Helvetica, sans-serif; color:#404040; padding:0 10px;">If you didn't request a password reset, <a href="#" style="color:#f27b69; text-decoration:none;">let us know</a></td>
+  </tr>
+  <tr>
+    <td height="32">&nbsp;</td>
+  </tr>
+   <tr>
+    <td style="font:12px Arial, Helvetica, sans-serif; color:#b1b1b1;">if this is not your account you can <br class="show" style="display:none;"> <a href="#" style="color:#b1b1b1; font-weight:bold;">remove your email from it.</a></td>
+  </tr>
+  <tr>
+  <tr>
+    <td class="heightsmalldevices" height="60">&nbsp;</td>
+  </tr>
+  </table>
+    </td></tr>
+    </table>
+  </td></tr></table> --}}
+ {{-- footer --}}
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="full">
+  <tr>
+  <td align="center">
+    <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" class="devicewidth">
+  <tr>
+    <td>
+      <table width="100%" bgcolor="#b5637e" border="0" cellspacing="0" cellpadding="0" align="center" class="full" style="border-radius:0 0 5px 5px;">
+        <tr><td height="18">&nbsp;</td></tr>
+  <tr>
+  <td>
+  <table width="340" border="0" cellspacing="0" cellpadding="0" align="right" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; text-align:center;" class="inner">
+  <tr>
+  <td width="21">&nbsp;</td>
+    <td>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr><td>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="full">
+  <tr>
+    <td align="center" style="font:11px Helvetica,  Arial, sans-serif; color:#383838;"><a style="color:#ffffff; text-decoration:none;" href="#"> View in browser</a> </td>
+    <td style="color:#ffffff;"> | </td>
+    <td align="center" style="font:11px Helvetica,  Arial, sans-serif; color:#383838;"><a style="color:#ffffff; text-decoration:none;" href="#"> Unsubscribe</a> </td>
+    <td style="color:#ffffff;"> | </td>
+    <td align="center" style="font:11px Helvetica,  Arial, sans-serif; color:#383838;"><a style="color:#ffffff; text-decoration:none;" href="#"> Send to a friend</a> </td>
+    <td class="hide" width="40" align="right">&nbsp;</td>
+  </tr>
+  <tr><td height="18">&nbsp;</td></tr>
+</table>
+
+    </td></tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+
+    <table width="230" border="0" cellspacing="0" cellpadding="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; text-align:center;" class="inner">
+  <tr>
+    <td width="21">&nbsp;</td>
+    <td>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr><td align="center" style="font:11px Helvetica,  Arial, sans-serif; color:#ffffff;">&copy; 2020, All rights reserved
+</td></tr>
+<tr><td height="18">&nbsp;</td></tr>
+</table>
+
+    </td>
+    <td width="21">&nbsp;</td>
+  </tr>
+</table>
+
+  </td></tr>
+  </table>
+    </td></tr>
+    <tr class="mhide">
+    <td height="100">&nbsp;</td>
+    </tr>
+    </table>
+  </td></tr></table>
+  
+</body>
 </html>
