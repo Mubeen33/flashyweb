@@ -260,7 +260,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
     	$newOrder   = Order::where('order_id',$order_id)->get();
 			
-            if ($order) {
+            if ($newOrder) {
 
             	// customer Email
 
