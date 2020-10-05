@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use App\Models\ProductMedia;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use App\Mail\OrderMail;
 
 
 class CartController extends Controller
@@ -195,13 +196,14 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 		    	$saved = $order->save();
 			}
 
-			session()->forget('cart');
+			// session()->forget('cart');
 			
 			$order   = Order::where('order_id',$orderID)->get();
             if ($order) {
 
                 $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
                 $email = Auth::guard('customer')->user()->email;
+                return;
 
                 Mail::to($email)->send(new OrderMail(
                     $order, $subject
