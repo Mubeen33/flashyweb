@@ -174,14 +174,14 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	$vendor_product_id = NULL;
     	$qty = NULL;
     	$orderID = mt_rand(101, 999150);
-
+    	$orderID = "FON-".$orderID;
     	$cart = session()->get('cart');
 		if(isset($cart)){
 
 			 
 			foreach($cart as $key=>$data){
 		  		$order = new Order();
-		  		$order->order_id  = "FON-".$orderID;
+		  		$order->order_id  = $orderID;
 		  		$order->order_token = $data['product_id'].'-'.$data['vendor_id'];
 		    	$order->vendor_id = $data['vendor_id'];
 		    	$order->customer_id = $customer_id;
