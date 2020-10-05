@@ -219,7 +219,7 @@ table[id=colaps-inhiret09]{
 <table width="190" align="left" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="inner">
 @foreach ($data as $order)
 @php
-      $name  = (App\Models\Product::where('id',$order->product_id)->value('name'));
+      $name  = (App\Models\Product::where('id',$order->product_id)->value('title'));
       $image = (App\Models\ProductMedia::where('product_id',$order->product_id)->value('image'));
 @endphp  
   <tr>
