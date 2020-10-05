@@ -182,7 +182,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	$orderID = "FON-".$orderID;
     	if( $request->payment_options == 'EFT' ){
 
-    		return view('order.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
+    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
     	}
     	$cart = session()->get('cart');
 		if(isset($cart)){
