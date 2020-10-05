@@ -222,15 +222,16 @@ table[id=colaps-inhiret09]{
       $name  = (App\Models\Product::where('id',$order->product_id)->value('title'));
       $image_id  = (App\Models\Product::where('id',$order->product_id)->value('image_id'));
       $image = (App\Models\ProductMedia::where('image_id',$order->image_id)->value('image'));
+      echo $name;
 @endphp  
   <tr>
-    <td><img src="{{ $image }}" width="190" height="193" alt="Bag"></td>
+    <td><img src="{{ $image }}" width="190" height="193" alt="{{ $name }}"></td>
   </tr>
    <tr>
   	<td height="32">&nbsp;</td>
     </tr>
    <tr>
-  	<td style="font:20px Arial, Helvetica, sans-serif; color:#3a3a3a;">{{ $name }}</td>
+  	<td style="font:20px Arial, Helvetica, sans-serif; color:#3a3a3a;"> {{ $name }} </td>
   </tr>
   <tr>
   	<td height="45">&nbsp;</td>
