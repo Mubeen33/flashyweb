@@ -203,8 +203,8 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
                 $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
                 $email = Auth::guard('customer')->user()->email;
-                echo $email;
-                return;
+                // echo $email;
+                // return;
 
                 Mail::to($email)->send(new OrderMail(
                     $order, $subject
