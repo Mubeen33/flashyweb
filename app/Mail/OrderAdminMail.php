@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderMail extends Mailable
+class OrderAdminMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $subject;
@@ -19,8 +19,8 @@ class OrderMail extends Mailable
      */
     public function __construct($subject,$newOrder)
     {
-       $this->subject = $subject;
-       $this->data   = $newOrder;
+        $this->subject = $subject;
+        $this->data   = $newOrder;
     }
 
     /**
@@ -30,7 +30,7 @@ class OrderMail extends Mailable
      */
     public function build()
     {
-        $emailSendNow = $this->subject($this->subject)->view('email-templates.customerOrder')
+        $emailSendNow = $this->subject($this->subject)->view('email-templates.adminOrder')
         ->with([
 
             'data' => $this->data,

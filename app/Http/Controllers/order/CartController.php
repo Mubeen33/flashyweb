@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
+use App\Mail\OrderAdminMail;
+use App\User;
 
 
 class CartController extends Controller
@@ -203,14 +205,20 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 			
             if ($order) {
 
-                $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
-                $email = Auth::guard('customer')->user()->email;
-                // echo $email;
-                // return;
+            	// customer Email
 
-                Mail::to($email)->send(new OrderMail(
-                     $subject,$newOrder
-                 ));
+	                $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
+	                $email = Auth::guard('customer')->user()->email;
+	                Mail::to($email)->send(new OrderMail(
+	                     $subject,$newOrder
+                 	));
+                // 
+	            //admin Mail
+	                $subject = 'New order# ("'.$orderID.') is Placed on FlashyBuy';
+	                $email = User::value('email');
+	                Mail::to($email)->send(new OrderAdminMail(
+	                     $subject,$newOrder
+                 	));
     		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
    			}		
 
