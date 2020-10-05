@@ -214,9 +214,15 @@ table[id=colaps-inhiret09]{
    <tr>
     <td height="21">&nbsp;</td>
   </tr>
-  <tr>
-    <td style="font:18px Arial, Helvetica, sans-serif; color:#404040;">We got a requrest of your Sign Up.</td>
-  </tr>
+  @if($subject == 'Vendor-Signup')
+        <tr>
+          <td style="font:18px Arial, Helvetica, sans-serif; color:#404040;">We got a requrest of your Sign Up.Please wait we are reviewing your information will back to you soon.</td>
+        </tr>
+  @else
+        <tr>
+          <td style="font:18px Arial, Helvetica, sans-serif; color:#404040;">We got a requrest of your Sign Up.</td>
+        </tr>
+  @endif      
    <tr>
     <td height="32">&nbsp;</td>
   </tr>
