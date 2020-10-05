@@ -196,11 +196,11 @@ table[id=colaps-inhiret09]{
     <td class="heightsmalldevices" height="40">&nbsp;</td>
   </tr>
   @if($subject == 'Vendor-Signup')
-  <tr>
-    <td style="font:700 30px 'Montserrat', Helvetica, Arial, sans-serif; color:#f27b69; text-transform:uppercase;">Seller Request</td>
-  </tr>
+    <tr>
+      <td style="font:700 30px 'Montserrat', Helvetica, Arial, sans-serif; color:#f27b69; text-transform:uppercase;">Seller Request</td>
+    </tr>
   @endif
-  @if()
+  @if($subject == 'Customer-Signup')
         <tr>
           <td style="font:700 30px 'Montserrat', Helvetica, Arial, sans-serif; color:#f27b69; text-transform:uppercase;">Customer Sign Up</td>
         </tr>
