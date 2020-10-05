@@ -216,7 +216,7 @@ table[id=colaps-inhiret09]{
   </tr>
   @if($subject == 'Vendor-Signup')
         <tr>
-          <td style="font:18px Arial, Helvetica, sans-serif; color:#404040;">We got a requrest of your Sign Up.Please wait we are reviewing your information will back to you soon.</td>
+          <td style="font:18px Arial, Helvetica, sans-serif; color:#404040;">We got a requrest of your Sign Up.Please wait we are reviewing your information and will back to you soon.</td>
         </tr>
   @else
         <tr>
