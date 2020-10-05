@@ -203,13 +203,13 @@ table[id=colaps-inhiret09]{
   	<td class="heightsmalldevices" height="40">&nbsp;</td>
   </tr>
   <tr>
-  	<td class="heading" style="font:700 30px 'Montserrat', Helvetica, Arial, sans-serif; color:#f27b69; text-transform:uppercase;">New Order is Placed.</td>
+  	<td class="heading" style="font:700 30px 'Montserrat', Helvetica, Arial, sans-serif; color:#f27b69; text-transform:uppercase;">Congratulations!</td>
   </tr>
   <tr>
   	<td class="heightSDBottom" height="40">&nbsp;</td>
   </tr>
   <tr>
-  	{{-- <td style="font:18px Arial, Helvetica, sans-serif; color:#3a3a3a;">Your order will be delivered to your door in next<span style="color:#f27b69; text-decoration:none;"> 3 to 4 days!</span></td> --}}
+  	<td style="font:18px Arial, Helvetica, sans-serif; color:#3a3a3a;">A new Order is Placed of Your On Flashybuy<span style="color:#f27b69; text-decoration:none;"></span></td>
   </tr>
   <tr>
   	<td height="53">&nbsp;</td>

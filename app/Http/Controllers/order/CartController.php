@@ -17,6 +17,7 @@ use DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
 use App\Mail\OrderAdminMail;
+use App\Mail\OrderSellerMail;
 use App\User;
 
 
@@ -219,6 +220,25 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 	                Mail::to($email)->send(new OrderAdminMail(
 	                     $subject,$newOrder
                  	));
+                //
+
+                //vendor Email
+
+
+	                	$subject = 'A New order# ("'.$orderID.') of your Product is Placed on FlashyBuy';
+	                	foreach ($order as $key => $value) {
+	                		
+	                		$email     = Vendor::where('id',$value->vendor_id)->value('email');
+
+	                		$orderData = Order::where('order_id',$orderID)->where('vendor_id',$value->vendor_id)->get();
+
+	                			Mail::to($email)->send(new OrderSellerMail(
+		                     	$subject,$orderData
+	                 		));
+	                	}
+	                	
+
+                // 
     		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
    			}		
 
