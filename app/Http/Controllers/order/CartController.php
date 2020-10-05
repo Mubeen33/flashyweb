@@ -206,7 +206,8 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
                 Mail::to($email)->send(new OrderMail(
                     $order, $subject
                  ));
-    		return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
+    		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
+   			}		
 
 		}else{
 			return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
