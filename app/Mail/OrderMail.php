@@ -17,10 +17,10 @@ class OrderMail extends Mailable
      *
      * @return void
      */
-    public function __construct($subject,$order)
+    public function __construct($subject,$newOrder)
     {
        $this->subject = $subject;
-       $this->data   = $order;
+       $this->data   = $newOrder;
     }
 
     /**

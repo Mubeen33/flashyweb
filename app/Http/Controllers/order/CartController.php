@@ -199,7 +199,9 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
 			// session()->forget('cart');
 			
-			$order   = Order::where('order_id',$orderID)->get();
+			$newOrder   = Order::where('order_id',$orderID)->get();
+			print_r($newOrder);
+			return;
             if ($order) {
 
                 $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
@@ -208,7 +210,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
                 // return;
 
                 Mail::to($email)->send(new OrderMail(
-                    $order, $subject
+                    $newOrder, $subject
                  ));
     		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
    			}		
