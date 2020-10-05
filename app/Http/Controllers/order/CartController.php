@@ -258,6 +258,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
     public function orderSuccess($order_id){
 
+    	Order::where('order_id',$order_id)->update(['payment'=>'paid');
     	$newOrder   = Order::where('order_id',$order_id)->get();
 			
             if ($newOrder) {
