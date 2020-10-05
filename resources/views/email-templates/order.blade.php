@@ -220,7 +220,7 @@ table[id=colaps-inhiret09]{
 
 @foreach ($data as $order)
 @php
-      $product_id = (App\Models\VendorProduct::where('id',$$order->vendor_product_id)->value('prod_id'));
+      $product_id = (App\Models\VendorProduct::where('id',$order->vendor_product_id)->value('prod_id'));
       $name  = (App\Models\Product::where('id',$product_id)->value('title'));
       $image_id  = (App\Models\Product::where('id',$product_id)->value('image_id'));
       $image = (App\Models\ProductMedia::where('image_id',$order->image_id)->value('image'));
