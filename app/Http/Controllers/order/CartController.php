@@ -180,10 +180,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	$qty = NULL;
     	$orderID = mt_rand(101, 999150);
     	$orderID = "FON-".$orderID;
-    	if( $request->payment_options == 'EFT' ){
 
-    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
-    	}
     	$cart = session()->get('cart');
 		if(isset($cart)){
 
@@ -207,21 +204,75 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 			}
 
 			session()->forget('cart');
+			if( $request->payment_options == 'EFT' ){
+
+	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
+	    	}
+			// $newOrder   = Order::where('order_id',$orderID)->get();
 			
-			$newOrder   = Order::where('order_id',$orderID)->get();
+      //       if ($order) {
+
+      //       	// customer Email
+
+	     //            $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
+	     //            $email = Auth::guard('customer')->user()->email;
+	     //            Mail::to($email)->send(new OrderMail(
+	     //                 $subject,$newOrder
+      //            	));
+      //           // 
+	     //        //admin Mail
+
+	     //            $subject = 'New order# ("'.$orderID.') is Placed on FlashyBuy';
+	     //            $email = User::value('email');
+	     //            Mail::to($email)->send(new OrderAdminMail(
+	     //                 $subject,$newOrder
+      //            	));
+      //           //
+
+      //           //vendor Email
+
+
+	     //            	$subject = 'A New order# ("'.$orderID.') of your Product is Placed on FlashyBuy';
+	     //            	foreach ($newOrder as $key => $value) {
+	                		
+	     //            		$email     = Vendor::where('id',$value->vendor_id)->value('email');
+
+	     //            		$orderData = Order::where('order_id',$orderID)->where('vendor_id',$value->vendor_id)->get();
+
+	     //            			Mail::to($email)->send(new OrderSellerMail(
+		    //                  	$subject,$orderData
+	     //             		));
+	     //            	}
+	                	
+
+      //           // 
+    		//     return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
+   			// }		
+
+		}
+		else{
+			return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
+		}
+
+    }
+
+    public function orderSuccess($order_id){
+
+    	$newOrder   = Order::where('order_id',$order_id)->get();
 			
             if ($order) {
 
             	// customer Email
 
-	                $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
+	                $subject = 'Your order# ("'.$order_id.') at FlashyBuy';
 	                $email = Auth::guard('customer')->user()->email;
 	                Mail::to($email)->send(new OrderMail(
 	                     $subject,$newOrder
                  	));
                 // 
 	            //admin Mail
-	                $subject = 'New order# ("'.$orderID.') is Placed on FlashyBuy';
+
+	                $subject = 'New order# ("'.$order_id.') is Placed on FlashyBuy';
 	                $email = User::value('email');
 	                Mail::to($email)->send(new OrderAdminMail(
 	                     $subject,$newOrder
@@ -231,12 +282,12 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
                 //vendor Email
 
 
-	                	$subject = 'A New order# ("'.$orderID.') of your Product is Placed on FlashyBuy';
+	                	$subject = 'A New order# ("'.$order_id.') of your Product is Placed on FlashyBuy';
 	                	foreach ($newOrder as $key => $value) {
 	                		
 	                		$email     = Vendor::where('id',$value->vendor_id)->value('email');
 
-	                		$orderData = Order::where('order_id',$orderID)->where('vendor_id',$value->vendor_id)->get();
+	                		$orderData = Order::where('order_id',$order_id)->where('vendor_id',$value->vendor_id)->get();
 
 	                			Mail::to($email)->send(new OrderSellerMail(
 		                     	$subject,$orderData
@@ -246,11 +297,9 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
                 // 
     		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
-   			}		
-
-		}
-		else{
-			return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
-		}
+   			}
+   			else{
+				return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
+			}
     }
 }

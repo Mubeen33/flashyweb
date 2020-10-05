@@ -1,7 +1,7 @@
 <form action="https://sandbox.payfast.co.za/eng/process" method="POST" id="form_payment">
 <input type="hidden" name="merchant_id" value="10020123">
 <input type="hidden" name="merchant_key" value="974nwyh4muqxs">
-<input type="hidden" name="return_url" value="{{ Route('cart.order-success') }}">
+<input type="hidden" name="return_url" value="{{ Route('cart.order-success', $orderID  ) }}">
 {{-- <input type="hidden" name="cancel_url" value="http://flashybuy.com/cancel.php"> --}}
 {{-- <input type="hidden" name="notify_url" value="http://flashybuy.com/notify.php"> --}}
 
