@@ -32,9 +32,11 @@ class OrderMail extends Mailable
     {
         $emailSendNow = $this->subject($this->subject)->view('email-templates.order')
         ->with([
-            
+
             'data' => $this->data,
         ]);
-        return $emailSendNow;
+        print_r($emailSendNow);
+        return;        
+        // return $emailSendNow;
     }
 }
