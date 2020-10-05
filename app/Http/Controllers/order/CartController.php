@@ -208,46 +208,18 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
 	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
 	    	}
-			// $newOrder   = Order::where('order_id',$orderID)->get();
-			
-      //       if ($order) {
+	    	if( $request->payment_options == 'Debit' ){
 
-      //       	// customer Email
+	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
+	    	}
+	    	if( $request->payment_options == 'Visa' ){
 
-	     //            $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
-	     //            $email = Auth::guard('customer')->user()->email;
-	     //            Mail::to($email)->send(new OrderMail(
-	     //                 $subject,$newOrder
-      //            	));
-      //           // 
-	     //        //admin Mail
+	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
+	    	}
+	    	if( $request->payment_options == 'Master' ){
 
-	     //            $subject = 'New order# ("'.$orderID.') is Placed on FlashyBuy';
-	     //            $email = User::value('email');
-	     //            Mail::to($email)->send(new OrderAdminMail(
-	     //                 $subject,$newOrder
-      //            	));
-      //           //
-
-      //           //vendor Email
-
-
-	     //            	$subject = 'A New order# ("'.$orderID.') of your Product is Placed on FlashyBuy';
-	     //            	foreach ($newOrder as $key => $value) {
-	                		
-	     //            		$email     = Vendor::where('id',$value->vendor_id)->value('email');
-
-	     //            		$orderData = Order::where('order_id',$orderID)->where('vendor_id',$value->vendor_id)->get();
-
-	     //            			Mail::to($email)->send(new OrderSellerMail(
-		    //                  	$subject,$orderData
-	     //             		));
-	     //            	}
-	                	
-
-      //           // 
-    		//     return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
-   			// }		
+	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
+	    	}		
 
 		}
 		else{
