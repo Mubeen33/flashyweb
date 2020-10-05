@@ -220,7 +220,8 @@ table[id=colaps-inhiret09]{
 @foreach ($data as $order)
 @php
       $name  = (App\Models\Product::where('id',$order->product_id)->value('title'));
-      $image = (App\Models\ProductMedia::where('product_id',$order->product_id)->value('image'));
+      $image_id  = (App\Models\Product::where('id',$order->product_id)->value('image_id'));
+      $image = (App\Models\ProductMedia::where('image_id',$order->image_id)->value('image'));
 @endphp  
   <tr>
     <td><img src="{{ $image }}" width="190" height="193" alt="Bag"></td>
