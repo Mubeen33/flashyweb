@@ -209,7 +209,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
                 // return;
 
                 Mail::to($email)->send(new OrderMail(
-                    $newOrder, $subject
+                     $subject,$newOrder
                  ));
     		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
    			}		
