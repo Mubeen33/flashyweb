@@ -173,11 +173,17 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	$addressID = $request->address;
     	$payment_option = $request->payment_options;
     	$customer_id = Auth::guard('customer')->user()->id;
+    	$first_name = Auth::guard('customer')->user()->first_name;
+    	$customeremail = Auth::guard('customer')->user()->email;
     	$vendor_id = NULL;
     	$vendor_product_id = NULL;
     	$qty = NULL;
     	$orderID = mt_rand(101, 999150);
     	$orderID = "FON-".$orderID;
+    	if( $request->payment_options == 'EFT' ){
+
+    		return view('order.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
+    	}
     	$cart = session()->get('cart');
 		if(isset($cart)){
 
@@ -200,7 +206,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 		    	$saved = $order->save();
 			}
 
-			// session()->forget('cart');
+			session()->forget('cart');
 			
 			$newOrder   = Order::where('order_id',$orderID)->get();
 			
