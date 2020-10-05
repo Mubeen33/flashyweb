@@ -217,12 +217,15 @@ table[id=colaps-inhiret09]{
   <tr>
   	<td>
 <table width="190" align="left" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="inner">
+@php 
+     print_r($data);
+@endphp
 @foreach ($data as $order)
 @php
-      $name  = (App\Models\Product::where('id',$order->product_id)->value('title'));
-      $image_id  = (App\Models\Product::where('id',$order->product_id)->value('image_id'));
-      $image = (App\Models\ProductMedia::where('image_id',$order->image_id)->value('image'));
-      echo $name;
+      // $name  = (App\Models\Product::where('id',$order->product_id)->value('title'));
+      // $image_id  = (App\Models\Product::where('id',$order->product_id)->value('image_id'));
+      // $image = (App\Models\ProductMedia::where('image_id',$order->image_id)->value('image'));
+      // echo $name;
 @endphp  
   <tr>
     <td><img src="{{ $image }}" width="190" height="193" alt="{{ $name }}"></td>
