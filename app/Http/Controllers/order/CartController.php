@@ -226,7 +226,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
 
 	                	$subject = 'A New order# ("'.$orderID.') of your Product is Placed on FlashyBuy';
-	                	foreach ($order as $key => $value) {
+	                	foreach ($newOrder as $key => $value) {
 	                		
 	                		$email     = Vendor::where('id',$value->vendor_id)->value('email');
 
