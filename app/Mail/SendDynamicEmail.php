@@ -34,7 +34,7 @@ class SendDynamicEmail extends Mailable
      */
     public function build()
     {
-        $emailSendNow = $this->subject($subject)->view('email-templates.dynamic-template')
+        $emailSendNow = $this->subject($this->subject)->view('email-templates.dynamic-template')
         ->with([
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
