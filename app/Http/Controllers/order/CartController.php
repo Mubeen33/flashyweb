@@ -203,6 +203,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
                 $subject = 'Your order# ("'.$orderID.') at FlashyBuy';
                 $email = Auth::guard('customer')->user()->email;
+                echo $email;
                 return;
 
                 Mail::to($email)->send(new OrderMail(
@@ -211,7 +212,8 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
    			}		
 
-		}else{
+		}
+		else{
 			return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
 		}
     }
