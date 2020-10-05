@@ -30,14 +30,11 @@ class OrderMail extends Mailable
      */
     public function build()
     {
-        // $emailSendNow = $this->subject($this->subject)->view('email-templates.order')
-        // ->with([
+        $emailSendNow = $this->subject($this->subject)->view('email-templates.order')
+        ->with([
 
-        //     'data' => $this->data,
-        // ]);
-        
-        print_r($this->data);
-        return;        
-        // return $emailSendNow;
+            'data' => $this->data,
+        ]);        
+        return $emailSendNow;
     }
 }
