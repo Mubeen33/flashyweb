@@ -49,7 +49,7 @@ class CartController extends Controller
 				}
 				else{
 
-					$image = ProductVariation::where('product_id',$product_id)->where('id',$variationId)->value('variant_image');
+					$image = ProductVariation::where('product_id',$product_id)->where('id',$variation_id)->value('variant_image');
 
 					if (empty($image)) {
 						
