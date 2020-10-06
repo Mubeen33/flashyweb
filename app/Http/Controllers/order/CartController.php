@@ -39,7 +39,23 @@ class CartController extends Controller
 				$vendor     = Vendor::where('id',$vendor_id)->value('company_name');
 				$name       = Product::where('id',$product_id)->value('title');
 				$image_id   = Product::where('id',$product_id)->value('image_id');
-				$image      = ProductMedia::where('image_id',$image_id)->value('image');
+				
+
+				$variation_id = VendorProduct::where('id',$v_p_id)->value('variation_id');
+
+				if (empty($variation_id)) {
+					
+					$image      = ProductMedia::where('image_id',$image_id)->value('image');
+				}
+				else{
+
+					$image = ProductVariation::where('product_id',$product_id)->where('id',$variationId)->value('variant_image');
+
+					if (empty($image)) {
+						
+						$image      = ProductMedia::where('image_id',$image_id)->value('image');
+					}
+				}
 
 				$cart = session()->get('cart');
 				
