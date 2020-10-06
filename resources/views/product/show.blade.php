@@ -707,19 +707,23 @@ function getfirstVariation(variation1,token,product_id){
                           $('#price').val(data[0].price);
                           $("#v_p_id").val(data[0].id);
                           $("#cart").prop('disabled', false);
-                          clearconsole();
+                          if (data.variant_image != undefined) {
+
+                                $('.item.slick-slide.slick-current.slick-active>a').attr('href',data.variant_image);
+                                $('.item.slick-slide.slick-current.slick-active>a>img').attr('src',data.variant_image);
+                          }
 
                         }else{
 
                             $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                             $("#cart").prop('disabled', true);
-                            clearconsole();
+                            
                         }
                     }else{
 
                         $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                         $("#cart").prop('disabled', true);
-                        clearconsole();
+                        
                     }    
                 }
         });
@@ -743,19 +747,24 @@ function getsecondVariation(variation1,variation2,token,product_id) {
                           $('#price').val(data[0].price);
                           $("#v_p_id").val(data[0].id);
                           $("#cart").prop('disabled', false);
-                          clearconsole();
+                          if (data.variant_image != undefined) {
+
+                                $('.item.slick-slide.slick-current.slick-active>a').attr('href',data.variant_image);
+                                $('.item.slick-slide.slick-current.slick-active>a>img').attr('src',data.variant_image);
+                          }
+                          
 
                         }else{
 
                             $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                             $("#cart").prop('disabled', true);
-                            clearconsole();
+                            
                         }
                     }else{
 
                         $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                         $("#cart").prop('disabled', true);
-                        clearconsole();
+                        
                     }    
                 }
         });

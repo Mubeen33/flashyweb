@@ -103,7 +103,9 @@ class ProductController extends Controller
         $variationId = ProductVariation::where('product_id',$product_id)->where('first_variation_value',$first_variation_value)->value('id');
 
         $data = VendorProduct::where('variation_id',$variationId)->where('price','!=',0)->where('quantity','!=',0)->get();
+        $image = ProductVariation::where('product_id',$product_id)->where('id',$variationId)->value('variant_image');
 
+        $data->put('variant_image',$image);
         $data = json_encode($data,true);
 
         return $data;
@@ -119,6 +121,9 @@ class ProductController extends Controller
 
         $data = VendorProduct::where('variation_id',$variationId)->where('price','!=',0)->where('quantity','!=',0)->get();
 
+        $image = ProductVariation::where('product_id',$product_id)->where('id',$variationId)->value('variant_image');
+
+        $data->put('variant_image',$image);
         $data = json_encode($data,true);
 
         return $data;
