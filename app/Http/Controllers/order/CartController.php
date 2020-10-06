@@ -37,7 +37,6 @@ class CartController extends Controller
 
 				
 				$vendor     = Vendor::where('id',$vendor_id)->value('company_name');
-				$name       = Product::where('id',$product_id)->value('title');
 				$image_id   = Product::where('id',$product_id)->value('image_id');
 				
 
@@ -46,11 +45,23 @@ class CartController extends Controller
 				if (empty($variation_id)) {
 					
 					$image      = ProductMedia::where('image_id',$image_id)->value('image');
+					$name       = Product::where('id',$product_id)->value('title');
 				}
 				else{
 
 					$image = ProductVariation::where('product_id',$product_id)->where('id',$variation_id)->value('variant_image');
+					$variation 	= ProductVariation::where('product_id',$product_id)->where('id',$variation_id)->first();
+					$name       = Product::where('id',$product_id)->value('title');
+					
+					if (!empty($variation->second_variation_value)) {
+							
+							$name       = $name."(".$variation->first_variation_value."-".$variation->second_variation_value.")";
 
+					}
+					else{
+
+						$name       = $name."(".$variation->first_variation_value.")";
+					}
 					if (empty($image)) {
 						
 						$image      = ProductMedia::where('image_id',$image_id)->value('image');
@@ -203,18 +214,25 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 			 
 			foreach($cart as $key=>$data){
 		  		$order = new Order();
-		  		$order->order_id  = $orderID;
-		  		$order->order_token = $data['product_id'].'-'.$data['vendor_id'];
-		    	$order->vendor_id = $data['vendor_id'];
-		    	$order->customer_id = $customer_id;
+		  		$order->order_id          = $orderID;
+		  		$order->product_id        = $data['product_id'];
+		  		// 
+
+		  			$category_id          = Product::where('id',$data['product_id'])->value('category_id');
+
+		  		// 
+		  		$order->category_id       = $category_id;
+		  		$order->order_token       = $data['product_id'].'-'.$data['vendor_id'];
+		    	$order->vendor_id         = $data['vendor_id'];
+		    	$order->customer_id       = $customer_id;
 		    	$order->vendor_product_id = $data['v_p_id'];
-		    	$order->order_price = $data['price']*$data['quantity'];
-		    	$order->product_price = $data['price']; 
-		    	$order->qty = $data['quantity'];
-		    	$order->address_id = $addressID;
-		    	$order->grand_total = $grandTotal;
-		    	$order->payment_option = $payment_option;
-		    	$order->created_at = Carbon::now();
+		    	$order->order_price       = $data['price']*$data['quantity'];
+		    	$order->product_price     = $data['price']; 
+		    	$order->qty               = $data['quantity'];
+		    	$order->address_id        = $addressID;
+		    	$order->grand_total       = $grandTotal;
+		    	$order->payment_option    = $payment_option;
+		    	$order->created_at        = Carbon::now();
 		    	
 		    	$saved = $order->save();
 			}
