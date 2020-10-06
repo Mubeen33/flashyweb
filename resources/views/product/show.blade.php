@@ -711,6 +711,7 @@ function getfirstVariation(variation1,token,product_id){
 
                                 $('.item.slick-slide.slick-current.slick-active>a').attr('href',data.variant_image);
                                 $('.item.slick-slide.slick-current.slick-active>a>img').attr('src',data.variant_image);
+                                $('.item.slick-slide.slick-current.slick-active>img').attr('src',data.variant_image);
                           }
 
                         }else{
@@ -751,6 +752,7 @@ function getsecondVariation(variation1,variation2,token,product_id) {
 
                                 $('.item.slick-slide.slick-current.slick-active>a').attr('href',data.variant_image);
                                 $('.item.slick-slide.slick-current.slick-active>a>img').attr('src',data.variant_image);
+                                $('.item.slick-slide.slick-current.slick-active>img').attr('src',data.variant_image);
                           }
                           
 
