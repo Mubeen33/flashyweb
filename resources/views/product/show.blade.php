@@ -343,7 +343,7 @@
                     <aside class="widget widget_sell-on-site">
                         <p><i class="icon-store"></i> Sell on Flashybuy?<a href="{{ route('frontend.becomeAVendor.get') }}"> Register Now !</a></p>
                     </aside>
-                    <aside class="widget widget_ads"><a href="#"><img src="{{ asset('img/ads/product-ads.png')}}" alt=""></a></aside>
+                    {{-- <aside class="widget widget_ads"><a href="#"><img src="{{ asset('img/ads/product-ads.png')}}" alt=""></a></aside> --}}
                     @include('product.partials.other-offers')
                 </div>
             </div>
