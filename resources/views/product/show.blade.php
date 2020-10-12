@@ -184,7 +184,7 @@
                                         </div>
                                     </figure>
                                     <button class="ps-btn ps-btn--black" id="cart">Add to cart</button>
-                                    <a class="ps-btn" href="#">Buy Now</a>
+                                    <button class="ps-btn" type="button" id="buynow">Buy Now</button>
                                     <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>
                                 </div>
                                 <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>
@@ -707,6 +707,7 @@ function getfirstVariation(variation1,token,product_id){
                           $('#price').val(data[0].price);
                           $("#v_p_id").val(data[0].id);
                           $("#cart").prop('disabled', false);
+                          $("#buynow").prop('disabled', false);
                           if (data.variant_image != undefined) {
 
                                 $('.item.slick-slide.slick-current.slick-active>a').attr('href',data.variant_image);
@@ -718,12 +719,14 @@ function getfirstVariation(variation1,token,product_id){
 
                             $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                             $("#cart").prop('disabled', true);
+                            $("#buynow").prop('disabled', true);
                             
                         }
                     }else{
 
                         $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                         $("#cart").prop('disabled', true);
+                        $("#buynow").prop('disabled', true);
                         
                     }    
                 }
@@ -748,6 +751,7 @@ function getsecondVariation(variation1,variation2,token,product_id) {
                           $('#price').val(data[0].price);
                           $("#v_p_id").val(data[0].id);
                           $("#cart").prop('disabled', false);
+                          $("#buynow").prop('disabled', false);
                           if (data.variant_image != undefined) {
 
                                 $('.item.slick-slide.slick-current.slick-active>a').attr('href',data.variant_image);
@@ -760,12 +764,14 @@ function getsecondVariation(variation1,variation2,token,product_id) {
 
                             $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                             $("#cart").prop('disabled', true);
+                            $("#buynow").prop('disabled', true);
                             
                         }
                     }else{
 
                         $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                         $("#cart").prop('disabled', true);
+                        $("#buynow").prop('disabled', true);
                         
                     }    
                 }
@@ -868,6 +874,74 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
            }
 
     });
-}    
+}
+
+// 
+    $(document).delegate("#buynow","click",function(){
+
+        var product_id   = $("#productid").val();
+        var vendor_id    = $("#vendorid").val();
+        var variation_id = $("#variation_id").val();
+        var quantity     = $("#quantity").val();
+        var maxQty       = $("#maxQty").val();
+        var price        = $('#price').val();
+        var v_p_id       = $('#v_p_id').val();
+
+
+        // if (parseInt(maxQty) < quantity) {
+        //     if (!$("div").is("#notify")) {
+
+        //         $(".ps-product__variations").append("<div id='notify' class='btn btn-danger'>Sorry! We have Only "+maxQty+" items in Stock.For Further info Conatct Support.</div>");
+        //     }    
+        // }
+        // else if(parseInt(maxQty) >= quantity){
+
+        //     if ($("div").is("#notify")) {
+
+        //         $('#notify').remove();
+
+        //     }
+        //     addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id);
+        // }
+        if (price == '') {
+            if($('#notify').length){
+
+
+            }else{
+
+                $(".ps-product__variations").prepend("<div id='notify' class='btn btn-danger'>Please! Select a variation.</div>");
+
+            }
+
+        }else{
+
+            buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id);
+        }
+        
+    }); 
+function buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id){
+
+    $.ajax({
+           type:"POST",
+           url:'{{ route('cart.products.buyNow') }}',
+           data        :  {
+
+                                      action       : 'add',
+                                      product_id   :  product_id,
+                                      variation_id : variation_id,
+                                      vendor_id    :  vendor_id,
+                                      quantity     :  quantity,
+                                      price        :  price,
+                                      v_p_id       :  v_p_id,
+                                      _token       : $('input[name=_token').val() 
+                                    },
+           success: function(data){
+
+                window.location.href = "{{ url('checkout') }}";
+
+           }
+
+    });
+}     
 </script>
    
