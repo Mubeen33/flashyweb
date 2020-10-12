@@ -120,7 +120,10 @@
                                     
                                 </h4>
                                 <div class="ps-product__desc">
-                                    <p>Sold By:<a href="shop-default.html"><strong> {{ $data->get_vendor->company_name }}</strong></a></p>
+                                    @php
+                                        $vendorName = (App\Models\Vendor::where('id',$productData->vendorid)->value('company_name'));
+                                    @endphp
+                                    <p>Sold By:<a href="shop-default.html"><strong id="vendorName"> {{ $vendorName }}</strong></a></p>
                                     <ul class="ps-list--dot">
                                         <li> Unrestrained and portable active stereo speaker </li>
                                         <li> Free from the confines of wires and chords </li>
@@ -340,68 +343,8 @@
                     <aside class="widget widget_sell-on-site">
                         <p><i class="icon-store"></i> Sell on Flashybuy?<a href="{{ route('frontend.becomeAVendor.get') }}"> Register Now !</a></p>
                     </aside>
-                    <aside class="widget widget_ads"><a href="#"><img src="img/ads/product-ads.png" alt=""></a></aside>
-                    <aside class="widget widget_same-brand">
-                        <h3>Same Brand</h3>
-                        <div class="widget__content">
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/5.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-37%</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
-                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/6.jpg" alt=""></a>
-                                    <div class="ps-product__badge">-5%</div>
-                                    <ul class="ps-product__actions">
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
-                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>
-                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                        <div class="ps-product__rating">
-                                            <select class="ps-rating" data-read-only="true">
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="2">5</option>
-                                            </select><span>01</span>
-                                        </div>
-                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
-                                    </div>
-                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
-                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
+                    <aside class="widget widget_ads"><a href="#"><img src="{{ asset('img/ads/product-ads.png')}}" alt=""></a></aside>
+                    @include('product.partials.other-offers')
                 </div>
             </div>
             <div class="ps-section--default ps-customer-bought">
@@ -412,7 +355,7 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
                             <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/4.jpg" alt=""></a>
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{ asset('img/products/shop/4.jpg')}}" alt=""></a>
                                     <div class="ps-product__badge hot">hot</div>
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -442,7 +385,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
                             <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/5.jpg" alt=""></a>
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{ asset('img/products/shop/5.jpg')}}" alt=""></a>
                                     <div class="ps-product__badge">-37%</div>
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -472,7 +415,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
                             <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/6.jpg" alt=""></a>
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{ asset('img/products/shop/6.jpg')}}" alt=""></a>
                                     <div class="ps-product__badge">-5%</div>
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -502,7 +445,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
                             <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/7.jpg" alt=""></a>
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{ asset('img/products/shop/7.jpg')}}" alt=""></a>
                                     <div class="ps-product__badge">-16%</div>
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -532,7 +475,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
                             <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/8.jpg" alt=""></a>
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{ asset('img/products/shop/8.jpg')}}" alt=""></a>
                                     <div class="ps-product__badge">-16%</div>
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
@@ -562,7 +505,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
                             <div class="ps-product">
-                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/shop/9.jpg" alt=""></a>
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="{{ asset('img/products/shop/9.jpg')}}" alt=""></a>
                                     <ul class="ps-product__actions">
                                         <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
                                         <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
@@ -663,11 +606,13 @@
            if($(".option1").length){
             if($(".Active2").length){
 
-                 getsecondVariation(variation1,variation2,token,product_id); 
+                 getsecondVariation(variation1,variation2,token,product_id);
+                 getOtherOffers(variation1,variation2,product_id,token); 
              }
            }else{
 
                 getfirstVariation(variation1,token,product_id);
+                getsingleOffers(variation1,product_id,vendor_id,token); 
            }
      });
        $(document).delegate(".option1","click",function(e){
@@ -686,6 +631,8 @@
        if($('.Active1').length){
 
             getsecondVariation(variation1,variation2,token,product_id);
+            getOtherOffers(variation1,variation2,product_id,token);
+
         }  
      });
 
@@ -706,6 +653,8 @@ function getfirstVariation(variation1,token,product_id){
                           $('.ps-product__price').text('R'+data[0].price);
                           $('#price').val(data[0].price);
                           $("#v_p_id").val(data[0].id);
+                          $('#vendorid').val(data[0].ven_id);
+                          $('#vendorName').text(data.vendor_name);
                           $("#cart").prop('disabled', false);
                           $("#buynow").prop('disabled', false);
                           if (data.variant_image != undefined) {
@@ -750,6 +699,8 @@ function getsecondVariation(variation1,variation2,token,product_id) {
                           $('.ps-product__price').text('R'+data[0].price);
                           $('#price').val(data[0].price);
                           $("#v_p_id").val(data[0].id);
+                          $('#vendorid').val(data[0].ven_id);
+                          $('#vendorName').text(data.vendor_name);
                           $("#cart").prop('disabled', false);
                           $("#buynow").prop('disabled', false);
                           if (data.variant_image != undefined) {
@@ -942,6 +893,68 @@ function buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id){
            }
 
     });
-}     
+}  
+
+// ======================================================================= //
+// =============================| Other Offers |========================== //
+// ======================================================================= //
+
+function getOtherOffers(variation1,variation2,product_id,token){
+
+    $.ajax({
+
+            type : "POST",
+            url  : '{{ Route('cart.products.getOtherOffers.post') }}',
+            data : {
+
+                    variation1 : variation1,
+                    variation2 : variation2,
+                    product_id : product_id,
+                    _token     : $('input[name=_token').val()
+            },
+            success:function(data){
+
+                if($('.widget.widget_same-brand').length){
+
+                    $('.widget.widget_same-brand').remove();
+
+                    $('.ps-page__right').append(data);
+
+                }else{
+
+                    $('.ps-page__right').append(data);
+                }
+            }
+    });
+}
+//
+
+function getsingleOffers(variation1,product_id,token){
+
+    $.ajax({
+
+            type : "POST",
+            url  : '{{ Route('cart.products.getSingleOffers.post') }}',
+            data : {
+
+                    variation1 : variation1,
+                    product_id : product_id,
+                    _token     : $('input[name=_token').val()
+            },
+            success:function(data){
+
+                if($('.widget.widget_same-brand').length){
+
+                    $('.widget.widget_same-brand').remove();
+
+                    $('.ps-page__right').append(data);
+
+                }else{
+
+                    $('.ps-page__right').append(data);
+                }
+            }
+    });
+} 
 </script>
    
