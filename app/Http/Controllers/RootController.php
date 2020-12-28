@@ -18,8 +18,8 @@ class RootController extends Controller
     	$sliders = Slider::whereDate('start_time', '<=', $today)
     					->whereDate('end_time', '>=', $today)
     					->orderBy('order_no', 'ASC')
-    					->get();  	
-
+                        ->get();  	
+        
         $products = VendorProduct::where("active", 1)
                     ->select("*")
                     ->selectRaw("MIN(price) AS min_price")

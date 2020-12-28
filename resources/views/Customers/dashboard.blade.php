@@ -4,7 +4,7 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li>Customer / Dashboard</li>
                 </ul>
             </div>

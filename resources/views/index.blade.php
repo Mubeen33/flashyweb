@@ -1,11 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
+
     <div id="homepage-1">
         <div class="ps-home-banner ps-home-banner--1">
             <div class="ps-container">
                 <div class="ps-section__left">
-                    @include('Partials.home-slider')
+                    @include('Partials.home-slider' )
                 </div>
                 <div class="ps-section__right">
                     @include('Partials.banners-top-right')
@@ -814,7 +815,7 @@
         </div>
 
 
-        <div class="ps-download-app">
+        {{-- <div class="ps-download-app" >
             <div class="ps-container">
                 <div class="ps-block--download-app">
                     <div class="container">
@@ -839,7 +840,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="ps-product-list ps-new-arrivals">
