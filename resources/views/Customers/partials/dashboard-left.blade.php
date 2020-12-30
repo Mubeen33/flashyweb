@@ -6,14 +6,14 @@
         </figure>
     </div>
     <div class="ps-widget__content">
-        <ul>
-            <li @if(Request::is('customer/dashboard')) class="active" @endif><a href="{{ route('customer.dashboard.get') }}"><i class="icon-user"></i> Account Information</a></li>
+        <ul class="customer_menu">
+            <li class="active"  id="customer_profileTab"><a id="customer_profile" style="cursor: pointer;"><i class="icon-user"></i> Account Information</a></li>
             <li><a href="#"><i class="icon-alarm-ringing"></i> Notifications</a></li>
             <li><a href="#"><i class="icon-papers"></i> Invoices</a></li>
-            <li @if(Request::is('customer/addresses')) class="active" @endif><a href="{{ route('customer.address.get') }}"><i class="icon-map-marker"></i> Address</a></li>
+            <li class="" id="customer_addressTab"><a  id="customer_address" style="cursor: pointer;"><i class="icon-map-marker"></i> Address</a></li>
             <li><a href="#"><i class="icon-store"></i> Recent Viewed Product</a></li>
-            <li><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
-            <li @if(Request::is('customer/orders')) class="active" @endif><a href="{{ route('customer.orders.index') }}"><i class="icon-bag"></i> Orders</a></li>
+            <li class=""><a href="#"><i class="icon-heart"></i> Wishlist</a></li>
+            <li class="" id="customer_ordersTab"><a id="customer_orders" style="cursor: pointer;"><i class="icon-bag"></i> Orders</a></li>
             <li>
                 <a href="#" onclick="event.preventDefault();document.getElementById('logout--form').submit();">
                     <i class="icon-power-switch"></i>Logout

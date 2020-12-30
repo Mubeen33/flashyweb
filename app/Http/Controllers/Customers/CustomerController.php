@@ -21,6 +21,9 @@ class CustomerController extends Controller
     public function dashboard(){
         return view('Customers.dashboard');
     }
+    public function profile(){
+        return view('Customers.profile');
+    }
 
 
     //profile update
@@ -107,10 +110,11 @@ class CustomerController extends Controller
         }
 
         if ($result == true) {
-            return response()->json([
-                'success'=>true,
-                'msg'=>'Address Updated'
-            ], 200);
+            // return response()->json([
+            //     'success'=>true,
+            //     'msg'=>'Address Updated'
+            // ], 200);
+            return redirect()->back()->with('success', 'Address Updated');
         }else{
             return response()->json("Someting went wrong, please try again.", 422);
         }

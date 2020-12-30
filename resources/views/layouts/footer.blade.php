@@ -178,6 +178,7 @@
     <script src="{{ asset('plugins/gmap3.min.js')}}"></script>
     <!-- custom scripts-->
     <script src="{{ asset('js/main.js')}}"></script>
+    <script src="{{ asset('js/zoomsl.js')}}"></script>
     <script type="text/javascript">
         $( function() {
 
@@ -232,6 +233,8 @@ function remove_cart(p_id){
     });
 }
     </script>
+
+    
     @stack('scripts')
 </body>
 

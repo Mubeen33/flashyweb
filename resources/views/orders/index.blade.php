@@ -1,44 +1,15 @@
-@extends('layouts.master')
 
-@push('styles')
-<style type="text/css">
-    #searchKey__,
-    #selected_row_per_page,
-    #hidden__status{
-        border: 1px solid #ddd;
-        padding: 2px 10px;
-        outline: none;
-    }
-</style>
-@endpush
-
-@section('content')
-    <main class="ps-page--my-account">
-        <div class="ps-breadcrumb">
-            <div class="container">
-                <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li>Customer / Orders</li>
-                </ul>
-            </div>
-        </div>
-        <section class="ps-section--account">
-            <div class="container">
-                @include('msg.msg')
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="ps-section__left">
-                            @include('Customers.partials.dashboard-left')
-                        </div>
+                   <div class="ps-form__header mb-40">
+                        <h3>My Orders ({{$data->total()}})</h3>
+                        @include('msg.msg')
                     </div>
-                    <div class="col-lg-8">
-                        <div class="ps-section__right">
-                                
+                       <div class="ps-section__right">
+                          
                                <div class="row" id="basic-table">
                                     <div class="col-12">
                                         <div class="card">
                                             <div class="card-header d-flex justify-content-between">
-                                                <div><h4 class="card-title">My Orders ({{$data->total()}})</h4></div>
+                                               
                                                 <div>
                                                     <select id="hidden__status" title="Sort By Status">
                                                         <option value="" selected>Status</option>
@@ -98,32 +69,6 @@
 
 
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-@endsection
+                    
 
 
-
-@push('scripts')
-
-<script type="text/javascript">
-    //if change status
-    $("#hidden__status").on('change', function(){
-        let action_url = $("#hidden__action_url").val()
-        let searchKey = $("#searchKey__").val()
-        let pageNumber = 1;
-        let sort_by = $("#hidden__sort_by").val()
-        let sorting_order = $("#hidden__sorting_order").val()
-        let hidden__status = $(this).val()
-        let row_per_page = $("#selected_row_per_page").val()
-        let hidden__id = $("#hidden__id").val()
-        fetch_paginate_data(action_url, pageNumber, searchKey, sort_by, sorting_order, hidden__status, row_per_page, hidden__id);
-    })
-</script>
-
-<script type="text/javascript" src="{{ asset('js/ajax-pagination.js') }}"></script>
-@endpush

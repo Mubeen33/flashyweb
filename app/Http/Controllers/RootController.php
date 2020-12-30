@@ -7,9 +7,13 @@ use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\VendorProduct;
 use Carbon\Carbon;
-
+use auth;
 class RootController extends Controller
 {
+    public function __construct()
+    {
+     //   $this->middleware('auth:customer');
+    }
     public function index(){
     	$current = Carbon::now();
     	$today =$current->format('Y-m-d');

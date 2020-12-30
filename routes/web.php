@@ -77,6 +77,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 	//customer protected routes
 	Route::group(['as'=>'customer.', 'prefix'=>'customer', 'middleware' => ['customerMW']], function(){
 		Route::get('dashboard', 'Customers\CustomerController@dashboard')->name('dashboard.get');
+		Route::get('profile', 'Customers\CustomerController@profile')->name('profile.get');
 		Route::post('profile-update', 'Customers\CustomerController@profile_update')->name('profieUpdate.post');
 		
 		//address
