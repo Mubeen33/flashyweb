@@ -68,8 +68,8 @@
                     </ul>
                 </aside>
             </div>
-            <div class="ps-footer__links">
-                @php
+            <div class="ps-footer__links"  hidden>
+                {{-- @php
     //show_image_nav -for show on navigation
     $categories = (\App\Models\Category::orderBy('id','desc')
                             ->where('deleted', '=', 0)
@@ -78,7 +78,7 @@
             @foreach($categories as $Category)
                 <p><a href="#">{{ $Category->getParentsNames() }}</a>
                 </p>
-            @endforeach    
+            @endforeach     --}}
                 {{-- <p><strong>Clothing &amp; Apparel:</strong><a href="#">Printers</a><a href="#">Projectors</a><a href="#">Scanners</a><a href="#">Store &amp; Business</a><a href="#">4K Ultra HD TVs</a><a href="#">LED TVs</a><a href="#">OLED TVs</a>
                 </p>
                 <p><strong>Home, Garden &amp; Kitchen:</strong><a href="#">Cookware</a><a href="#">Decoration</a><a href="#">Furniture</a><a href="#">Garden Tools</a><a href="#">Garden Equipments</a><a href="#">Powers And Hand Tools</a><a href="#">Utensil &amp; Gadget</a>

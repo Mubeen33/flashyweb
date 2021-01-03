@@ -14,7 +14,7 @@
                 @if(!$product_images->isEmpty())
                     @foreach($product_images as $img_keys=>$image)
                         @if($img_keys == 0)
-                            <img src="{{$image->image}}" alt="">
+                            <img style="max-height: 150px; min-height: 150px; object-fit: cover;" src="{{$image->image}}" alt="">
                         @endif
                     @endforeach
                 @endif

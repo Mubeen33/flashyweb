@@ -46,6 +46,7 @@ class CustomerLogin extends Controller
 
     	//attempt to log user in
     	if (Auth::guard('customer')->attempt(['email'=>$request->email, 'password'=>$request->password], $request->remember)) {
+             $request->session()->put('loggin',true);
             //record activity
             //$this->loggedInActivity();
             $redirect_path = "/customer/dashboard";

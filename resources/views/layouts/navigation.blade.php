@@ -99,7 +99,8 @@
                         </div>
                         <div class="ps-block--user-header">
                             <div class="ps-block__left"><i class="icon-user"></i></div>
-                            @if(!Auth::check())
+                            
+                            @if(session('loggin')==false)
                             <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('login') }}">Register</a></div>
                             @else
                                 <div class="ps-block__right"><a href="{{ route('customer.dashboard.get') }}">Dashboard</a></div>

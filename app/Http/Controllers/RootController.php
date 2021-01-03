@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Slider;
 use App\Models\Banner;
 use App\Models\VendorProduct;
 use Carbon\Carbon;
-use auth;
+//use auth;
 class RootController extends Controller
 {
     public function __construct()
     {
-     //   $this->middleware('auth:customer');
+      //  $this->middleware('auth:customer');
     }
     public function index(){
+      //print_r($user = Auth::user());exit;
     	$current = Carbon::now();
     	$today =$current->format('Y-m-d');
         $current__time =$current->format('Y-m-d H:i');
