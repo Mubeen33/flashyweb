@@ -11070,7 +11070,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   transition-delay: 0.5s;
 }
 
-#loader-wrapper {
+/*#loader-wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -11142,7 +11142,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   visibility: hidden;
   transform: translateY(-100%);
   transition: all 0.3s 1s ease-out;
-}
+}*/
 
 .ps-modal {
   position: fixed;
@@ -17001,9 +17001,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   font-weight: 900;
 }
 
-.ps-fullwidth {
-  width: 100%;
-}
+
 
 html .bg--parallax {
   position: relative;
