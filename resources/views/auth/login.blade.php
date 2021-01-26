@@ -18,8 +18,8 @@
                     <div class="ps-section__left">
                         <div class="ps-form--account ps-tab-root">
                             <ul class="ps-tab-list">
-                                <li class="active"><a href="#sign-in">Login</a></li>
-                                <li><a href="#register">Register</a></li>
+                                <li <?php if($check == "login") echo 'class="active"'; ?>><a href="#sign-in">Login</a></li>
+                                <li <?php if($check == "register") echo 'class="active"'; ?>><a href="#register">Register</a></li>
                             </ul>
 
                             <div class="p-3">
@@ -158,7 +158,24 @@
             let form_data = form.serialize();
             formSubmitWithoutFile(formID, url, type, form_data);
         })
+
+
     })
 </script>
+@if($check == 'login')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#register").removeClass('active');
+        $("#sign-in").addClass('active');
+    });
+</script>
+@else
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#register").addClass('active');
+        $("#sign-in").removeClass('active');
+    });
+</script>
+@endif
 <script type="text/javascript" src="{{ asset('js/general-form-submit.js') }}"></script>
 @endpush

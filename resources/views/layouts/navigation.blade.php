@@ -94,16 +94,16 @@
                                 <div class="ps-cart__items" id="ps-cart__items">
                                     
                                 </div>
-                               
                             </div>
                         </div>
                         <div class="ps-block--user-header">
                             <div class="ps-block__left"><i class="icon-user"></i></div>
                             
                             @if(session('loggin')==false)
-                            <div class="ps-block__right"><a href="{{ route('login') }}">Login</a><a href="{{ route('login') }}">Register</a></div>
+                            <div class="ps-block__right"><a href="{{ route('login', 'login') }}">Login</a><a href="{{ route('login' , 'register') }}">Register</a></div>
                             @else
-                                <div class="ps-block__right"><a href="{{ route('customer.dashboard.get') }}">Dashboard</a></div>
+                                <div class="ps-block__right mt-2"><a style="white-space: nowrap;" href="{{ route('customer.dashboard.get') }}">{{Auth::guard('customer')->user()->first_name . " " .  Auth::guard('customer')->user()->last_name}}</a>
+                                    </div>
                             @endif
                         </div>
                     </div>
@@ -112,11 +112,13 @@
         </div>
         <nav class="navigation">
             <div class="ps-container">
+                @if(\App\Models\Application::where('preview_mode' , 0)->exists())
                 <div class="navigation__left">
 
                     @include('Partials.menu.dv-categories')
 
                 </div>
+                @endif
                 <div class="navigation__right">
                     <ul class="menu">
                         <li class="menu-item-has-children"><a href="index.html">Home</a><span class="sub-toggle"></span>

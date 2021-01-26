@@ -1,7 +1,6 @@
 
                    <div class="ps-form__header mb-40">
                         <h3>My Orders ({{$data->total()}})</h3>
-                        @include('msg.msg')
                     </div>
                        <div class="ps-section__right">
                           

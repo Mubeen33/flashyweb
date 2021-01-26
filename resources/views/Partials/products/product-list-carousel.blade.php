@@ -48,13 +48,6 @@
     </div>
     @endforeach
 @endif
-
-
-
-
-
-
-
 {{--
 Product default designs backup codes of HTML
 

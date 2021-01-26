@@ -20,6 +20,15 @@
                 </ul>
             </div>
         </div>
+
+        @if(session()->has('success'))
+        <div class="container mt-3">
+            <div class="alert alert-success">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Your Order has been placed successfully
+        </div>
+        </div>
+        @endif
         <section class="ps-section--account">
             <div class="container">
                 <div class="row">
@@ -97,10 +106,27 @@
           });
     });
   
-    
    
         
     </script>
+    @if(session()->has('success'))
+    <script type="text/javascript">
+        $(function() {
+                $( 'ul.customer_menu li' ).parent().find( 'li.active' ).removeClass( 'active' );
+                $( '#customer_ordersTab' ).addClass( 'active' );
+                $.ajax({
+            
+                url: "{{ route('customer.orders.index') }}",
+                success: function(data){
+                    
+                    $('#customer_content').html(data);
+                    $('#page_breadcrumb').text('Customer / Orders');
+                  
+                }
+            });
+    });
+    </script>
+    @endif
     
     <script type="text/javascript" src="{{ asset('js/ajax-pagination.js') }}"></script>
     @endpush

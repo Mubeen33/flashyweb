@@ -4,6 +4,7 @@
 
     <div id="homepage-1">
         <div class="ps-home-banner ps-home-banner--1">
+            @if(\App\Models\Application::where('preview_mode' , 0)->exists())
             <div class="ps-container">
                 <div class="ps-section__left">
                     @include('Partials.home-slider' )
@@ -12,6 +13,11 @@
                     @include('Partials.banners-top-right')
                 </div>
             </div>
+            @else
+            <div class="ps-container">
+                @include('Partials._new_banner')
+            </div>
+            @endif
         </div>
         <div class="ps-site-features">
             <div class="ps-container">

@@ -17,9 +17,9 @@ class CustomerLogin extends Controller
 	}
 
     //login form
-    public function login_form($intend=NULL){
+    public function login_form($check = 'login' , $intend=NULL){
         $signupContent = SignupContent::where('id', 1)->first();
-    	return view('auth.login', compact('signupContent', 'intend'));
+    	return view('auth.login', compact('signupContent', 'intend' , 'check'));
     }
 
     //attemt to login
@@ -49,10 +49,12 @@ class CustomerLogin extends Controller
              $request->session()->put('loggin',true);
             //record activity
             //$this->loggedInActivity();
-            $redirect_path = "/customer/dashboard";
+            $redirect_path = "/flashy/flashyweb/public/customer/dashboard";
             if ($request->intend != '') {
                 $redirect_path = "/".$request->intend;
             }
+
+
             return response()->json([
                     'success'=>true,
                     'msg'=>"Login Success",

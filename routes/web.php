@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('getroute' , function(){
+	return route('customer.dashboard.get');
+});
 Route::get('application', 'Application\SiteMaintenanceController@application')->name('frontend.application.get');
 Route::group(['middleware'=>['AppStatusMW']], function(){
 
@@ -55,7 +58,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 
 
 	//customer login/logout routes
-	Route::get('login/{intend?}', 'Customers\Auth\CustomerLogin@login_form')->name('login');
+	Route::get('account/{check?}/{intend?}', 'Customers\Auth\CustomerLogin@login_form')->name('login');
 	Route::post('customer-login', 'Customers\Auth\CustomerLogin@login')->name('customer.login.Post');
 	Route::get('logout', function(){return abort(404);});
 	Route::post('logout', 'Customers\Auth\CustomerLogout@logout')->name('logout');

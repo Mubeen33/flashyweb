@@ -337,6 +337,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	$ord2 = mt_rand(100, 999);
     	$ord3 = mt_rand(100, 999);
     	$orderID = $ord1.'-'.$ord2.'-'.$ord3;
+    	$route = route('cart.order-success' , $orderID);
 
     	$cart = session()->get('cart');
 		if(isset($cart)){
@@ -372,7 +373,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 			session()->forget('cart');
 			if( $request->payment_options == 'EFT' ){
 
-	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
+	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID' , 'route'));
 	    	}
 	    	if( $request->payment_options == 'Debit' ){
 
@@ -435,7 +436,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 	                	
 
                 // 
-    		    return redirect()->route('customer.orders.index')->with('success', 'Order Saved Successfully');
+    		    return redirect()->route('customer.dashboard.get')->with('success', 'Order Saved Successfully');
    			}
    			else{
 				return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
