@@ -49,7 +49,7 @@ class CustomerLogin extends Controller
              $request->session()->put('loggin',true);
             //record activity
             //$this->loggedInActivity();
-            $redirect_path = "/flashy/flashyweb/public/customer/dashboard";
+            $redirect_path = route('customer.dashboard.get');
             if ($request->intend != '') {
                 $redirect_path = "/".$request->intend;
             }
