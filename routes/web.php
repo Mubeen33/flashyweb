@@ -93,7 +93,9 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 		Route::get('ajax-orders/fetch', 'order\OrderController@fetch_orders_list')->name('orders.ajaxPgination');
 
 	});
-
-
-
 });
+
+Route::get('/{slug}' , function($slug){
+	$page = \App\Models\Page::where('slug' , $slug)->first();
+	return view('Pages.page')->with('page',$page);
+})->name('slug_name');
