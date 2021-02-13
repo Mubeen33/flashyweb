@@ -99,10 +99,12 @@
                 </div>
             </div>
         </div>
+        @foreach(\App\Models\HomeCategory::where('status' , 1)->get() as $key => $home_category)
+        @if ($home_category->category != null)
         <div class="ps-product-list ps-clothings">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Consumer Electronics</h3>
+                    <h3>{{$home_category->category->name}}</h3>
                     <ul class="ps-section__links">
                         <li><a href="shop-grid.html">New Arrivals</a></li>
                         <li><a href="shop-grid.html">Best seller</a></li>
@@ -112,6 +114,10 @@
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                        @php
+                        $products = \App\Models\Product::where('category_id' , $home_category->category->id)->get();
+                        @endphp
+                        @foreach($products as $product)
                         <div class="ps-product">
                             <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/electronic/1.jpg" alt=""></a>
                                 <div class="ps-product__badge">-16%</div>
@@ -123,7 +129,7 @@
                                 </ul>
                             </div>
                             <div class="ps-product__container"><a class="ps-product__vendor" href="#">Go Pro</a>
-                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Marshall Kilburn Portable Wireless</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">{{$product->title}}</a>
                                     <div class="ps-product__rating">
                                         <select class="ps-rating" data-read-only="true">
                                             <option value="1">1</option>
@@ -135,12 +141,13 @@
                                     </div>
                                     <p class="ps-product__price sale">$567.99 <del>$670.00 </del></p>
                                 </div>
-                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Marshall Kilburn Portable Wireless</a>
+                                <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">{{$product->title}}</a>
                                     <p class="ps-product__price sale">$567.99 <del>$670.00 </del></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="ps-product">
+                        @endforeach
+                        <!-- <div class="ps-product">
                             <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/electronic/2.jpg" alt=""></a>
                                 <div class="ps-product__badge hot">hot</div>
                                 <ul class="ps-product__actions">
@@ -385,12 +392,14 @@
                                     <p class="ps-product__price">$42.00</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ps-product-list ps-clothings">
+        @endif
+        @endforeach
+       <!--  <div class="ps-product-list ps-clothings">
             <div class="ps-container">
                 <div class="ps-section__header">
                     <h3>Apparels & Clothings</h3>
@@ -816,7 +825,7 @@
                 </div>
             </div>
         </div>
-        <div class="ps-home-ads">
+        <div class="ps-home-ads"> -->
             @include('Partials.banner-long')
         </div>
 
