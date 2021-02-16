@@ -124,7 +124,7 @@
         </div>
     </div>
     <div class="col-lg-9">
-        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <!-- <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -134,7 +134,7 @@
                 @php
                 $i = "active";
                 @endphp
-                @foreach(\App\Models\Slider::all() as $slider)
+                @foreach(\App\Models\Slider::orderBy('order_no')->get() as $slider)
                 <div class="carousel-item {{$i}}">
                   <img class="d-block w-100" src="{{$slider->image_lg}}" height="350px" alt="{{$slider->title}}">
                   @if(!empty($slider->button_text))
