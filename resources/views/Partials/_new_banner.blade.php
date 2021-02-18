@@ -77,6 +77,14 @@
     animation-name: fadeInUp;
     -webkit-animation-name: fadeInUp;
 }
+@media only screen and (max-width: 767px) {
+  #mobile{
+    display: block !important;
+  }
+}
+#mobile{
+    display: none;
+}
 </style>
 <div class="row no-gutters position-relative">
     <div class="col-lg-3 position-static order-2 order-lg-0">
@@ -123,7 +131,7 @@
             @endif
         </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" id="home-slider--dv">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <!-- <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -160,6 +168,44 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-lg-9" id="mobile">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <!-- <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol> -->
+            <div class="carousel-inner">
+                @php
+                $i = "active";
+                @endphp
+                @foreach(\App\Models\Slider::orderBy('order_no')->get() as $slider)
+                <div class="carousel-item {{$i}}">
+                  <img class="d-block w-100" src="{{$slider->image_sm}}" alt="{{$slider->title}}">
+                  @if(!empty($slider->button_text))
+                  <h4 class="sliderTitle" style="color:{{$slider->text_color}};">{{ $slider->title }}</h4>
+                  <p class="sliderDesc" style="color:{{$slider->text_color}};">{{ $slider->description }}</p>
+                  <a href="{{ $slider->link }}" class="sliderBtn btn text-uppercase"
+                            style="
+                                background-color:{{$slider->button_color}};
+                                color:{{$slider->button_text_color}};
+                            "
+                        >
+                            {{ $slider->button_text }}
+                        </a>
+                    @endif
+                </div>
+                @php
+                    $i = "";
+                @endphp
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
