@@ -68,7 +68,7 @@ class CustomerController extends Controller
         ])->first();
         return view('Customers.address', compact('billingAddress', 'shippingAddress'));
     }
-    
+
 
 
     //update address
@@ -144,5 +144,5 @@ class CustomerController extends Controller
     private function withValidateMsg($msgTxt, $type){
         return response()->json($msgTxt, $type);
     }
-    
+
 }

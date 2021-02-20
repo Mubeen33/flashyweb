@@ -12,22 +12,22 @@ use App\Models\Vendor;
 use App\Models\Order;
 use Carbon\Carbon;
 use App\Models\ProductMedia;
-use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Auth;
 use DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
 use App\Mail\OrderAdminMail;
 use App\Mail\OrderSellerMail;
 use App\User;
-
+use Auth;
 
 class CartController extends Controller
 {
     public function addToCart(Request $request){
-    	
+
     	// session()->forget('cart');
     	if (isset($_POST['action']) && $_POST['action']=='add'){
-	
+
 				$product_id        =  $_POST['product_id'];
 				$vendor_id         =  $_POST['vendor_id'];
 				$quantity          =  $_POST['quantity'];
@@ -35,15 +35,15 @@ class CartController extends Controller
 				// $variation_id      =  $_POST['variation_id'];
 				$v_p_id            =  $_POST['v_p_id'];
 
-				
+
 				$vendor     = Vendor::where('id',$vendor_id)->value('company_name');
 				$image_id   = Product::where('id',$product_id)->value('image_id');
-				
+
 
 				$variation_id = VendorProduct::where('id',$v_p_id)->value('variation_id');
 
 				if (empty($variation_id)) {
-					
+
 					$image      = ProductMedia::where('image_id',$image_id)->value('image');
 					$name       = Product::where('id',$product_id)->value('title');
 				}
@@ -52,9 +52,9 @@ class CartController extends Controller
 					$image = ProductVariation::where('product_id',$product_id)->where('id',$variation_id)->value('variant_image');
 					$variation 	= ProductVariation::where('product_id',$product_id)->where('id',$variation_id)->first();
 					$name       = Product::where('id',$product_id)->value('title');
-					
+
 					if (!empty($variation->second_variation_value)) {
-							
+
 							$name       = $name."(".$variation->first_variation_value."-".$variation->second_variation_value.")";
 
 					}
@@ -63,18 +63,18 @@ class CartController extends Controller
 						$name       = $name."(".$variation->first_variation_value.")";
 					}
 					if (empty($image)) {
-						
+
 						$image      = ProductMedia::where('image_id',$image_id)->value('image');
 					}
 				}
 
 				$cart = session()->get('cart');
-				
+
 				if(isset($cart[$v_p_id]) && !empty($cart[$v_p_id]))
 				{
 					if(!array_key_exists($v_p_id,$cart))
 					{
-				   
+
 						$cart[$v_p_id] = [
 			                        'v_p_id'       => $v_p_id,
 									'product_id'   => $product_id,
@@ -86,14 +86,14 @@ class CartController extends Controller
 									'vendor'       => $vendor
 			            ];
 			             session()->put('cart', $cart);
-				   
+
 					}
 					else{
-						
+
 						$cart[$v_p_id]['price'] 	= $price;
 						$cart[$v_p_id]['quantity'] 	= $quantity;
 						session()->put('cart', $cart);
-					}		
+					}
 				}
 				else{
 				  $cart[$v_p_id] = [
@@ -115,7 +115,7 @@ if(isset($_POST['action']) && $_POST['action'] == "delete"){
 
 	@$v_p_id   	= trim($_POST['p_id']);
 	$cart = session()->get('cart');
- 
+
     if(isset($cart[$v_p_id])) {
 
         unset($cart[$v_p_id]);
@@ -133,7 +133,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
 		$cart = session()->get('cart');
 		if(isset($cart)){
-	 
+
 			  		  $tquantity = 0;
 					  $tPrice    = 0;
 					  foreach(session('cart') as $id => $data){
@@ -142,7 +142,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 							$tquantity 	 += $data['quantity'];
 							$id           = base64_encode($data['product_id']);
 
-					  
+
 							echo '
 									<div class="ps-product--cart-mobile">
 			                            <div class="ps-product__thumbnail"><a href=""><img src="'.$data['image'].'" alt=""></a></div>
@@ -155,19 +155,19 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
 							echo '<div class="ps-cart__footer">
                                     <h3>Sub Total:<strong>R'.$tPrice.'</strong></h3>';
-                                    
+
 									    if (!Auth::guard('customer')->check()) {
 
 									    	echo '<figure><a class="ps-btn" href="">View Cart</a><a class="ps-btn" href="'.url('checkout').'">Checkout</a></figure>';
-									        
+
 									    }else{
 									      echo '<figure><a class="ps-btn" href="'.url("checkout").'">View Cart</a><a class="ps-btn" href="'.url("checkout").'">Checkout</a></figure>';
-									    } 
-                                    
+									    }
+
                                echo '</div>';
                         }
-                        echo '`'.$tquantity;       
-				}		
+                        echo '`'.$tquantity;
+				}
     }
 
     // Buy Now
@@ -175,7 +175,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     public function buyNow(Request $request){
 
     	if (isset($_POST['action']) && $_POST['action']=='add'){
-	
+
 				$product_id        =  $_POST['product_id'];
 				$vendor_id         =  $_POST['vendor_id'];
 				$quantity          =  $_POST['quantity'];
@@ -183,15 +183,15 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 				// $variation_id      =  $_POST['variation_id'];
 				$v_p_id            =  $_POST['v_p_id'];
 
-				
+
 				$vendor     = Vendor::where('id',$vendor_id)->value('company_name');
 				$image_id   = Product::where('id',$product_id)->value('image_id');
-				
+
 
 				$variation_id = VendorProduct::where('id',$v_p_id)->value('variation_id');
 
 				if (empty($variation_id)) {
-					
+
 					$image      = ProductMedia::where('image_id',$image_id)->value('image');
 					$name       = Product::where('id',$product_id)->value('title');
 				}
@@ -200,9 +200,9 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 					$image = ProductVariation::where('product_id',$product_id)->where('id',$variation_id)->value('variant_image');
 					$variation 	= ProductVariation::where('product_id',$product_id)->where('id',$variation_id)->first();
 					$name       = Product::where('id',$product_id)->value('title');
-					
+
 					if (!empty($variation->second_variation_value)) {
-							
+
 							$name       = $name."(".$variation->first_variation_value."-".$variation->second_variation_value.")";
 
 					}
@@ -211,18 +211,18 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 						$name       = $name."(".$variation->first_variation_value.")";
 					}
 					if (empty($image)) {
-						
+
 						$image      = ProductMedia::where('image_id',$image_id)->value('image');
 					}
 				}
 
 				$cart = session()->get('cart');
-				
+
 				if(isset($cart[$v_p_id]) && !empty($cart[$v_p_id]))
 				{
 					if(!array_key_exists($v_p_id,$cart))
 					{
-				   
+
 						$cart[$v_p_id] = [
 			                        'v_p_id'       => $v_p_id,
 									'product_id'   => $product_id,
@@ -234,14 +234,14 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 									'vendor'       => $vendor
 			            ];
 			             session()->put('cart', $cart);
-				   
+
 					}
 					else{
-						
+
 						$cart[$v_p_id]['price'] 	= $price;
 						$cart[$v_p_id]['quantity'] 	= $quantity;
 						session()->put('cart', $cart);
-					}		
+					}
 				}
 				else{
 				  $cart[$v_p_id] = [
@@ -260,7 +260,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 		// =========================================================//
 		$cart = session()->get('cart');
 		if(isset($cart)){
-	 
+
 			  		  $tquantity = 0;
 					  $tPrice    = 0;
 					  foreach(session('cart') as $id => $data){
@@ -269,7 +269,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 							$tquantity 	 += $data['quantity'];
 							$id           = base64_encode($data['product_id']);
 
-					  
+
 							echo '
 									<div class="ps-product--cart-mobile">
 			                            <div class="ps-product__thumbnail"><a href=""><img src="'.$data['image'].'" alt=""></a></div>
@@ -282,18 +282,18 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
 							echo '<div class="ps-cart__footer">
                                     <h3>Sub Total:<strong>R'.$tPrice.'</strong></h3>';
-                                    
+
 									    if (!Auth::guard('customer')->check()) {
 
 									    	echo '<figure><a class="ps-btn" href="">View Cart</a><a class="ps-btn" href="'.url('checkout').'">Checkout</a></figure>';
-									        
+
 									    }else{
 									      echo '<figure><a class="ps-btn" href="'.url("checkout").'">View Cart</a><a class="ps-btn" href="'.url("checkout").'">Checkout</a></figure>';
-									    } 
-                                    
+									    }
+
                                echo '</div>';
                         }
-                        echo '`'.$tquantity;       
+                        echo '`'.$tquantity;
 				}
 
     }
@@ -304,13 +304,13 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	if (!Auth::guard('customer')->check()) {
     		return redirect()->route('login', ['checkout'])->with('Please login to view checkout!');
     	}
-    	
+
     	$cart = session()->get('cart');
 		if(isset($cart)){
 			return view('orders.checkout');
 		}
 		return redirect()->route('frontend.rootPage');
-    	
+
     }
 
 
@@ -342,23 +342,23 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
     	$cart = session()->get('cart');
 		if(isset($cart)){
 
-			 
+
 			foreach($cart as $key=>$data){
 		  		$order = new Order();
 		  		$order->order_id          = $orderID;
 		  		$order->product_id        = $data['product_id'];
-		  		// 
+		  		//
 
 		  			$category_id          = Product::where('id',$data['product_id'])->value('category_id');
 
-		  		// 
+		  		//
 		  		$order->category_id       = $category_id;
 		  		$order->order_token       = $data['product_id'].'-'.$data['vendor_id'];
 		    	$order->vendor_id         = $data['vendor_id'];
 		    	$order->customer_id       = $customer_id;
 		    	$order->vendor_product_id = $data['v_p_id'];
 		    	$order->order_price       = $data['price']*$data['quantity'];
-		    	$order->product_price     = $data['price']; 
+		    	$order->product_price     = $data['price'];
 		    	$order->qty               = $data['quantity'];
 		    	$order->address_id        = $addressID;
 		    	$order->product_name      = $data['name'];
@@ -366,7 +366,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 		    	$order->grand_total       = $grandTotal;
 		    	$order->payment_option    = $payment_option;
 		    	$order->created_at        = Carbon::now();
-		    	
+
 		    	$saved = $order->save();
 			}
 
@@ -386,7 +386,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 	    	if( $request->payment_options == 'Master' ){
 
 	    		return view('orders.payfast_payment',compact('grandTotal','first_name','customeremail','payment_option','orderID'));
-	    	}		
+	    	}
 
 		}
 		else{
@@ -399,7 +399,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
     	Order::where('order_id',$order_id)->update(['payment'=>'paid']);
     	$newOrder   = Order::where('order_id',$order_id)->get();
-			
+
             if ($newOrder) {
 
             	// customer Email
@@ -409,7 +409,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 	                Mail::to($email)->send(new OrderMail(
 	                     $subject,$newOrder
                  	));
-                // 
+                //
 	            //admin Mail
 
 	                $subject = 'New order# ("'.$order_id.') is Placed on FlashyBuy';
@@ -424,7 +424,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
 	                	$subject = 'A New order# ("'.$order_id.') of your Product is Placed on FlashyBuy';
 	                	foreach ($newOrder as $key => $value) {
-	                		
+
 	                		$email     = Vendor::where('id',$value->vendor_id)->value('email');
 
 	                		$orderData = Order::where('order_id',$order_id)->where('vendor_id',$value->vendor_id)->get();
@@ -433,13 +433,14 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 		                     	$subject,$orderData
 	                 		));
 	                	}
-	                	
 
-                // 
+
+                //
     		    return redirect()->route('customer.dashboard.get')->with('success', 'Order Saved Successfully');
    			}
    			else{
 				return redirect()->back()->with('error', 'Invalid Request/Access | Session Not Found!');
 			}
     }
+
 }

@@ -152,7 +152,7 @@ class OrderController extends Controller
                                                 'active'=>1
                                             ])
                                             ->get('id');
-                
+
                 foreach ($vendor_products as $key => $value) {
                     $ven_product_id_list[] = $value->id;
                 }
@@ -202,8 +202,11 @@ class OrderController extends Controller
                         ->orderBy($sort_by, $sorting_order)
                         ->paginate($row_per_page);
             return view('orders.partials.orders-list', compact('data'))->render();
-            
+
         }
         return abort(404);
+    }
+    public function orderProcess(){
+        return view('orders.order-process');
     }
 }

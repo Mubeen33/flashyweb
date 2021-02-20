@@ -34,7 +34,7 @@
         -moz-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;}
-    
+
     .Active1 {
         color: #fff;
         padding: 5px 5px;
@@ -47,14 +47,14 @@
         border-color:white;
         background: #ee4d2d;
     }
-</style> 
+</style>
 
 @foreach($getProductData as $productData)
 
 
-    
 
-@endforeach 
+
+@endforeach
 <nav class="navigation--mobile-product"><a class="ps-btn ps-btn--black" href="shopping-cart.html">Add to cart</a><a class="ps-btn" href="checkout.html">Buy Now</a></nav>
     <div class="ps-breadcrumb">
         <div class="ps-container">
@@ -98,26 +98,26 @@
     $activeVariants = (\App\Models\VendorProduct::where('prod_id', $productData->product_id)->where('active',1)->groupby('variation_id')->get());
 
 @endphp
-                                                
+
                                                 @if(count($activeVariants)>1)
                                                     @foreach($variantPrices as $variantPrice)
 
                                                             {{env('PRICE_SYMBOL').$variantPrice->min_price}} - {{env('PRICE_SYMBOL').$variantPrice->max_price}}
 
-                                                    @endforeach        
+                                                    @endforeach
                                                 @else
                                                     @foreach($variantPrices as $variantPrice)
 
-                                                            
+
                                                             {{env('PRICE_SYMBOL').$variantPrice->min_price}}
-                                                        
+
                                                     @endforeach
                                                 @endif
                                     @else
                                             {{env('PRICE_SYMBOL').$productData->price}}
                                     @endif
 
-                                    
+
                                 </h4>
                                 <div class="ps-product__desc">
                                     @php
@@ -136,47 +136,47 @@
 @php
         $activeVariants = (\App\Models\VendorProduct::where('prod_id',$productData->product_id)->where('active',1)->groupby('variation_id')->get());
 
-@endphp                                        
-                                @if(count($activeVariants)==1)    
-                                    @if(!empty($productData->first_variation_value))    
+@endphp
+                                @if(count($activeVariants)==1)
+                                    @if(!empty($productData->first_variation_value))
                                         <figure>
                                             <figcaption><strong>{{$productData->first_variation_name}}:</strong></figcaption>
                                             <button class="product-variation option">{{$productData->first_variation_value}}</button>
                                         </figure>
 
-                                    @endif 
-                                    @if(!empty($productData->second_variation_value))    
+                                    @endif
+                                    @if(!empty($productData->second_variation_value))
                                         <figure>
                                             <figcaption><strong>{{$productData->second_variation_name}}:</strong></figcaption>
                                             <button class="product-variation option1">{{$productData->second_variation_value}}</button>
-                                            
+
                                         </figure>
                                     @endif
                                 @else
                                     @if(!empty($productData->first_variation_value))
-                                        @php 
+                                        @php
                                             $productVariantions = (\App\Models\ProductVariation::where('product_id',$productData->product_id)->Distinct()->get(['first_variation_value']));
                                         @endphp
                                         <figure>
                                             <figcaption><strong>{{$productData->first_variation_name}}:</strong></figcaption>
                                             @foreach($productVariantions as $variants)
                                                 <button class="product-variation option">{{$variants->first_variation_value}}</button>
-                                            @endforeach    
+                                            @endforeach
                                         </figure>
                                     @endif
                                     @if(!empty($productData->second_variation_value))
-                                        @php 
+                                        @php
                                             $productVariantions = (\App\Models\ProductVariation::where('product_id',$productData->product_id)->Distinct()->get(['second_variation_value']));
                                         @endphp
                                         <figure>
                                             <figcaption><strong>{{$productData->second_variation_name}}:</strong></figcaption>
                                             @foreach($productVariantions as $variants)
                                                 <button class="product-variation option1">{{$variants->second_variation_value}}</button>
-                                            @endforeach    
+                                            @endforeach
                                         </figure>
-                                    @endif    
-                                @endif        
-                                    </div>    
+                                    @endif
+                                @endif
+                                    </div>
                                 <div class="ps-product__shopping">
                                     <figure>
                                         <figcaption>Quantity</figcaption>
@@ -187,6 +187,8 @@
                                         </div>
                                     </figure>
                                     <button class="ps-btn ps-btn--black" id="cart">Add to cart</button>
+                                        <a class="ps-btn ps-btn--black" href="{{route('order.process')}}" id="go_cart">Go to cart</a>
+
                                     <button class="ps-btn" type="button" id="buynow">Buy Now</button>
                                     <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>
                                 </div>
@@ -351,10 +353,10 @@
                 <div class="ps-container">
                     <div class="ps-section__header">
                         <h3>Customers who bought this item also bought</h3>
-                        
+
                     </div>
                     <div class="ps-section__content">
-                        <div class="ps-carousel--nav owl-slider owl-carousel owl-loaded owl-drag" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="2" data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">  
+                        <div class="ps-carousel--nav owl-slider owl-carousel owl-loaded owl-drag" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="2" data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
                          <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2432px;"><div class="owl-item active" style="width: 243.2px;"><div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="product-default.html"><img  src="{{ asset('img/products/shop/4.jpg')}}"  alt=""></a>
                                     <div class="ps-product__badge">-16%</div>
@@ -376,7 +378,7 @@
                                                 <option value="2">5</option>
                                             </select>
                                             <div class="br-widget br-readonly">
-                                               
+
                                                 <div class="br-current-rating">1</div>
                                             </div>
                                             </div><span>01</span>
@@ -640,7 +642,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 @php
@@ -655,32 +657,42 @@
     $activeVariants = (\App\Models\VendorProduct::where('prod_id', $productData->product_id)->where('active',1)->groupby('variation_id')->get());
 
 @endphp
-                                                
+
                                                 @if(count($activeVariants)>1)
                                                     @foreach($variantPrices as $variantPrice)
 
                                                             <input type="hidden" name="" value="" id="price">
 
-                                                    @endforeach        
+                                                    @endforeach
                                                 @else
                                                     @foreach($variantPrices as $variantPrice)
 
-                                                            
+
                                                             <input type="hidden" name="" value="{{$variantPrice->min_price}}" id="price">{{$variantPrice->min_price}}
-                                                        
+
                                                     @endforeach
                                                 @endif
                                     @else
-                                               
+
 <input type="hidden" name="" value="{{$productData->price}}" id="price">
                                     @endif
 <input type="hidden" name="id" value="{{$productData->product_id}}" id="productid">
 <input type="hidden" name="ven_id" value="{{$productData->vendorid}}" id="vendorid">
 <input type="hidden" name=""  value="" id="maxQty">
-<input type="hidden" name=""  value="{{$productData->v_p_id}}" id="v_p_id">
-@endsection 
+
+<input type="text" name=""  value="{{$productData->v_p_id}}" id="v_p_id">
+@endsection
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 <script type="text/javascript">
+
+    $( document ).ready(function() {
+
+        cartActionButton();
+
+
 
         var variation1;
         var variation2;
@@ -689,24 +701,24 @@
         e.preventDefault();
         if($('.Active1').length){
            $('.Active1').not($(this)).removeClass('Active1').addClass('option');
-        }      
-           $(this).removeClass('option').addClass('Active1');  
+        }
+           $(this).removeClass('option').addClass('Active1');
            variation1     = $('.Active1').text();
-           var token      = $('input[name=_token').val();
-           var product_id = $('input[name=id').val();
+           var token      = $('input[name=_token]').val();
+           var product_id = $('input[name=id]').val();
 
-           // $('input[name="product_first_variation"]').val($(this).val()); 
+           // $('input[name="product_first_variation"]').val($(this).val());
 
            if($(".option1").length){
             if($(".Active2").length){
 
                  getsecondVariation(variation1,variation2,token,product_id);
-                 getOtherOffers(variation1,variation2,product_id,token); 
+                 getOtherOffers(variation1,variation2,product_id,token);
              }
            }else{
 
                 getfirstVariation(variation1,token,product_id);
-                getsingleOffers(variation1,product_id,vendor_id,token); 
+                getsingleOffers(variation1,product_id,vendor_id,token);
            }
      });
        $(document).delegate(".option1","click",function(e){
@@ -714,20 +726,20 @@
        e.preventDefault();
         if($('.Active2').length){
            $('.Active2').not($(this)).removeClass('Active2').addClass('option1');
-        }      
+        }
        $(this).removeClass('option1').addClass('Active2');
-       var product_id = $('input[name=id').val();
+       var product_id = $('input[name=id]').val();
        variation2     = $('.Active2').text();
-       var token      = $('input[name=_token').val();
+       var token      = $('input[name=_token]').val();
 
-       // $('input[name="product_second_variation"]').val($(this).val()); 
+       // $('input[name="product_second_variation"]').val($(this).val());
 
        if($('.Active1').length){
 
             getsecondVariation(variation1,variation2,token,product_id);
             getOtherOffers(variation1,variation2,product_id,token);
 
-        }  
+        }
      });
 
 function getfirstVariation(variation1,token,product_id){
@@ -763,15 +775,15 @@ function getfirstVariation(variation1,token,product_id){
                             $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                             $("#cart").prop('disabled', true);
                             $("#buynow").prop('disabled', true);
-                            
+
                         }
                     }else{
 
                         $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                         $("#cart").prop('disabled', true);
                         $("#buynow").prop('disabled', true);
-                        
-                    }    
+
+                    }
                 }
         });
 
@@ -803,22 +815,22 @@ function getsecondVariation(variation1,variation2,token,product_id) {
                                 $('.item.slick-slide.slick-current.slick-active>a>img').attr('src',data.variant_image);
                                 $('.item.slick-slide.slick-current.slick-active>img').attr('src',data.variant_image);
                           }
-                          
+
 
                         }else{
 
                             $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                             $("#cart").prop('disabled', true);
                             $("#buynow").prop('disabled', true);
-                            
+
                         }
                     }else{
 
                         $('.ps-product__price').html('<strong style="color:red">Out Of Stock.</strong>');
                         $("#cart").prop('disabled', true);
                         $("#buynow").prop('disabled', true);
-                        
-                    }    
+
+                    }
                 }
         });
 
@@ -831,27 +843,27 @@ function getsecondVariation(variation1,variation2,token,product_id) {
 
         var val = $('#quantity').val();
         $('#quantity').val(parseInt(val)+1);
-        
-        
+
+
     });
 
 //===================================//
 //======  Minus Functions  ========= //
-//==================================// 
-    
+//==================================//
+
     $(document).delegate(".down","click",function(){
 
         var val = $('#quantity').val();
 
         if(val>1){
 
-           $('#quantity').val(parseInt(val)-1); 
+           $('#quantity').val(parseInt(val)-1);
         }
-        
+
     });
    //========================================//
 // ========= Start Cart Functionality =========//
-  //========================================// 
+  //========================================//
 
     $(document).delegate("#cart","click",function(){
 
@@ -868,7 +880,7 @@ function getsecondVariation(variation1,variation2,token,product_id) {
         //     if (!$("div").is("#notify")) {
 
         //         $(".ps-product__variations").append("<div id='notify' class='btn btn-danger'>Sorry! We have Only "+maxQty+" items in Stock.For Further info Conatct Support.</div>");
-        //     }    
+        //     }
         // }
         // else if(parseInt(maxQty) >= quantity){
 
@@ -880,10 +892,10 @@ function getsecondVariation(variation1,variation2,token,product_id) {
         //     addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id);
         // }
         addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id);
-        
+
     });
 
-  //==================================================================//  
+  //==================================================================//
  //  ========================   Cart Function ===================== ///
 //==================================================================//
 function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
@@ -900,9 +912,13 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
                                       quantity     :  quantity,
                                       price        :  price,
                                       v_p_id       :  v_p_id,
-                                      _token       : $('input[name=_token').val() 
+                                      _token       : $('input[name=_token').val()
                                     },
            success: function(data){
+
+               // hide the cart button
+               $('#cart').hide()
+               $('#go_cart').show()
 
                     // showCartInbox(product_id);
                         var data = data.split("`");
@@ -921,7 +937,7 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
     });
 }
 
-// 
+//
     $(document).delegate("#buynow","click",function(){
 
         var product_id   = $("#productid").val();
@@ -937,7 +953,7 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
         //     if (!$("div").is("#notify")) {
 
         //         $(".ps-product__variations").append("<div id='notify' class='btn btn-danger'>Sorry! We have Only "+maxQty+" items in Stock.For Further info Conatct Support.</div>");
-        //     }    
+        //     }
         // }
         // else if(parseInt(maxQty) >= quantity){
 
@@ -962,8 +978,8 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
 
             buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id);
         }
-        
-    }); 
+
+    });
 function buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id){
 
     $.ajax({
@@ -978,7 +994,7 @@ function buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id){
                                       quantity     :  quantity,
                                       price        :  price,
                                       v_p_id       :  v_p_id,
-                                      _token       : $('input[name=_token').val() 
+                                      _token       : $('input[name=_token').val()
                                     },
            success: function(data){
 
@@ -987,7 +1003,7 @@ function buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id){
            }
 
     });
-}  
+}
 
 // ======================================================================= //
 // =============================| Other Offers |========================== //
@@ -1033,7 +1049,7 @@ function getsingleOffers(variation1,product_id,token){
 
                     variation1 : variation1,
                     product_id : product_id,
-                    _token     : $('input[name=_token').val()
+                    _token     : $('input[name=_token]').val()
             },
             success:function(data){
 
@@ -1049,6 +1065,19 @@ function getsingleOffers(variation1,product_id,token){
                 }
             }
     });
-} 
+}
+
+function cartActionButton(){
+    let cart_v_p_id='{{array_key_exists($productData->v_p_id,(is_array(session()->get('cart',0)) ==0 ? [] : session('cart'))) ? $productData->v_p_id : 0}}'
+    let v_p_id='{{$productData->v_p_id}}';
+    if(v_p_id==cart_v_p_id){
+        $('#cart').hide()
+        $('#go_cart').show()
+    }else{
+        $('#cart').show()
+        $('#go_cart').hide()
+    }
+}
+    })
+
 </script>
-   

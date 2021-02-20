@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/welcome', function() {
+
+    return view('welcome');
+});
+
+Route::get('/clear', function() {
+
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    return "Cleared!";
+
+});
+
 Route::get('getroute' , function(){
 	return route('customer.dashboard.get');
 });
@@ -53,6 +70,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 		Route::get('order-success/{order_id}','order\CartController@orderSuccess')->name('order-success');
 
 	});
+	Route::get('order-process','order\OrderController@orderProcess')->name('order.process');
 	Route::get('checkout','order\CartController@checkout');
 	Route::post('checkout','order\CartController@checkout_post')->name('saveCheckoutData.post');
 
@@ -74,7 +92,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 	Route::post('reset/send-link', 'Customers\Auth\ForgotPassword@send_reset_link')->name('customer.sendPassResetLink.post');
 	Route::post('reset/passoword', 'Customers\Auth\ForgotPassword@password_reset_post')->name('customer.passwordReset.post');
 
-	
+
 
 
 	//customer protected routes
@@ -82,7 +100,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 		Route::get('dashboard', 'Customers\CustomerController@dashboard')->name('dashboard.get');
 		Route::get('profile', 'Customers\CustomerController@profile')->name('profile.get');
 		Route::post('profile-update', 'Customers\CustomerController@profile_update')->name('profieUpdate.post');
-		
+
 		//address
 		Route::get('addresses', 'Customers\CustomerController@get_address')->name('address.get');
 		Route::post('addresses', 'Customers\CustomerController@update_address')->name('addressUpdate.post');

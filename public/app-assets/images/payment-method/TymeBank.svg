@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Tyme bank</title>
+    <defs>
+        <linearGradient x1="97.373877%" y1="56.1195649%" x2="4.56116102%" y2="46.4974838%" id="linearGradient-1">
+            <stop stop-color="#FFC427" offset="0%"></stop>
+            <stop stop-color="#FFC427" offset="1%"></stop>
+            <stop stop-color="#FFC427" offset="40%"></stop>
+            <stop stop-color="#58585A" offset="99%"></stop>
+            <stop stop-color="#58585A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="95.9225985%" y1="54.783913%" x2="3.66275052%" y2="47.4955691%" id="linearGradient-2">
+            <stop stop-color="#FFC427" offset="0%"></stop>
+            <stop stop-color="#FFC427" offset="1%"></stop>
+            <stop stop-color="#FFC427" offset="45%"></stop>
+            <stop stop-color="#58585A" offset="99%"></stop>
+            <stop stop-color="#58585A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="96.1990325%" y1="53.0691672%" x2="3.87007602%" y2="46.9181764%" id="linearGradient-3">
+            <stop stop-color="#FFC427" offset="0%"></stop>
+            <stop stop-color="#FFC427" offset="1%"></stop>
+            <stop stop-color="#FFC427" offset="45%"></stop>
+            <stop stop-color="#58585A" offset="99%"></stop>
+            <stop stop-color="#58585A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="96.4754665%" y1="52.4740318%" x2="4.14651002%" y2="45.1939504%" id="linearGradient-4">
+            <stop stop-color="#FFC427" offset="0%"></stop>
+            <stop stop-color="#FFC427" offset="1%"></stop>
+            <stop stop-color="#FFC427" offset="60%"></stop>
+            <stop stop-color="#58585A" offset="99%"></stop>
+            <stop stop-color="#58585A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="95.5079475%" y1="53.7204922%" x2="2.41879751%" y2="44.1059571%" id="linearGradient-5">
+            <stop stop-color="#FFC427" offset="0%"></stop>
+            <stop stop-color="#FFC427" offset="1%"></stop>
+            <stop stop-color="#FFC427" offset="65%"></stop>
+            <stop stop-color="#58585A" offset="99%"></stop>
+            <stop stop-color="#58585A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Tyme-bank" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="time-bank-scaled-down-01" transform="translate(2.000000, 2.000000)" fill-rule="nonzero">
+            <polygon id="Path" fill="url(#linearGradient-1)" points="0.76 2.53 0.76 4.2 9.94 2.6 15.23 4.58 15.23 3.35 10.8 0.46"></polygon>
+            <polygon id="Path" fill="url(#linearGradient-2)" points="0.76 4.83 0.76 6.55 8.67 5.89 15.23 6.61 15.23 5.07 9.63 3.47"></polygon>
+            <polygon id="Path" fill="url(#linearGradient-3)" points="0.76 7.13 0.76 8.9 7.2 9.35 15.23 8.95 15.23 7.14 8.31 6.7"></polygon>
+            <polygon id="Path" fill="url(#linearGradient-4)" points="0.76 10.91 5.91 12.57 15.23 11.26 15.23 9.51 6.84 10.14 0.76 9.44"></polygon>
+            <polygon id="Path" fill="url(#linearGradient-5)" points="0.76 11.44 0.76 11.44 0.76 12.58 4.74 15.54 15.23 13.59 15.23 11.89 5.57 13.43 0.76 11.44"></polygon>
+        </g>
+    </g>
+</svg>

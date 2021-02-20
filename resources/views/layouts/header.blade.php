@@ -16,6 +16,10 @@
     @yield('meta_keywords')
     @yield('meta')
     <title>Flashybuy - Multi Vendor &amp; Marketplace</title>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ asset('fonts/Linearicons/Linearicons/Font/demo-files/demo.css')}}">
@@ -29,7 +33,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
-
+    @livewireStyles
 
     @stack('styles')
     <!-- common -->
@@ -37,6 +41,39 @@
         .border-danger-alert{
           border:1px solid red;
        }
+        td{
+            text-align: center !important;
+        }
+        .ps-btn-cancel, button.ps-btn-cancel {
+            display: inline-block;
+            padding: 15px 45px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 20px;
+            color: white;
+            border: none;
+            font-weight: 600;
+            border-radius: 4px;
+            background-color: #000;
+            transition: all .4s ease;
+            cursor: pointer;
+        }
+        .ps-btn-cancel--sm, button.ps-btn-cancel--sm {
+            padding: .5rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        .ps-btn-cancel--sm.ps-btn--curve, button.ps-btn-cancel--sm.ps-btn-cancel--curve {
+            border-radius: 3px;
+        }
+        .ps-btn-cancel:hover, .ps-btn-cancel:active, button.ps-btn-cancel:hover, button.ps-btn-cancel:active {
+            background-color: #fcb800;
+            color: #000;
+        }
+        .error-text{
+            color: red;
+        }
+
     </style>
 </head>
 
