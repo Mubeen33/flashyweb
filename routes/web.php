@@ -15,20 +15,20 @@ use RealRashid\SweetAlert\Facades\Alert;
 |
 */
 Route::get('/welcome', function() {
-    toast('Success Toast','success');
 
     return view('welcome');
 });
+
 Route::get('/clear', function() {
 
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
     Artisan::call('config:cache');
     Artisan::call('view:clear');
-
     return "Cleared!";
 
 });
+
 Route::get('getroute' , function(){
 	return route('customer.dashboard.get');
 });

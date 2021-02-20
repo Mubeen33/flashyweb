@@ -74,9 +74,7 @@
         
         @if(!$sliders->isEmpty())
             @foreach($sliders as $key=>$slider)
-
                 <div class="ps-banner ">
-                   
                    <img src="{{ $slider->image_lg }}" alt="{{ $slider->image_lg }}" >
                    @if(!empty($slider->button_text))
                    <a class="sliderBtn  {{($slider->button_animation) ? ' animated animatedFadeInUp fadeInUp' : ''}}" style="{{($slider->button_text_color) ? 'color: '.$slider->button_text_color.' !important;'  : 'white;'}} {{($slider->button_color) ? 'background-color: '.$slider->button_color.' !important;'  : 'white;'}}" href="{{(!empty($slider->link)) ? $slider->link : '#'}}" >{{$slider->button_text}}</a>

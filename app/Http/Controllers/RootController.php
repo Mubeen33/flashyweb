@@ -21,10 +21,8 @@ class RootController extends Controller
     	$today =$current->format('Y-m-d');
         $current__time =$current->format('Y-m-d H:i');
 
-    	$sliders = Slider::whereDate('start_time', '<=', $today)
-    					->whereDate('end_time', '>=', $today)
-    					->orderBy('order_no', 'ASC')
-                        ->get();  	
+    	$sliders = Slider::orderBy('order_no', 'ASC')
+                        ->get(); 	
         
         $products = VendorProduct::where("active", 1)
                     ->select("*")

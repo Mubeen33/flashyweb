@@ -8,6 +8,83 @@
     margin: 0;
     list-style: none;
     }
+        .sliderBtn{
+        position: absolute;
+                   top: 58%;
+                   left: 58%;
+                   transform: translate(-50%, -50%);
+                   -ms-transform: translate(-50%, -50%);
+                   background-color: #42c5e3;
+                   color: white;
+                   font-size: 16px;
+                   padding: 6px 16px;
+                   border: none;
+                   cursor: pointer;
+                   border-radius: 34px;
+                   text-align: center;
+                   font-weight: 1000;
+    }
+    .sliderTitle{
+        position: absolute;
+        top: 12%;
+        left: 20%;           
+        text-align: center;
+       
+    }
+    .sliderDesc{
+        position: absolute;
+        top: 30%;
+        left: 25%;           
+        text-align: center;
+       
+    }
+    
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+.animated {
+    animation-duration: 4s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-fill-mode: both
+}
+
+.animatedFadeInUp {
+    opacity: 0
+}
+
+.fadeInUp {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+}
+@media only screen and (max-width: 767px) {
+  #mobile{
+    display: block !important;
+  }
+}
+#mobile{
+    display: none;
+}
 </style>
 <div class="row no-gutters position-relative">
     <div class="col-lg-3 position-static order-2 order-lg-0">
@@ -54,7 +131,7 @@
             @endif
         </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" id="home-slider--dv">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <!-- <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -65,9 +142,18 @@
                 @php
                 $i = "active";
                 @endphp
-                @foreach(\App\Models\Banner::orderBy('order_no')->get() as $banner)
+                @foreach(\App\Models\Slider::orderBy('order_no')->get() as $slider)
                 <div class="carousel-item {{$i}}">
-                  <img class="d-block w-100" src="{{$banner->primary_image}}" height="350px" alt="{{$banner->title}}">
+                  <img class="d-block w-100" src="{{$slider->image_lg}}" height="350px" alt="{{$slider->title}}">
+                  @if(!empty($slider->button_text))
+                  <a class="sliderBtn  {{($slider->button_animation) ? ' animated animatedFadeInUp fadeInUp' : ''}}" style="{{($slider->button_text_color) ? 'color: '.$slider->button_text_color.' !important;'  : 'white;'}} {{($slider->button_color) ? 'background-color: '.$slider->button_color.' !important;'  : 'white;'}}" href="{{(!empty($slider->link)) ? $slider->link : '#'}}" >{{$slider->button_text}}</a>
+                    @endif
+                     @if(!empty($slider->description))
+                     <p class="sliderDesc {{($slider->description_animation) ? ' animated animatedFadeInUp fadeInUp' : ''}}" style="{{(!empty($slider->text_color)) ? 'color:'.$slider->text_color.'!important;': 'white'}}  ">{{$slider->description}}<p>
+                    @endif
+                     @if(!empty($slider->title))
+                     <h1 class="sliderTitle  {{($slider->title_animation) ? ' animated animatedFadeInUp fadeInUp' : ''}}" style="{{(!empty($slider->text_color)) ? 'color:'.$slider->text_color.'!important;': 'white'}}  ">{{$slider->title}}<h1>
+                    @endif
                 </div>
                 @php
                     $i = "";
@@ -82,6 +168,44 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-lg-9" id="mobile">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <!-- <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol> -->
+            <div class="carousel-inner">
+                @php
+                $i = "active";
+                @endphp
+                @foreach(\App\Models\Slider::orderBy('order_no')->get() as $slider)
+                <div class="carousel-item {{$i}}">
+                  <img class="d-block w-100" src="{{$slider->image_sm}}" alt="{{$slider->title}}">
+                  @if(!empty($slider->button_text))
+                  <h4 class="sliderTitle" style="color:{{$slider->text_color}};">{{ $slider->title }}</h4>
+                  <p class="sliderDesc" style="color:{{$slider->text_color}};">{{ $slider->description }}</p>
+                  <a href="{{ $slider->link }}" class="sliderBtn btn text-uppercase"
+                            style="
+                                background-color:{{$slider->button_color}};
+                                color:{{$slider->button_text_color}};
+                            "
+                        >
+                            {{ $slider->button_text }}
+                        </a>
+                    @endif
+                </div>
+                @php
+                    $i = "";
+                @endphp
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
