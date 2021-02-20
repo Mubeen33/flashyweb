@@ -155,7 +155,7 @@
             </div>
         </div>
     </div>
-    @csrf 
+    @csrf
     <script src="{{ asset('plugins/jquery.min.js')}}"></script>
     <script src="{{ asset('plugins/nouislider/nouislider.min.js')}}"></script>
     <script src="{{ asset('plugins/popper.min.js')}}"></script>
@@ -175,26 +175,29 @@
     <!-- custom scripts-->
     <script src="{{ asset('js/main.js')}}"></script>
     <script src="{{ asset('js/zoomsl.js')}}"></script>
-    <script type="text/javascript">
+
+        @include('sweetalert::alert')
+
+        <script type="text/javascript">
         $( function() {
 
         showCart();
 
    } );
         function showCart(){
-  
+
           $.ajax({
            type:"POST",
            url:'{{ route('cart.products.addtocart') }}',
-            data:{ _token : $('input[name=_token').val()},
+            data:{ _token : $('input[name=_token]').val()},
             success:function(data){
-              
+
               var data = data.split("`");
               $('#ps-cart__items').html(data[0]);
               $('#total_cart_items').html(data[1]);
 
                var val = $('#total_cart_items').html();
-               
+
                 if (val == 0) {
 
                     $('#ps-cart__items').css('display','none');
@@ -202,11 +205,11 @@
 
                     $('#ps-cart__items').css('display','');
                 }
-              
+
             }
           });
         }
-        
+
 function remove_cart(p_id){
 
     $.ajax({
@@ -228,10 +231,42 @@ function remove_cart(p_id){
         }
     });
 }
+        window.addEventListener('swal',function(e){
+            Swal.fire(
+                e.detail.title,
+                e.detail.message,
+                e.detail.icon
+            )
+        });
+
+        window.addEventListener('toast',function(e){
+            console.log(e.detail)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire(e.detail)
+        });
+
+
+
     </script>
 
-    
-    @stack('scripts')
+        @livewireScripts
+        <script src="{{asset('vendor/livewire/livewire.js')}}"></script>
+        @stack('scripts')
+
+
+
+
 </body>
 
 </html>

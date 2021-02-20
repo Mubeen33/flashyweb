@@ -11,6 +11,7 @@
 </style>
 @endpush
 @section('content')
+
     <main class="ps-page--my-account">
         <div class="ps-breadcrumb">
             <div class="container">
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                     <div class="col-lg-8" id="customer_content">
-                        
+
                 </div>
             </div>
         </section>
@@ -49,10 +50,10 @@
         $(function () {
     $('#customer_address').on('click', function () {
         $.ajax({
-            
+
                 url: "{{ route('customer.address.get') }}",
                 success: function(data){
-                    
+
                     $('#customer_content').html(data);
                     $('#page_breadcrumb').text('Customer / Address');
                 }
@@ -62,39 +63,39 @@
     $(function () {
     $('#customer_profile').on('click', function () {
         $.ajax({
-            
+
                 url: "{{ route('customer.profile.get') }}",
                 success: function(data){
-                    
+
                     $('#customer_content').html(data);
                     $('#page_breadcrumb').text('Customer / Profile');
-                  
+
                 }
             });
     });
-    }); 
+    });
     $(document).ready(function() {
     $.ajax({
-            
+
             url: "{{ route('customer.profile.get') }}",
             success: function(data){
-                
+
                 $('#customer_content').html(data);
                 $('#page_breadcrumb').text('Customer / Profile');
-              
+
             }
         });
     });
     $(function () {
     $('#customer_orders').on('click', function () {
         $.ajax({
-            
+
                 url: "{{ route('customer.orders.index') }}",
                 success: function(data){
-                    
+
                     $('#customer_content').html(data);
                     $('#page_breadcrumb').text('Customer / Orders');
-                  
+
                 }
             });
     });
@@ -105,9 +106,9 @@
                 $( this ).addClass( 'active' );
           });
     });
-  
-   
-        
+
+
+
     </script>
     @if(session()->has('success'))
     <script type="text/javascript">
@@ -115,19 +116,19 @@
                 $( 'ul.customer_menu li' ).parent().find( 'li.active' ).removeClass( 'active' );
                 $( '#customer_ordersTab' ).addClass( 'active' );
                 $.ajax({
-            
+
                 url: "{{ route('customer.orders.index') }}",
                 success: function(data){
-                    
+
                     $('#customer_content').html(data);
                     $('#page_breadcrumb').text('Customer / Orders');
-                  
+
                 }
             });
     });
     </script>
     @endif
-    
+
     <script type="text/javascript" src="{{ asset('js/ajax-pagination.js') }}"></script>
     @endpush
 @endsection

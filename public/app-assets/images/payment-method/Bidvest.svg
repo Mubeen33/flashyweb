@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Bidvest</title>
+    <g id="Bidvest" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bidvest-(1)" transform="translate(2.000000, 2.000000)" fill-rule="nonzero">
+            <g id="Bidvest-web" transform="translate(0.000000, 0.784000)">
+                <path d="M10.3488007,0 L10.3488007,0 C12.4014553,0 14.1120008,1.38102639 14.1120008,3.08700018 C14.1120008,4.79297397 12.4869826,6.17400037 10.4343279,6.17400037 L0,6.17400037 L0,0 L10.3488007,0 L10.3488007,0 Z" id="Path" fill="#041B66"></path>
+                <path d="M10.3488007,7.93800047 L10.3488007,7.93800047 C12.4014553,7.93800047 14.1120008,9.31902689 14.1120008,11.0250007 C14.1120008,12.7309744 12.4869826,14.1120008 10.4343279,14.1120008 L0,14.1120008 L0,7.93800047 L10.3488007,7.93800047 L10.3488007,7.93800047 Z" id="Path" fill="#041B66"></path>
+                <polygon id="Path" fill="#C6C8CA" points="7.93800047 11.4660007 15.8760009 7.49700044 7.93800047 3.52800021"></polygon>
+            </g>
+        </g>
+        <rect id="top" fill-opacity="0" fill="#FFFFFF" fill-rule="nonzero" opacity="0" x="0" y="0" width="20" height="3"></rect>
+        <rect id="top" fill-opacity="0" fill="#FFFFFF" fill-rule="nonzero" opacity="0" x="0" y="0" width="2" height="20"></rect>
+        <rect id="top-copy" fill-opacity="0" fill="#FFFFFF" fill-rule="nonzero" opacity="0" x="18" y="0" width="2" height="20"></rect>
+        <rect id="bottom" fill-opacity="0" fill="#FFFFFF" fill-rule="nonzero" opacity="0" x="0" y="17" width="20" height="3"></rect>
+    </g>
+</svg>
