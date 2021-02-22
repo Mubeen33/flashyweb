@@ -11142,7 +11142,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   visibility: hidden;
   transform: translateY(-100%);
   transition: all 0.3s 1s ease-out;
-}*/
+}
 
 .ps-modal {
   position: fixed;

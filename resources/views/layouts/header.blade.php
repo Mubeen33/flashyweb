@@ -21,17 +21,19 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('fonts/Linearicons/Linearicons/Font/demo-files/demo.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/owl-carousel/assets/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/owl-carousel/assets/owl.theme.default.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/slick/slick/slick.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/nouislider/nouislider.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/lightGallery-master/dist/css/lightgallery.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css')}}">
-    <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/fonts/Linearicons/Linearicons/Font/demo-files/demo.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/bootstrap4/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/owl-carousel/assets/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/slick/slick/slick.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/lightGallery-master/dist/css/lightgallery.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/jquery-ui/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/plugins/select2/dist/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/style.css')}}">
+
+
+
 
     @livewireStyles
 

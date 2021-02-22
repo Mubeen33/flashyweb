@@ -812,7 +812,7 @@ section.home-banner-area {
 .hover-category-menu {
     position: absolute;
     width: 100%;
-    top: calc(100% -20px);
+    top: calc(100%  -20px );
     display: none;
 }
 .hover-category-menu .category-sidebar {
@@ -1994,7 +1994,7 @@ input:checked + .slider:before {
 }
 .caorusel-box .center-mode .slick-center .card {
     -moz-transform: scale(1.15);
-    -ms-transform: scale(1.1) 5;
+    -ms-transform: scale(1.1);
     -o-transform: scale(1.15);
     -webkit-transform: scale(1.15);
     opacity: 1;
