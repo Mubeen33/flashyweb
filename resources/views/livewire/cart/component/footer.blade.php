@@ -99,7 +99,8 @@
         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"></div>
         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
 {{--            <button class="ps-btn ps-btn--fullwidth" @click="open ='{{$action}}'">Proceed to checkout</button>--}}
-            <button class="ps-btn ps-btn--fullwidth" wire:click="proceedOrder('{{$action}}')">Proceed to checkout</button>
+                <button x-show="open !='delivery'" class="ps-btn ps-btn--fullwidth" wire:click="proceedOrder('{{$action}}')">  Proceed to checkout</button>
+
         </div>
 
         </div>

@@ -1,4 +1,4 @@
-<div x-show.transition.duration.scale.0="open=='items'">
+<div x-show.transition.in="open=='items'">
     <div class="ps-table--shopping-cart">
 
         <div class="ps-top-categories">

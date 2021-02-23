@@ -173,10 +173,9 @@
         <script src="{{ asset('theme/plugins/jquery.slimscroll.min.js')}}"></script>
         <script src="{{ asset('theme/plugins/select2/dist/js/select2.full.min.js')}}"></script>
         <script src="{{ asset('theme/plugins/gmap3.min.js')}}"></script>
-        <script src="{{ asset('theme/js/main.js')}}"></script>
     <!-- custom scripts-->
-    <script src="{{ asset('js/main.js')}}"></script>
-    <script src="{{ asset('js/zoomsl.js')}}"></script>
+    <script src="{{ asset('theme/js/main.js')}}"></script>
+    <script src="{{ asset('theme/extra-lib/zoomsl.js')}}"></script>
 
 
 

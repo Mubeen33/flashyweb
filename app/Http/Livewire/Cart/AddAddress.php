@@ -21,7 +21,7 @@ class AddAddress extends Component
     public $province;
     public $postal_code;
     public $address_id;
-    public $action=false;
+    public $action = false;
     protected $listeners = ['editAddress' => 'editAddress'];
 
     protected $rules = [
@@ -37,8 +37,9 @@ class AddAddress extends Component
         'postal_code' => 'required',
     ];
 
-    public function mount(){
-        $this->user=Auth::user();
+    public function mount()
+    {
+        $this->user = Auth::user();
 
     }
 
@@ -59,46 +60,50 @@ class AddAddress extends Component
 
         $this->validateOnly($propertyName);
     }
-    public function editAddress($id){
+
+    public function editAddress($id)
+    {
 
 
-
-
-        $address=CustomerAddress::findOrFail($id);
-        $this->address_id=$address->id;
-        $this->type=$address->type;
-        $this->recipient_name=$address->recipient_name;
-        $this->recipient_phone_no=$address->recipient_phone_no;
-        $this->street_address=$address->street_address;
-        $this->business_name=$address->business_name;
-        $this->building_complex=$address->building_complex;
-        $this->suburb=$address->suburb;
-        $this->city_town=$address->city_town;
-        $this->province=$address->province;
-        $this->postal_code=$address->postal_code;
-        $this->emit('updateTab','add-address');
+        $address = CustomerAddress::findOrFail($id);
+        $this->address_id = $address->id;
+        $this->type = $address->type;
+        $this->recipient_name = $address->recipient_name;
+        $this->recipient_phone_no = $address->recipient_phone_no;
+        $this->street_address = $address->street_address;
+        $this->business_name = $address->business_name;
+        $this->building_complex = $address->building_complex;
+        $this->suburb = $address->suburb;
+        $this->city_town = $address->city_town;
+        $this->province = $address->province;
+        $this->postal_code = $address->postal_code;
+        $this->emit('updateTab', 'add-address');
     }
-        public  function createAddress(){
-        $validatedData=$this->validate();
-        $validatedData['customer_id']=$this->user->id;
+
+    public function createAddress()
+    {
+        $validatedData = $this->validate();
+        $validatedData['customer_id'] = $this->user->id;
         CustomerAddress::create($validatedData);
-        $this->dispatchBrowserEvent('swal', [
-            'title' => 'Successfully!',
-            'message' => 'Your Address has been Added Successfully',
-            'icon' => 'success',
-        ]);
-        $this->emit('updateTab','address');
+            $this->dispatchBrowserEvent('swal', [
+                'title' => 'Successfully!',
+                'message' => 'Your Address has been Added Successfully',
+                'icon' => 'success',
+            ]);
+        $this->emit('updateTab', 'address');
     }
-    public function updateAddress($address_id){
-        $validatedData=$this->validate();
-        CustomerAddress::where('id',$address_id)->update($validatedData);
+
+    public function updateAddress($address_id)
+    {
+        $validatedData = $this->validate();
+        CustomerAddress::where('id', $address_id)->update($validatedData);
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Successfully!',
             'message' => 'Your Address has been Updated Successfully',
             'icon' => 'success',
 
         ]);
-        $this->emit('updateTab','address');
+        $this->emit('updateTab', 'address');
     }
 
     public function render()

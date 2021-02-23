@@ -1,5 +1,5 @@
 <div>
-    <div x-show="open=='view'" data-animation-in="fadeIn" data-delay-in="2" data-duration-in="2" data-animation-out="fadeOUt" data-delay-out="2" data-duration-out="2">
+    <div x-show.transition.in="open=='view'" data-animation-in="fadeIn" data-delay-in="2" data-duration-in="2" data-animation-out="fadeOUt" data-delay-out="2" data-duration-out="2">
 
 
         <table class="table ps-table--shopping-cart"  >
@@ -49,7 +49,7 @@
             </tr>
             </tbody>
         </table>
-        @include('.livewire/cart/component/footer',['action'=>'address'])
+        @include('.livewire/cart/component/footer',['action'=>'delivery'])
     </div>
 
 </div>

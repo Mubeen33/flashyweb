@@ -1,4 +1,4 @@
-<div x-show.transition.out.duration.1000ms.scale.0="open=='address'">
+<div x-show.transition.in="open=='address'">
 
     {{--        <livewire:cart.address >--}}
 
@@ -53,6 +53,17 @@
 
                 </tr>
             @endforeach
+            @error('selectedAddress')
+                @php
+                    $this->resetValidation('selectedAddress');
+                    $this->dispatchBrowserEvent('swal', [
+                    'title' => 'Required!',
+                    'icon' => 'warning',
+                    'message' => $message,
+                     ]);
+                @endphp
+            @enderror
+
             {{--    </template>--}}
 
             <tr>

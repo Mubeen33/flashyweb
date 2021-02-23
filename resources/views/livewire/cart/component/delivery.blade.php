@@ -1,12 +1,14 @@
 
-<div  x-show.transition.duration.scale.0="open=='delivery'">
+<div  x-show.transition.in="open=='delivery'">
     <table class="table ps-table--shopping-cart">
         {{--<table class="table ps-table--shopping-cart">--}}
         <thead>
+
         <tr>
             <th>Address</th>
             <th>Action</th>
         </tr>
+
         </thead>
         <tbody>
         <tr>
@@ -15,11 +17,11 @@
                     <div class="ps-product__thumbnail"><a href="product-default.html">
                             <img src="http://seller.mejensi.com/product_images/5f76f050dfbdf1_300_3355674.jpg" alt=""></a></div>
                     <div class="ps-product__content">
-                        <Strong>
-                            <h3>
-                                Delivery
-                            </h3>
-                        </Strong>
+{{--                        <Strong>--}}
+{{--                            <h3>--}}
+{{--                                Delivery--}}
+{{--                            </h3>--}}
+{{--                        </Strong>--}}
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua.
@@ -29,7 +31,7 @@
             </td>
             <td class="price text-center">
                 <div class="ps-section__cart-actions pt-0 pb-3 float-right">
-                    <a class="ps-btn" href="{{route('frontend.rootPage')}}">
+                    <a href="#" class="ps-btn" wire:click="deliveryType('address','delivery')">
                         Deliver My Order
                     </a>
                 </div>
@@ -57,7 +59,7 @@
             </td>
             <td class="price text-center">
                 <div class="ps-section__cart-actions pt-0 pb-3 float-right">
-                    <a class="ps-btn" href="{{route('frontend.rootPage')}}">
+                    <a href="#" class="ps-btn" wire:click="deliveryType('address','pickUp')">
                         Collect My Order
                     </a>
                 </div>

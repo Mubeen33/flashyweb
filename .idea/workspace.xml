@@ -3,20 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="122c72ef-274e-49b1-97a3-30d6ee47137b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/Linearicons/Linearicons/Font/demo-files/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Linearicons/Linearicons/Font/demo-files/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/theme/extra-lib/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/zoomsl.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/theme/extra-lib/zoomsl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Cart/AddAddress.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Cart/AddAddress.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Cart/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Cart/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/theme/extra-lib/main.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Partials/products/product-list-carousel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Partials/products/product-list-carousel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/product/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/product/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/add-address.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/add-address.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/address.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/address.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/delivery.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/delivery.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/items.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/items.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/payment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/view.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +155,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="VAR" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../template_test" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -232,7 +230,9 @@
       <workItem from="1613713529136" duration="13585000" />
       <workItem from="1613739577848" duration="37424000" />
       <workItem from="1613845607724" duration="9364000" />
-      <workItem from="1613934562537" duration="15873000" />
+      <workItem from="1613934562537" duration="18119000" />
+      <workItem from="1613989444261" duration="14698000" />
+      <workItem from="1614020269092" duration="12500000" />
     </task>
     <servers />
   </component>
