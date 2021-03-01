@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="122c72ef-274e-49b1-97a3-30d6ee47137b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/flashyweb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flashyweb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Product/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/order/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/order/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Cart/AddAddress.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Cart/AddAddress.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Cart/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Cart/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/add-address.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/add-address.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/add-address.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/add-address.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/address.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/address.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/delivery.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/delivery.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/payment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/component/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/component/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/cart/view.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/cart/view.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/orders/order-process.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/orders/order-process.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/testPage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/testPage.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +32,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -131,6 +158,7 @@
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/realrashid/sweet-alert" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
     </include_path>
   </component>
   <component name="ProjectId" id="1nEgaO9hWVO0v5yevdFXX6ZizjB" />
@@ -143,7 +171,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="VAR" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../template_test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flashyweblive" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -157,11 +186,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\flashyweb\resources\views\Partials\products" />
+      <recent name="C:\xampp\htdocs\flashyweb\app\Models" />
       <recent name="C:\xampp\htdocs\flashyweb\resources\views\livewire\cart\component" />
-      <recent name="C:\xampp\htdocs\flashyweb\resources\views\livewire\cart" />
-      <recent name="C:\xampp\htdocs\flashyweb\public\app-assets" />
       <recent name="C:\xampp\htdocs\flashyweb\resources\views" />
+      <recent name="C:\xampp\htdocs\flashyweb\resources\views\Partials\products" />
+      <recent name="C:\xampp\htdocs\flashyweb\resources\views\livewire\cart" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\flashyweb\public\theme\extra-lib" />
@@ -220,7 +249,12 @@
       <workItem from="1613845607724" duration="9364000" />
       <workItem from="1613934562537" duration="18119000" />
       <workItem from="1613989444261" duration="14698000" />
-      <workItem from="1614020269092" duration="13527000" />
+      <workItem from="1614020269092" duration="29820000" />
+      <workItem from="1614149307357" duration="25443000" />
+      <workItem from="1614186584355" duration="39758000" />
+      <workItem from="1614331400031" duration="7748000" />
+      <workItem from="1614471399410" duration="3393000" />
+      <workItem from="1614594493741" duration="1515000" />
     </task>
     <servers />
   </component>

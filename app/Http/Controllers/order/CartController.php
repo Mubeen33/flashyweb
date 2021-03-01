@@ -37,8 +37,15 @@ class CartController extends Controller
 
 
 				$vendor     = Vendor::where('id',$vendor_id)->value('company_name');
-				$image_id   = Product::where('id',$product_id)->value('image_id');
+//				$image_id   = Product::where('id',$product_id)->value('image_id');
+				$product_attributes   = Product::select('image_id','width','hieght','length')->where('id',$product_id)->first();
 
+				$image_id=$product_attributes->image_id;
+
+
+
+            $volume=(($product_attributes->width*$product_attributes->hieght*$product_attributes->length)/5000) ;
+				$volume=$volume < 5 ? 5 : $volume;
 
 				$variation_id = VendorProduct::where('id',$v_p_id)->value('variation_id');
 
@@ -83,7 +90,9 @@ class CartController extends Controller
 									'price'        => $price,
 									'quantity'     => $quantity,
 									'image'	       => $image,
-									'vendor'       => $vendor
+									'vendor'       => $vendor,
+									'weight'       => $volume,
+									'shipping_price'=> ''
 			            ];
 			             session()->put('cart', $cart);
 
@@ -104,8 +113,11 @@ class CartController extends Controller
 									'price'        => $price,
 									'quantity'     => $quantity,
 									'image'	       => $image,
-									'vendor'       => $vendor
-		            ];
+									'vendor'       => $vendor,
+                                    'weight'       => $volume,
+                                    'shipping_price'=> ''
+
+                  ];
 		             session()->put('cart', $cart);
 				}
 		}
@@ -318,6 +330,7 @@ if(isset($_POST['action']) && $_POST['action'] == "empty"){
 
     //save cart data
     public function checkout_post(Request $request){
+
     	$this->validate($request, [
     		'grandTotal'=>'required|numeric',
     		'address'=>'required|numeric',

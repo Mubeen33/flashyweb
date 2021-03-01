@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('theme/plugins/jquery-ui/jquery-ui.min.css')}}">
     <link rel="stylesheet" href="{{ asset('theme/plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('theme/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/custom.css')}}">
 
 
 

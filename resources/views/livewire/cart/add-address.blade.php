@@ -1,5 +1,5 @@
 <div>
-    <div class="ps-table--shopping-cart" >
+    <div class="ps-table--shopping-cart" x-data>
 
         {{--        <h1 x-text="$wire.type"></h1>--}}
         <div class="row">
@@ -10,11 +10,15 @@
                         <div class="ps-radio">
                             <input  type="radio" id="personal-address" wire:model="type" name="address"  value="Personal">
 
-                            <label for="personal-address">Personal Address
+                            <label for="personal-address">
+                                <b>
+                                    Personal Address
+                                </b>
                                 {{--                                <span x-text="address">--}}
 
                                 {{--                                   </span>--}}
                             </label>
+{{--                            <h1 x-text="$wire.address_id"></h1>--}}
 
                         </div>
                     </div>
@@ -26,7 +30,7 @@
                     <div class="ps-form__decs">
                         <div class="ps-radio">
                             <input  type="radio" id="business-address" name="address" wire:model="type"  value="Business">
-                            <label for="business-address">Business Address</label>
+                            <label for="business-address"><b>Business Address</b></label>
                         </div>
                     </div>
                 </div>
@@ -53,7 +57,11 @@
             {{--                                                            </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="2" style="width: 120px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-0lc4-container"><span class="select2-selection__rendered" id="select2-0lc4-container" role="textbox" aria-readonly="true" title="Italia">Italia</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>--}}
             {{--                                                        </div>--}}
             <div class="form-group">
-                <lable class="p-2"> Recipient Name </lable>
+                <lable class="p-2">
+                    <b>
+                        Recipient Name
+                    </b>
+                </lable>
                 <input class="form-control  @error('recipient_name') border-danger @enderror"
                        type="text"
                        wire:model="recipient_name"
@@ -62,7 +70,7 @@
 
             </div>
             <div class="form-group">
-                <lable class="p-2"> Recipient Mobile Number </lable>
+                <lable class="p-2"> <b>Mobile Number</b> </lable>
                 <input
                     class="form-control @error('recipient_phone_no') border-danger @enderror"
                     type="number"
@@ -73,7 +81,11 @@
             </div>
 
             <div class="form-group">
-                <lable class="p-2"> Street Address </lable>
+                <lable class="p-2">
+                    <b>
+                        Street Address
+                    </b>
+                </lable>
                 <input
                     class="form-control @error('street_address') border-danger @enderror"
                     type="text"
@@ -86,20 +98,29 @@
 
 
 
-            <div class="form-group" x-show="$wire.type">
-                {{--            <div class="form-group" x-show="false">--}}
-                <lable class="p-2"> Business Name </lable>
-                <input
-                    class="form-control @error('business_name') border-danger @enderror"
-                    type="text"
-                    wire:model="business_name"
-                    placeholder="Business Name">
-                @error('business_name') <span class="error-text">{{ $message }}</span> @enderror
+            <template  x-if="$wire.type=='Business'">
+                <div class="form-group">
+                    <lable class="p-2">
+                        <b>
+                            Business Name
+                        </b>
+                    </lable>
+                    <input
+                        class="form-control @error('business_name') border-danger @enderror"
+                        type="text"
+                        wire:model="business_name"
+                        placeholder="Business Name">
+                    @error('business_name') <span class="error-text">{{ $message }}</span> @enderror
+                </div>
+            </template>
 
-            </div>
 
             <div class="form-group">
-                <lable class="p-2"> Complex/Building </lable>
+                <lable class="p-2">
+                    <b>
+                        Complex/Building
+                    </b>
+                </lable>
                 <input
                     class="form-control @error('building_complex') border-danger @enderror"
                     type="text"
@@ -110,7 +131,11 @@
             </div>
 
             <div class="form-group">
-                <lable class="p-2"> Suburb </lable>
+                <lable class="p-2">
+                    <b>
+                        Suburb
+                    </b>
+                </lable>
                 <input
                     class="form-control @error('suburb') border-danger @enderror"
                     type="text"
@@ -120,7 +145,11 @@
             </div>
 
             <div class="form-group">
-                <lable class="p-2"> City/Town </lable>
+                <lable class="p-2">
+                    <b>
+                        City/Town
+                    </b>
+                </lable>
                 <input
                     class="form-control @error('city_town') border-danger @enderror"
                     type="text"
@@ -130,7 +159,11 @@
 
             </div>
             <div class="form-group">
-                <lable class="p-2">Province</lable>
+                <lable class="p-2">
+                    <b>
+                        Province
+                    </b>
+                </lable>
                 <input
                     class="form-control @error('province') border-danger @enderror"
                     type="text"
@@ -140,7 +173,11 @@
 
             </div>
             <div class="form-group">
-                <lable class="p-2">Postal Code</lable>
+                <lable class="p-2">
+                    <b>
+                        Postal Code
+                    </b>
+                </lable>
                 <input
                     class="form-control @error('postal_code') border-danger @enderror"
                     type="text"
@@ -155,12 +192,15 @@
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"></div>
                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                     <div class="mb-5 float-right">
-{{--                        <h1 x-text="$wire.get('action')"></h1>--}}
-                        <button class="ps-btn-cancel ps-btn-cancel--sm" @click="updateComponent('address')">Cancel</button>
+                        <button class="ps-btn-cancel ps-btn-cancel--sm" wire:click="$emit('updateTab','address')">Cancel</button>
+
+                        <template  x-if="$wire.action=='add'">
                         <button class="ps-btn ps-btn--sm" wire:click="createAddress()">Create</button>
+                        </template>
 
+                        <template  x-if="$wire.action=='update'">
                             <button   class="ps-btn ps-btn--sm" wire:click="updateAddress('{{$address_id}}')">Update</button>
-
+                        </template>
 
                     </div>
                 </div>

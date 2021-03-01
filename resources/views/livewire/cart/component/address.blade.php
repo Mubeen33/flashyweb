@@ -1,8 +1,5 @@
-<div x-show.transition.in="open=='address'">
-
-    {{--        <livewire:cart.address >--}}
-
-    <div>
+<div  x-show.transition.in="open=='address'">
+    <div >
         <table class="table ps-table--shopping-cart">
             <thead>
             <tr>
@@ -81,5 +78,5 @@
         </table>
     </div>
 
-    @include('.livewire/cart/component/footer',['action'=>'payment'])
+    @include('.livewire/cart/component/footer',['action'=>'delivery,payment'])
 </div>

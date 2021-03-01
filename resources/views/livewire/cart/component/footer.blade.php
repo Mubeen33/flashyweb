@@ -69,7 +69,10 @@
         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
             <div class="ps-block--shopping-total">
                 <div class="ps-block__header">
-                    <p>Subtotal  ({{$totalItem}} Items)<span> R {{$subTotal}} </span></p>
+                    <p>Sub Total  ({{$totalItem}} Items)<span> R {{$subTotal}} </span></p>
+                </div>
+               <div class="ps-block__header">
+                    <p>Total Shipping  <span> R {{$totalShipping}} </span></p>
                 </div>
                 <div class="ps-block__content">
                     <ul class="ps-block__product">
@@ -90,18 +93,36 @@
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-            <div class="ps-section__cart-actions pt-0"><a class="ps-btn" href="{{route('frontend.rootPage')}}">
-                    <i class="icon-arrow-left"></i> Back to Shop</a>
-            </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"></div>
-        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-{{--            <button class="ps-btn ps-btn--fullwidth" @click="open ='{{$action}}'">Proceed to checkout</button>--}}
-                <button x-show="open !='delivery'" class="ps-btn ps-btn--fullwidth" wire:click="proceedOrder('{{$action}}')">  Proceed to checkout</button>
 
-        </div>
 
-        </div>
+
+
+{{--<h1>{{$action}}</h1>--}}
+
+@php
+
+    $back= explode(",", $action)[0];
+    $next= array_reverse(explode(",", $action))[0];
+
+@endphp
+
+
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+        @if($back=='home')
+                            <div x-show="back == 'home'" class="ps-section__cart-actions pt-0"><a class="ps-btn" href="{{route('frontend.rootPage')}}">  <i class="icon-arrow-left"></i> Back to Shop</a></div>
+        @else
+            <button  class="ps-btn ps-btn--fullwidth" @click="updateComponent('{{$back}}')"> <i class="icon-arrow-left"></i>  Back to Shop</button>
+
+        @endif
+
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12"></div>
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+        <button x-show="open !='delivery' && open !='add-address'" class="ps-btn ps-btn--fullwidth" wire:click="proceedOrder('{{$next}}')">  Proceed to checkout</button>
+
+    </div>
+
+</div>
 </div>

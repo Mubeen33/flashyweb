@@ -12,11 +12,11 @@
         </div>
 
 
-        <div>
-            <p>Livewire: {{ var_export($componentName) }}</p>
-            <p x-text="['Alpine.js: '+open]"></p>
-            <p>Session : {{Session::get('componentName')}} </p>
-        </div>
+{{--        <div>--}}
+{{--            <p>Livewire: {{ var_export($componentName) }}</p>--}}
+{{--            <p x-text="['Alpine.js: '+open]"></p>--}}
+{{--            <p>Session : {{Session::get('componentName')}} </p>--}}
+{{--        </div>--}}
 
 
         <div class="ps-section--shopping ps-shopping-cart pt-5" >
@@ -42,11 +42,12 @@
                         {{--                     <template x-if="open =='view'">--}}
                         @include('.livewire/cart/component/view')
 
+                        @include('.livewire/cart/component/delivery')
+
                         @include('.livewire/cart/component/address')
 
                         @include('.livewire/cart/component/add-address')
 
-                        @include('.livewire/cart/component/delivery')
                         {{--                    </template>--}}
 
                         {{--                    <template x-if="open =='address'">--}}
@@ -63,6 +64,8 @@
 
                         {{--                    <template x-if="open =='payment'">--}}
                         @include('.livewire/cart/component/payment')
+
+                        @include('.livewire/cart/component/order-success')
                         {{--                    </template>--}}
 
                     </div>
@@ -87,10 +90,12 @@
             },
             updateComponent(tab){
                 this.open=tab
+
             },
             isActiveTab(tab){
                 return tab==this.open
             },
+            back:@this.entangle('back')
 
 
         }

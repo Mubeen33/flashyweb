@@ -73,6 +73,6 @@
 
         </tbody>
     </table>
-    @include('.livewire/cart/component/footer',['action'=>'address'])
+    @include('.livewire/cart/component/footer',['action'=>'view,delivery'])
 </div>
 

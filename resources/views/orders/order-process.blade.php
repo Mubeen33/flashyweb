@@ -10,6 +10,7 @@
 @endpush
 @section('content')
     <main class="ps-page--my-account">
+        <div class="lds-hourglass"></div>
 
         <livewire:cart.view />
 {{--        <livewire:add-to-cart.delivery-cart />--}}

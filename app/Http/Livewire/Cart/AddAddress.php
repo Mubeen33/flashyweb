@@ -21,7 +21,7 @@ class AddAddress extends Component
     public $province;
     public $postal_code;
     public $address_id;
-    public $action = false;
+    public $action = 'add';
     protected $listeners = ['editAddress' => 'editAddress'];
 
     protected $rules = [
@@ -66,6 +66,7 @@ class AddAddress extends Component
 
 
         $address = CustomerAddress::findOrFail($id);
+        $this->action='update';
         $this->address_id = $address->id;
         $this->type = $address->type;
         $this->recipient_name = $address->recipient_name;
@@ -78,6 +79,7 @@ class AddAddress extends Component
         $this->province = $address->province;
         $this->postal_code = $address->postal_code;
         $this->emit('updateTab', 'add-address');
+
     }
 
     public function createAddress()
