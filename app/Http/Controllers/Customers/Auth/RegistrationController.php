@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Customers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\EmailTemplate;
 use Carbon\Carbon;
@@ -37,7 +39,7 @@ class RegistrationController extends Controller
         }
 
     	//if validity pass then
-    	$inserted = Customer::insert([
+    	$inserted = Customer::create([
     		'first_name'=>$request->first_name,
     		'last_name'=>$request->last_name,
     		'email'=>$request->email,
@@ -45,18 +47,22 @@ class RegistrationController extends Controller
     		'created_at'=>Carbon::now()
     	]);
 
-    	if ($inserted == true) {
+    	if ($inserted) {
             //send email
             // $template = EmailTemplate::where('template', 'Customer-Signup')->first();
             $subject = 'Customer-Signup';
-            if ($subject) {
-                $firstName = $request->first_name;
-                $lastName = $request->last_name;
-                Mail::to($request->email)->send(new SendDynamicEmail(
-                    $firstName, $lastName, $subject
-                 ));
-            }
+//            if ($subject) {
+//                $firstName = $request->first_name;
+//                $lastName = $request->last_name;
+//                Mail::to($request->email)->send(new SendDynamicEmail(
+//                    $firstName, $lastName, $subject
+//                 ));
+//            }
+            event(new Registered($inserted));
 
+//            $this->guard('customer')->login($inserted);
+
+            Auth::guard('customer')->login($inserted);
             return response()->json([
                     'success'=>true,
                     'msg'=>"Account registered successfully, please login.",

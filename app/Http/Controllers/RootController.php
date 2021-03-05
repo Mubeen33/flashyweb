@@ -22,8 +22,8 @@ class RootController extends Controller
         $current__time =$current->format('Y-m-d H:i');
 
     	$sliders = Slider::orderBy('order_no', 'ASC')
-                        ->get(); 	
-        
+                        ->get();
+
         $products = VendorProduct::where("active", 1)
                     ->select("*")
                     ->selectRaw("MIN(price) AS min_price")
@@ -33,8 +33,7 @@ class RootController extends Controller
                     ->get();
 
         //get home page banners
-        $get_home_banners = Banner::get();  
-
+        $get_home_banners = Banner::get();
 
     	return view('index', compact('sliders', 'get_home_banners', 'products', 'current__time'));
     }

@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,7 +17,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Auth::routes(['verify' => true]);
+
+
 Route::get('/welcome', function() {
+//    dd(Auth::user());
+    dd(Auth::guard('customer')->user());
 
     return view('welcome');
 });
@@ -74,7 +82,7 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 		Route::get('order-success/{order_id}','order\CartController@orderSuccess')->name('order-success');
 
 	});
-	Route::get('order-process','order\OrderController@orderProcess')->name('order.process');
+	Route::get('order-process','order\OrderController@orderProcess')->middleware('verified')->name('order.process');
 	Route::get('checkout','order\CartController@checkout');
 	Route::post('checkout','order\CartController@checkout_post')->name('saveCheckoutData.post');
 
@@ -100,7 +108,8 @@ Route::group(['middleware'=>['AppStatusMW']], function(){
 
 
 	//customer protected routes
-	Route::group(['as'=>'customer.', 'prefix'=>'customer', 'middleware' => ['customerMW']], function(){
+	Route::group(['as'=>'customer.', 'prefix'=>'customer', 'middleware' => ['customerMW','verified']], function(){
+
 		Route::get('dashboard', 'Customers\CustomerController@dashboard')->name('dashboard.get');
 		Route::get('profile', 'Customers\CustomerController@profile')->name('profile.get');
 		Route::post('profile-update', 'Customers\CustomerController@profile_update')->name('profieUpdate.post');
@@ -121,3 +130,11 @@ Route::get('/{slug}' , function($slug){
 	$page = \App\Models\Page::where('slug' , $slug)->first();
 	return view('Pages.page')->with('page',$page);
 })->name('slug_name');
+
+
+Route::get('/email/verify/{id}/{hash}','Customers\Auth\VerificationController@index')->name('verification.verify');
+Route::post('/email/verification-notification', 'Customers\Auth\VerificationController@resend')->name('verification.send');
+Route::get('/email/verify', 'Customers\Auth\VerificationController@verifyPage')->name('verification.notice');
+Route::get('/email/verify/success', 'Customers\Auth\VerificationController@verifySuccessPage')->middleware('verified')->name('verification.notice.success');
+
+

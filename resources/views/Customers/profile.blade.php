@@ -31,26 +31,29 @@
                         <input class="form-control" type="email" name="email" placeholder="Please enter your email..." value="{{ Auth::guard('customer')->user()->email }}">
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label>Birthday</label>
                         <input class="form-control" type="date" name="birthday" placeholder="Please enter your birthday..." value="{{ Auth::guard('customer')->user()->birthday }}">
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Gender</label>
-                        <select class="form-control" name="gender">
-                            @php
-                                $gender = Auth::guard('customer')->user()->gender;
-                            @endphp
-                            <option value="">Select One</option>
-                            <option value="Male" @if($gender === "Male") selected @endif>Male</option>
-                            <option value="Female" @if($gender === "Female") selected @endif>Female</option>
-                            <option value="Other" @if($gender === "Other") selected @endif>Other</option>
-                        </select>
-                    </div>
-                </div>
+
+{{--                <div class="col-sm-6">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Gender</label>--}}
+{{--                        <select class="form-control" name="gender">--}}
+{{--                            @php--}}
+{{--                                $gender = Auth::guard('customer')->user()->gender;--}}
+{{--                            @endphp--}}
+{{--                            <option value="">Select One</option>--}}
+{{--                            <option value="Male" @if($gender === "Male") selected @endif>Male</option>--}}
+{{--                            <option value="Female" @if($gender === "Female") selected @endif>Female</option>--}}
+{{--                            <option value="Other" @if($gender === "Other") selected @endif>Other</option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+
             </div>
         </div>
         <div class="form-group submit">

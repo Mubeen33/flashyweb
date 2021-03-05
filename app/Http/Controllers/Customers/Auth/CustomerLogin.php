@@ -24,6 +24,7 @@ class CustomerLogin extends Controller
 
     //attemt to login
     public function login(Request $request){
+
     	//validate form data
     	$validation = Validator::make($request->all(), [
     		'email' => 'required|string|email|max:100',
@@ -71,7 +72,7 @@ class CustomerLogin extends Controller
             'msg'=>"Invalid Email or Password",
             'need_scroll'=>"no"
         ], 422);
-    	
+
     }
 
 
@@ -100,8 +101,8 @@ class CustomerLogin extends Controller
         }
 
         $data = json_encode([
-                    'Time'=>date('d/m/Y H:i', strtotime(Carbon::now())), 
-                    'Access Via'=>$browser, 
+                    'Time'=>date('d/m/Y H:i', strtotime(Carbon::now())),
+                    'Access Via'=>$browser,
                     'IP'=>$ip,
                     'Location'=>$location,
                 ]);

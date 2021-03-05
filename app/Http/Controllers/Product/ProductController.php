@@ -96,7 +96,7 @@ class ProductController extends Controller
                     ->with(['get_product', 'get_vendor'])
                     ->get();
 
-    	dd($data,$otherOffers,$getProductData,$vendor_product,$categoryFlow,$related_products);
+//    	dd($data,$otherOffers,$getProductData,$vendor_product,$categoryFlow,$related_products);
     	return view("product.show", compact('data','otherOffers','getProductData', 'vendor_product', 'categoryFlow', 'currentCategory', 'related_products'));
     }
     //

@@ -92,19 +92,22 @@
                         <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i id="total_cart_items">0</i></span></a>
                             <div class="ps-cart__content">
                                 <div class="ps-cart__items" id="ps-cart__items">
-                                    
+
                                 </div>
                             </div>
                         </div>
                         <div class="ps-block--user-header">
                             <div class="ps-block__left"><i class="icon-user"></i></div>
-                            
-                            @if(session('loggin')==false)
-                            <div class="ps-block__right"><a href="{{ route('login', 'login') }}">Login</a><a href="{{ route('login' , 'register') }}">Register</a></div>
+
+                            @if(Auth::guard('customer')->check())
+                                <div class="ps-block__right mt-2"><a style="white-space: nowrap;" href="{{ route('customer.dashboard.get') }}">{{Auth::guard('customer')->user()->first_name . " " .  Auth::guard('customer')->user()->last_name}}</a></div>
                             @else
-                                <div class="ps-block__right mt-2"><a style="white-space: nowrap;" href="{{ route('customer.dashboard.get') }}">{{Auth::guard('customer')->user()->first_name . " " .  Auth::guard('customer')->user()->last_name}}</a>
-                                    </div>
+                                <div class="ps-block__right">
+                                    <a href="{{ route('login', 'login') }}">Login</a>
+                                    <a href="{{ route('login' , 'register') }}">Register</a>
+                                </div>
                             @endif
+
                         </div>
                     </div>
                 </div>
@@ -405,7 +408,18 @@
                     </div>
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><i class="icon-user"></i></div>
-                        <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+
+                        @if(Auth::guard('customer')->check())
+                            <div class="ps-block__right mt-2"><a style="white-space: nowrap;" href="{{ route('customer.dashboard.get') }}">{{Auth::guard('customer')->user()->first_name . " " .  Auth::guard('customer')->user()->last_name}}</a></div>
+                        @else
+                            <div class="ps-block__right">
+                                <a href="{{ route('login', 'login') }}">Login</a>
+                                <a href="{{ route('login' , 'register') }}">Register</a>
+                            </div>
+                        @endif
+
+
+{{--                        <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>--}}
                     </div>
                 </div>
             </div>
