@@ -44,6 +44,7 @@ Route::get('/clear', function() {
 Route::get('getroute' , function(){
 	return route('customer.dashboard.get');
 });
+
 Route::get('application', 'Application\SiteMaintenanceController@application')->name('frontend.application.get');
 Route::group(['middleware'=>['AppStatusMW']], function(){
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    
+
 <div class="ps-page--single">
     <div class="ps-breadcrumb">
         <div class="container">
@@ -61,6 +61,9 @@
             </div>
         </div>
     </div>
+
+
+
     <div class="ps-section--vendor ps-vendor-milestone">
         <div class="container">
             <div class="ps-section__header">
@@ -115,6 +118,10 @@
             </div>
         </div>
     </div>
+
+
+
+
     <div class="ps-section--vendor ps-vendor-best-fees">
         <div class="container">
             <div class="ps-section__header">
@@ -235,4 +242,4 @@
     </div>
 </div>
 
-@endsection    
+@endsection

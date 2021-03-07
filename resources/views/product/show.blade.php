@@ -135,8 +135,14 @@
                                     <div class="ps-product__variations">
 @php
         $activeVariants = (\App\Models\VendorProduct::where('prod_id',$productData->product_id)->where('active',1)->groupby('variation_id')->get());
-
+/*
+echo "<pre>";
+print_r($activeVariants);
+echo "</pre>";
+*/
 @endphp
+
+
                                 @if(count($activeVariants)==1)
                                     @if(!empty($productData->first_variation_value))
                                         <figure>
@@ -176,6 +182,13 @@
                                         </figure>
                                     @endif
                                 @endif
+
+
+
+
+
+
+
                                     </div>
                                 <div class="ps-product__shopping">
                                     <figure>
@@ -345,8 +358,14 @@
                     <aside class="widget widget_sell-on-site">
                         <p><i class="icon-store"></i> Sell on Flashybuy?<a href="{{ route('frontend.becomeAVendor.get') }}"> Register Now !</a></p>
                     </aside>
-                    {{-- <aside class="widget widget_ads"><a href="#"><img src="{{ asset('img/ads/product-ads.png')}}" alt=""></a></aside> --}}
-                    @include('product.partials.other-offers')
+                    {{-- <aside class="widget widget_ads"><a href="#">
+                    <img src="{{ asset('img/ads/product-ads.png')}}" alt=""></a></aside> --}}
+{{--                    @include('product.partials.other-offers')--}}
+
+
+
+
+
                 </div>
             </div>
 
@@ -598,6 +617,22 @@ function getsecondVariation(variation1,variation2,token,product_id) {
 
     $(document).delegate("#cart","click",function(){
 
+
+        if($('.product-variation').length){
+            if($('.Active1').length==0 || $('.Active2').length==0){
+                Swal.fire(
+                    'Alert',
+                    'Please select the variant detail first',
+                    'warning'
+                )
+
+                return true;
+            }
+        }
+
+
+
+
         var product_id   = $("#productid").val();
         var vendor_id    = $("#vendorid").val();
         var variation_id = $("#variation_id").val();
@@ -630,7 +665,8 @@ function getsecondVariation(variation1,variation2,token,product_id) {
  //  ========================   Cart Function ===================== ///
 //==================================================================//
 function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
-
+// alert('add to cart call---------------')
+//     return true;
     $.ajax({
            type:"POST",
            url:'{{ route('cart.products.addtocart') }}',
@@ -643,7 +679,7 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
                                       quantity     :  quantity,
                                       price        :  price,
                                       v_p_id       :  v_p_id,
-                                      _token       : $('input[name=_token').val()
+                                      _token       : $('input[name=_token]').val()
                                     },
            success: function(data){
 
@@ -663,6 +699,11 @@ function addtoCart(product_id,vendor_id,variation_id,quantity,price,v_p_id){
                             $('#ps-cart__items').css('display','');
                         }
                     // console.log(data);
+               Swal.fire(
+                   'Alert',
+                   'Product has been added into cart Successfuly',
+                   'success'
+               )
            }
 
     });
@@ -743,15 +784,13 @@ function buyNow(product_id,vendor_id,variation_id,quantity,price,v_p_id){
 function getOtherOffers(variation1,variation2,product_id,token){
 
     $.ajax({
-
             type : "POST",
             url  : '{{ Route('cart.products.getOtherOffers.post') }}',
             data : {
-
                     variation1 : variation1,
                     variation2 : variation2,
                     product_id : product_id,
-                    _token     : $('input[name=_token').val()
+                    _token     : $('input[name=_token]').val()
             },
             success:function(data){
 

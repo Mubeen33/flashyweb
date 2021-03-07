@@ -21,7 +21,7 @@ class VendorController extends Controller
         return view('Vendor.vendor_registration');
     }
 
-    
+
 
     /**
      * Display a listing of the resource.
@@ -61,7 +61,7 @@ class VendorController extends Controller
            'company_name'=>'required|string|max:50',
            'is_vat_registered'=>'required|string|in:Yes,No',
         ]);
-        
+
         //optional fields
         if(request('website')){
             $this->validate($request, [
@@ -93,8 +93,8 @@ class VendorController extends Controller
                'business_additional_info'=>'required|string',
             ]);
         }
-        
-        
+
+
         //if validation pass
         $inserted = Vendor::insert([
            'first_name'=> $request->first_name,
@@ -113,7 +113,7 @@ class VendorController extends Controller
            'additional_info'=> $request->business_additional_info,
            'created_at'=> Carbon::now()
         ]);
-        
+
         if($inserted == true){
             //send email
             // $template = EmailTemplate::where('template', 'Vendor-Signup')->first();
